@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+
+// pages
 import App from './App';
 import RouteTestPage from './pages/RouteTestPage';
+import LogInPage from './pages/LoginPage';
 
 import reportWebVitals from './reportWebVitals';
 import {
@@ -19,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "routetest",
     element: <RouteTestPage />
+  },
+  {
+    path: "signin",
+    element: <LogInPage />
   }
 ]);
 
