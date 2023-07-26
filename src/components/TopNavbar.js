@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NavBar(){
+function TopNavBar(){
     return (
         <div class="navbar navbar-top">
             <Link class="site-title" to="/">Tom's Axe Throwing Tracker</Link>
@@ -12,4 +12,4 @@ function NavBar(){
     );
 }
 
-export default NavBar;
+export default TopNavBar;
