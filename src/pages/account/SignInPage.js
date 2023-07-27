@@ -32,10 +32,13 @@ const SignInPage = () => {
 
         try {
             const response = await axios.post(signInUrl,
-                JSON.stringify({ userName: username, password: password }),
+                JSON.stringify({ "userName": username, "password": password }),
                 {
-                    headers: { 'ContentType': 'application/json' },
-                    withCredentials: true
+                    headers: {
+                        'ContentType': 'application/json',
+                        //'Accept': 'application/json'
+                    },
+                    //withCredentials: true
                 });
             console.log(response?.data);
             const accessToken = response?.data?.token;
