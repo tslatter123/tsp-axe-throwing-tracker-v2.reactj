@@ -4,6 +4,8 @@ import AuthContext from '../../context/AuthProvider';
 import { Link } from 'react-router-dom';
 
 function SignInPage() {
+    const { setAuth } = useContext(AuthContext);
+
     const usernameRef = useRef();
     const errorRef = useRef();
 
