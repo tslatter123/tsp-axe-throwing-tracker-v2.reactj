@@ -5,6 +5,8 @@ import axios from '../../api/axios';
 
 import { Link } from 'react-router-dom';
 
+const signInUrl = 'UserLogIn';
+
 const SignInPage = () => {
     const { setAuth } = useContext(AuthContext);
 
@@ -26,7 +28,30 @@ const SignInPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(username, password);
+        //console.log(username, password);
+
+        try {
+            const response = await axios.post(signInUrl,
+                JSON.stringify({ userName: username, password: password }),
+                {
+                    headers: { 'ContentType': 'application/json' },
+                    withCredentials: true
+                });
+            console.log(response?.data);
+            const accessToken = response?.data?.token;
+
+            setAuth({ username, password, accessToken });
+        }
+        catch (err) {
+            if (!err?.response) {
+                setErrorMsg('No server response.');
+            }
+            else {
+                console.log(err?.response);
+            }
+            errorRef.current.focus();
+        }
+
         setSuccess(true);
     }
 
