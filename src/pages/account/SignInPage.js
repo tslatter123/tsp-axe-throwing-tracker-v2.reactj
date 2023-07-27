@@ -28,23 +28,22 @@ const SignInPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        //console.log(username, password);
 
         try {
             const response = await axios.post(signInUrl,
-                JSON.stringify({ "userName": username, "password": password }),
+                { "userName": username, "password": password },
                 {
                     headers: {
                         'ContentType': 'application/json',
-                        //'Accept': 'application/json'
-                    },
-                    //withCredentials: true
-                });
-            console.log(response?.data);
-            const accessToken = response?.data?.token;
+                    }
+                }
+            );
+            const accessToken = response?.data?.accessToken;
 
-            setAuth({ username, password, accessToken });
-            setSuccess(true);
+            console.log(accessToken);
+
+            // setAuth({ username, password, accessToken });
+            // setSuccess(true);
         }
         catch (err) {
             if (!err?.response) {
