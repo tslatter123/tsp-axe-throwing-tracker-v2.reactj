@@ -9,17 +9,18 @@ function LogInPage() {
     const [errorMsg, setErrorMsg] = useState('');
     const [success, setSuccess] = useState('');
 
-    async function LogIn() {
-        console.log(username, password);
-    }
-
     useEffect(() => {
-        userRef.current.focus();
+        usernameRef.current.focus();
     }, []);
 
     useEffect(() => {
         setErrorMsg('');
     }, [username, password]);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(username, password);
+    }
 
     return (
         <section>
