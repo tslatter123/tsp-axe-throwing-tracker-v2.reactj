@@ -41,6 +41,7 @@ const SignInPage = () => {
             const accessToken = response?.data?.token;
 
             setAuth({ username, password, accessToken });
+            setSuccess(true);
         }
         catch (err) {
             if (!err?.response) {
@@ -51,8 +52,6 @@ const SignInPage = () => {
             }
             errorRef.current.focus();
         }
-
-        setSuccess(true);
     }
 
     return (
