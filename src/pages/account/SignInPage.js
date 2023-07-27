@@ -5,7 +5,7 @@ import axios from '../../api/axios';
 
 import { Link } from 'react-router-dom';
 
-function SignInPage() {
+const SignInPage = () => {
     const { setAuth } = useContext(AuthContext);
 
     const usernameRef = useRef();
