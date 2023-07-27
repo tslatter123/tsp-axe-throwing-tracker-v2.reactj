@@ -40,10 +40,8 @@ const SignInPage = () => {
             );
             const accessToken = response?.data?.accessToken;
 
-            console.log(accessToken);
-
-            // setAuth({ username, password, accessToken });
-            // setSuccess(true);
+            setAuth({ username, password, accessToken });
+            setSuccess(true);
         }
         catch (err) {
             if (!err?.response) {
