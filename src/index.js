@@ -5,7 +5,7 @@ import './index.css';
 // pages
 import App from './App';
 import RouteTestPage from './pages/RouteTestPage';
-import LogInPage from './pages/LoginPage';
+import SignInPage from './pages/account/SignInPage';
 
 import reportWebVitals from './reportWebVitals';
 import {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path: "signin",
-    element: <LogInPage />
+    element: <SignInPage />
   }
 ]);
 

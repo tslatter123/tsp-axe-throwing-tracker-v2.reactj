@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-function LogInPage() {
+function SignInPage() {
     const usernameRef = useRef();
     const errorRef = useRef();
 
@@ -56,4 +56,4 @@ function LogInPage() {
     );
 }
 
-export default LogInPage;
+export default SignInPage;
