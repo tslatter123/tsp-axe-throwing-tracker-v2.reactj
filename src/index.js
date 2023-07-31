@@ -5,6 +5,9 @@ import './index.css';
 // context
 import { AuthProvider } from './context/AuthProvider';
 
+// components
+import TopNavBar from './components/TopNavbar';
+
 // pages
 import App from './App';
 import RouteTestPage from './pages/RouteTestPage';
@@ -12,36 +15,20 @@ import SignInPage from './pages/account/SignInPage';
 import RegisterPage from './pages/account/RegisterPage';
 
 import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route
-} from "react-router-dom";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "routetest",
-    element: <RouteTestPage />
-  },
-  {
-    path: "signin",
-    element: <SignInPage />
-  },
-  {
-    path: "register",
-    element: <RegisterPage />
-  }
-]);
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <Router>
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='routetest' element={<RouteTestPage />} />
+          <Route path='signin' element={<SignInPage />} />
+          <Route path='register' element={<RegisterPage />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   </React.StrictMode>
 );
