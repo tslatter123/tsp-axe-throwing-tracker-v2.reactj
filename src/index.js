@@ -5,9 +5,6 @@ import './index.css';
 // context
 import { AuthProvider } from './context/AuthProvider';
 
-// components
-import TopNavBar from './components/TopNavbar';
-
 // pages
 import App from './App';
 import RouteTestPage from './pages/RouteTestPage';
