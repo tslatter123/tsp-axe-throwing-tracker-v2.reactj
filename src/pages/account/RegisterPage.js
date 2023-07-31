@@ -20,7 +20,7 @@ const RegisterPage = () => {
     useEffect(() => {
         usernameRef.current.focus();
         emailRef.current.focus();
-    });
+    }, []);
 
     useEffect(() => {
         setErrorMsg('');
@@ -37,10 +37,44 @@ const RegisterPage = () => {
             setErrorMsg('Passwords do not match. Please try again.');
             return;
         }
+
+        try {
+            await axios.post(
+                registerUrl,
+                {
+                    "userName": username,
+                    "email": email,
+                    "confirmEmail": confirmEmail,
+                    "password": password,
+                    "confirmPassword": confirmPassword
+                },
+                {
+                    headers: {
+                        'ContentType': 'application/json'
+                    }
+                }
+            );
+
+            setSuccess(true);
+        }
+        catch (err) {
+            if (!err?.response) {
+                setErrorMsg('No server response.')
+            }
+            else {
+                setErrorMsg(err?.response?.data);
+            }
+        }
     }
 
     return (
         <>
+        {success ? (
+                <section>
+                    <p>You have successfully registered.</p>
+                    <Link to='/signin'>Sign in here</Link>
+                </section>
+            ) : (
             <section>
                 <p ref={errorRef} aria-live='assertive'>{errorMsg}</p>
                 <h1>Register</h1>
@@ -88,7 +122,7 @@ const RegisterPage = () => {
                             id='confirmPassword'
                             type='password'
                             placeholder='Confirm password'
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             value={confirmPassword}
                             required />
                     </div>
@@ -97,6 +131,7 @@ const RegisterPage = () => {
                     </div>
                 </form>
             </section>
+            )}
         </>
     );
 }

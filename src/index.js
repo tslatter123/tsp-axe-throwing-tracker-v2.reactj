@@ -9,6 +9,7 @@ import { AuthProvider } from './context/AuthProvider';
 import App from './App';
 import RouteTestPage from './pages/RouteTestPage';
 import SignInPage from './pages/account/SignInPage';
+import RegisterPage from './pages/account/RegisterPage';
 
 import reportWebVitals from './reportWebVitals';
 import {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "signin",
     element: <SignInPage />
+  },
+  {
+    path: "register",
+    element: <RegisterPage />
   }
 ]);
 
