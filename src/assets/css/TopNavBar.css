@@ -7,6 +7,9 @@ header.navbar.navbar-top {
     padding: 0;
     align-items: center;
     justify-content: space-between;
+    font-family: 'Roboto-Bold';
+    font-size: 18px;
+    color: #000;
 }
 
     header.navbar.navbar-top ul.nav-items {
@@ -35,6 +38,11 @@ header.navbar.navbar-top {
                 justify-content: center;
                 text-decoration: none;
             }
+
+                header.navbar.navbar-top ul.nav-items li a.nav-link.nav-title {
+                    font-family: 'Roboto-Black';
+                    font-size: 32px;
+                }
 
         header.navbar.navbar-top ul.nav-items.navbar-left{
             justify-self: flex-start;
