@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './assets/css/App.css';
 
 import TopNavBar from './components/TopNavbar';
 import { Link } from "react-router-dom";
@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
+      <TopNavBar />
       <header className="App-header">
-        <TopNavBar />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
