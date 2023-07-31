@@ -30,14 +30,19 @@ const SignInPage = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(signInUrl,
-                { "userName": username, "password": password },
-                {
-                    headers: {
-                        'ContentType': 'application/json',
+            const response =
+                await axios.post(
+                    signInUrl,
+                    {
+                        "userName": username,
+                        "password": password
+                    },
+                    {
+                        headers: {
+                            'ContentType': 'application/json',
+                        }
                     }
-                }
-            );
+                );
             const accessToken = response?.data?.accessToken;
 
             setAuth({ username, password, accessToken });
