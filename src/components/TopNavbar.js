@@ -2,6 +2,8 @@ import '../assets/css/TopNavBar.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import SignInHeader from './SignInHeader';
+
 function TopNavBar() {
     return (
         <header className='navbar navbar-top'>
@@ -13,6 +15,7 @@ function TopNavBar() {
                 <li><Link className="nav-link" to="/signin">Sign In</Link></li>
                 <li><Link className="nav-link" to="/register">Register</Link></li>
             </ul>
+            <SignInHeader />
         </header>
     );
 }
