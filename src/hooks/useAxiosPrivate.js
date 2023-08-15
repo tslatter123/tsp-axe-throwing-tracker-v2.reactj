@@ -30,6 +30,7 @@ const useAxiosPrivate = () => {
 
                     delete prevRequest.headers['Authorization'];
                     prevRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+                    
                     return axiosPrivate(prevRequest);
                 }
                 return Promise.reject(error);
