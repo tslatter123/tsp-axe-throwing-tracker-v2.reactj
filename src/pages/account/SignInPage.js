@@ -40,7 +40,8 @@ const SignInPage = () => {
                     {
                         headers: {
                             'ContentType': 'application/json',
-                        }
+                        },
+                        withCredentials: true
                     }
                 );
             const accessToken = response?.data?.accessToken;
