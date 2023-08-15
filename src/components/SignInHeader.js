@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "../api/axios.js";
 import AuthContext, { AuthProvider } from "../context/AuthProvider.js";
-import useRefreshToken from "../hooks/useRefreshToken.js";
 
 const userInfoUrl = 'account';
 
 const SignInHeader = () => {
-    //temporary
-    const refresh = useRefreshToken();
 
     const [signedIn, setSignedIn] = useState(false);
     const [username, setUsername] = useState('');
@@ -48,7 +45,6 @@ const SignInHeader = () => {
             ) : (
                 <div>Not signed in</div>
             )}
-            <button onClick={refresh}>Refresh token</button>
         </>
     );
 }
