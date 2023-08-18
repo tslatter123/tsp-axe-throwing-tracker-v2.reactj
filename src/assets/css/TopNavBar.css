@@ -29,7 +29,8 @@ header.navbar.navbar-top ul.nav-items li {
     list-style-type: none;
 }
 
-header.navbar.navbar-top ul.nav-items li a.nav-link {
+header.navbar.navbar-top ul.nav-items li a.nav-link,
+header.navbar.navbar-top ul.nav-items li div.nav-item {
     margin: 0;
     width: auto;
     height: 60px;
