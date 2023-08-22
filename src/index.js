@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthProvider';
 import App from './App';
 import RouteTestPage from './pages/RouteTestPage';
 import SignInPage from './pages/account/SignInPage';
+import SignOutPage from './pages/account/SignOutPage';
 import RegisterPage from './pages/account/RegisterPage';
 
 import reportWebVitals from './reportWebVitals';
@@ -24,6 +25,7 @@ root.render(
           <Route path='/' element={<App />} />
           <Route path='routetest' element={<RouteTestPage />} />
           <Route path='signin' element={<SignInPage />} />
+          <Route path='signout' element={<SignOutPage />} />
           <Route path='register' element={<RegisterPage />} />
         </Routes>
       </Router>
