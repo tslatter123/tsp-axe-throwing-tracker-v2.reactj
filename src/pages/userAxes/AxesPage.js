@@ -9,7 +9,7 @@ const UserAxes = () => {
     const axiosPrivate = useAxiosPrivate();
 
     const [editAxeOpen, setEditAxeOpen] = useState(false);
-    const [editAxeId, setEditAxeId] = useState(1);
+    const [editAxeId, setEditAxeId] = useState(0);
 
     useEffect(() => {
         let isMounted = true;
@@ -47,7 +47,7 @@ const UserAxes = () => {
                     <tbody>
                         {userAxes.map(item => {
                             return (
-                                <tr id={item.id} key={item.id} onClick={setEditAxeId(item.id)}>
+                                <tr id={item.id} key={item.id} onClick={() => setEditAxeId(item.id)}>
                                     <td>{item.id}</td>
                                     <td>{item.index}</td>
                                     <td>{item.name}</td>
