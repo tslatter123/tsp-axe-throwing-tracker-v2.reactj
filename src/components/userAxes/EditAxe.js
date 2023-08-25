@@ -40,7 +40,7 @@ const EditAxe = (props) => {
         }
 
         getAxeInfo();
-    }, [axiosPrivate])
+    }, [axiosPrivate, props.id])
 
     return (
         <div className="popout popout-right">
