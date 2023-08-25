@@ -47,7 +47,7 @@ const UserAxes = () => {
                     <tbody>
                         {userAxes.map(item => {
                             return (
-                                <tr id={item.id} key={item.id}>
+                                <tr id={item.id} key={item.id} onClick={setEditAxeId(item.id)}>
                                     <td>{item.id}</td>
                                     <td>{item.index}</td>
                                     <td>{item.name}</td>
