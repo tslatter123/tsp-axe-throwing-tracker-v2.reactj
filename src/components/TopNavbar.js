@@ -10,6 +10,7 @@ function TopNavBar() {
             <ul className='nav-items navbar-left'>
                 <li><Link className="nav-link nav-title" to="/">TATT</Link></li>
                 <li><Link className="nav-link" to="/routetest">React Router Test</Link></li>
+                <li><Link className="nav-link" to="/axes">Axes</Link></li>
             </ul>
             <SignInHeader />
         </header>

@@ -13,6 +13,8 @@ import SignInPage from './pages/account/SignInPage';
 import SignOutPage from './pages/account/SignOutPage';
 import RegisterPage from './pages/account/RegisterPage';
 
+import UserAxes from './pages/userAxes/AxesPage';
+
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -27,6 +29,7 @@ root.render(
           <Route path='signin' element={<SignInPage />} />
           <Route path='signout' element={<SignOutPage />} />
           <Route path='register' element={<RegisterPage />} />
+          <Route path='axes' element={<UserAxes />} />
         </Routes>
       </Router>
     </AuthProvider>
