@@ -42,9 +42,14 @@ const EditAxe = (props) => {
         getAxeInfo();
     }, [axiosPrivate, props.id]);
 
-    useEffect(()=>{
+    useEffect(() => {
         nameRef.current.focus();
-    })
+        descriptionRef.current.focus();
+    });
+
+    useEffect(() => {
+        setErrorMsg('');
+    }, [name, description]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -59,8 +64,9 @@ const EditAxe = (props) => {
                     "description": description,
                     "userID": userId
                 });
-
-            setErrorMsg("Updated successfully!");
+            if (response.ok) {
+                setErrorMsg("Updated successfully!");
+            }
         } catch (err) {
             alert(err);
             if (!err?.response) {
@@ -75,7 +81,7 @@ const EditAxe = (props) => {
     return (
         <div className="popout popout-right">
             <h2>Edit Axe</h2>
-            <form id="editAxeForm" method="put" onSubmit={() => handleSubmit()}>
+            <form id="editAxeForm" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input
                         id="name"
@@ -117,7 +123,7 @@ const EditAxe = (props) => {
                 <p ref={errorMsgRef} aria-live="assertive">{errorMsg}</p>
                 <div className="form-group">
                     <button id="saveBtn">Save</button>
-                    <button id="cancelBtn">Cancel</button>
+                    {/* <button id="cancelBtn">Cancel</button> */}
                 </div>
             </form>
         </div>
