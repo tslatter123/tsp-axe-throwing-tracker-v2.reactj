@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 
 import SignInHeader from './SignInHeader';
 
-function TopNavBar() {
+const TopNavBar = () => {
+    const getData = (data) => {
+        console.log("isSignedIn", data);
+    }
+
+
     return (
         <header className='navbar navbar-top'>
             <ul className='nav-items navbar-left'>
@@ -12,7 +17,7 @@ function TopNavBar() {
                 <li><Link className="nav-link" to="/routetest">React Router Test</Link></li>
                 <li><Link className="nav-link" to="/axes">Axes</Link></li>
             </ul>
-            <SignInHeader />
+            <SignInHeader onSubmit={getData} />
         </header>
     );
 }

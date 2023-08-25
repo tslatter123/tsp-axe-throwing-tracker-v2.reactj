@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-// import axios from "../api/axios.js";
-// import AuthContext, { AuthProvider } from "../context/AuthProvider.js";
 import { Link } from 'react-router-dom'
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const userInfoUrl = 'account';
 
-const SignInHeader = () => {
+const SignInHeader = (props) => {
 
     const [signedIn, setSignedIn] = useState(false);
     const [username, setUsername] = useState('');
@@ -29,6 +27,7 @@ const SignInHeader = () => {
                 console.error(err);
                 setSignedIn(false);
             }
+            props.onSubmit(signedIn);
         };
 
         getUserInfo();
