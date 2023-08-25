@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import EditAxe from "../../components/userAxes/EditAxe";
 
 const userAxesUrl = 'UserAxes';
 
@@ -55,6 +56,7 @@ const UserAxes = () => {
                 </table>) : (
                 <p>You don't have any axes saved.</p>
             )}
+            <EditAxe id={1} />
         </section>
     )
 }
