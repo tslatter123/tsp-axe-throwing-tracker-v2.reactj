@@ -31,6 +31,11 @@ const UserAxes = () => {
         getUserAxes();
     }, [axiosPrivate]);
 
+    const openCloseEditAxe = (axeId) => {
+        setEditAxeId(editAxeOpen ? null : axeId);
+        setEditAxeOpen(!editAxeOpen);
+    }
+
     return (
         <section>
             <h1>Your Saved Axes</h1>
@@ -47,7 +52,7 @@ const UserAxes = () => {
                     <tbody>
                         {userAxes.map(item => {
                             return (
-                                <tr id={item.id} key={item.id} onClick={() => setEditAxeId(item.id)}>
+                                <tr id={item.id} key={item.id} onClick={() => openCloseEditAxe(item.id)}>
                                     <td>{item.id}</td>
                                     <td>{item.index}</td>
                                     <td>{item.name}</td>
@@ -59,7 +64,7 @@ const UserAxes = () => {
                 </table>) : (
                 <p>You don't have any axes saved.</p>
             )}
-            <EditAxe id={editAxeId} />
+            {editAxeOpen && <EditAxe id={editAxeId} />}
         </section>
     )
 }
