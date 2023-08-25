@@ -8,6 +8,9 @@ const UserAxes = () => {
     const [userAxes, setUserAxes] = useState([]);
     const axiosPrivate = useAxiosPrivate();
 
+    const [editAxeOpen, setEditAxeOpen] = useState(false);
+    const [editAxeId, setEditAxeId] = useState(1);
+
     useEffect(() => {
         let isMounted = true;
         const controller = new AbortController();
@@ -56,7 +59,7 @@ const UserAxes = () => {
                 </table>) : (
                 <p>You don't have any axes saved.</p>
             )}
-            <EditAxe id={1} />
+            <EditAxe id={editAxeId} />
         </section>
     )
 }
