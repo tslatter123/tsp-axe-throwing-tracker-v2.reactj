@@ -45,7 +45,7 @@ const EditAxe = (props) => {
     useEffect(() => {
         nameRef.current.focus();
         descriptionRef.current.focus();
-    });
+    }, []);
 
     useEffect(() => {
         setErrorMsg('');
@@ -64,8 +64,8 @@ const EditAxe = (props) => {
                     "description": description,
                     "userID": userId
                 });
-            
-                setErrorMsg("Updated successfully!");
+
+            setErrorMsg("Updated successfully!");
         } catch (err) {
             alert(err);
             if (!err?.response) {
