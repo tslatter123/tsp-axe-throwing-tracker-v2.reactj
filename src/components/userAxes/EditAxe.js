@@ -40,12 +40,42 @@ const EditAxe = (props) => {
         }
 
         getAxeInfo();
-    }, [axiosPrivate, props.id])
+    }, [axiosPrivate, props.id]);
+
+    useEffect(()=>{
+        nameRef.current.focus();
+    })
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axiosPrivate.put(
+                userAxeUrl,
+                {
+                    "id": id,
+                    "index": index,
+                    "name": name,
+                    "description": description,
+                    "userID": userId
+                });
+
+            setErrorMsg("Updated successfully!");
+        } catch (err) {
+            alert(err);
+            if (!err?.response) {
+                setErrorMsg("No server response.");
+            }
+            else {
+                setErrorMsg(err.response.data.error);
+            }
+        }
+    }
 
     return (
         <div className="popout popout-right">
             <h2>Edit Axe</h2>
-            <form id="editAxeForm">
+            <form id="editAxeForm" method="put" onSubmit={() => handleSubmit()}>
                 <div className="form-group">
                     <input
                         id="name"
