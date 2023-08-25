@@ -8,8 +8,8 @@ const UserAxes = () => {
     const [userAxes, setUserAxes] = useState([]);
     const axiosPrivate = useAxiosPrivate();
 
-    const [editAxeOpen, setEditAxeOpen] = useState(false);
     const [editAxeId, setEditAxeId] = useState(0);
+    const [editAxeOpen, setEditAxeOpen] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -30,6 +30,8 @@ const UserAxes = () => {
 
         getUserAxes();
     }, [axiosPrivate]);
+
+
 
     const openCloseEditAxe = (axeId) => {
         setEditAxeId(editAxeOpen ? null : axeId);

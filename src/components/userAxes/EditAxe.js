@@ -55,7 +55,7 @@ const EditAxe = (props) => {
         e.preventDefault();
 
         try {
-            const response = await axiosPrivate.put(
+            await axiosPrivate.put(
                 userAxeUrl,
                 {
                     "id": id,
@@ -64,9 +64,8 @@ const EditAxe = (props) => {
                     "description": description,
                     "userID": userId
                 });
-            if (response.ok) {
+            
                 setErrorMsg("Updated successfully!");
-            }
         } catch (err) {
             alert(err);
             if (!err?.response) {
