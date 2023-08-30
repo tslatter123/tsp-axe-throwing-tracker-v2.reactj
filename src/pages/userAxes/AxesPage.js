@@ -26,7 +26,12 @@ const UserAxes = () => {
                 console.log(response.data);
                 isMounted && setUserAxes(response.data.axeInfoList);
             } catch (err) {
-                console.error(err);
+                if (!err?.response) {
+                    console.error("No server response")
+                }
+                else {
+                    console.error(err);
+                }
             }
         };
 

@@ -65,7 +65,7 @@ const EditAxe = (props) => {
                     "userID": userId
                 });
 
-            setErrorMsg("Updated successfully!");
+            window.location.reload();
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.");

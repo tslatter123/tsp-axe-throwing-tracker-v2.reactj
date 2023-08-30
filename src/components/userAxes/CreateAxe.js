@@ -26,7 +26,7 @@ const CreateAxe = () => {
                     "description": description
                 });
 
-            setErrorMsg("Added successfully!");
+            window.location.reload();
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.")
