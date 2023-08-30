@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import EditAxe from "../../components/userAxes/EditAxe";
 import CreateAxe from "../../components/userAxes/CreateAxe";
+import DeleteAxe from "../../components/userAxes/DeleteAxe";
 
 const userAxesUrl = 'UserAxes';
 
@@ -10,8 +11,9 @@ const UserAxes = () => {
     const axiosPrivate = useAxiosPrivate();
 
     const [editAxeId, setEditAxeId] = useState(0);
-    const [editAxeOpen, setEditAxeOpen] = useState(false);
     const [createAxeOpen, setCreateAxeOpen] = useState(false);
+    const [editAxeOpen, setEditAxeOpen] = useState(false);
+    const [deleteAxeOpen, setDeleteAxeOpen] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -38,18 +40,27 @@ const UserAxes = () => {
         getUserAxes();
     }, [axiosPrivate]);
 
-
+    const openCreateAxe = () => {
+        setEditAxeId(null);
+        setEditAxeOpen(false);
+        setDeleteAxeOpen(false);
+        setCreateAxeOpen(true);
+    }
 
     const openCloseEditAxe = (axeId) => {
         setCreateAxeOpen(false);
+        setDeleteAxeOpen(false);
         setEditAxeId(editAxeOpen ? null : axeId);
         setEditAxeOpen(!editAxeOpen);
     }
 
-    const openCreateAxe = () => {
-        setEditAxeId(null);
+    const openCloseDeleteAxe = (e, axeId) => {
+        e.stopPropagation();
+
+        setCreateAxeOpen(false);
         setEditAxeOpen(false);
-        setCreateAxeOpen(true);
+        setEditAxeId(editAxeOpen ? null : axeId);
+        setDeleteAxeOpen(!deleteAxeOpen);
     }
 
     return (
@@ -64,6 +75,7 @@ const UserAxes = () => {
                             <th>Index</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,6 +86,7 @@ const UserAxes = () => {
                                     <td>{item.index}</td>
                                     <td>{item.name}</td>
                                     <td>{item.description}</td>
+                                    <td><button onClick={(e) => openCloseDeleteAxe(e, item.id)}>Delete</button></td>
                                 </tr>
                             )
                         })}
@@ -82,7 +95,8 @@ const UserAxes = () => {
                 <p>You don't have any axes saved.</p>
             )}
             {createAxeOpen ? <CreateAxe /> :
-                editAxeOpen && <EditAxe id={editAxeId} />}
+                editAxeOpen ? <EditAxe id={editAxeId} /> :
+                    deleteAxeOpen && <DeleteAxe id={editAxeId} />}
         </section>
     )
 }

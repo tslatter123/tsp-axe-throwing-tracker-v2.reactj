@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const userAxeUrl = "UserAxe";
@@ -40,17 +40,17 @@ const DeleteAxe = (props) => {
             window.location.reload();
         } catch (err) {
             if (!err?.response) {
-                setErrorMsg("No server response.");
+                console.error("No server response.");
             }
             else {
-                setErrorMsg(err.response.data.error);
+                console.error(err.response);
             }
         }
     }
 
     return (
         <div className="popout popout-right">
-            <h2>Are you sure you want to delete {name}</h2>
+            <h2>Are you sure you want to delete {name}?</h2>
             <p>{description}</p>
             <button onClick={handleDelete}>Delete</button>
         </div>
