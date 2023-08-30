@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import EditAxe from "../../components/userAxes/EditAxe";
+import CreateAxe from "../../components/userAxes/CreateAxe";
 
 const userAxesUrl = 'UserAxes';
 
@@ -10,6 +11,7 @@ const UserAxes = () => {
 
     const [editAxeId, setEditAxeId] = useState(0);
     const [editAxeOpen, setEditAxeOpen] = useState(false);
+    const [createAxeOpen, setCreateAxeOpen] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -34,13 +36,21 @@ const UserAxes = () => {
 
 
     const openCloseEditAxe = (axeId) => {
+        setCreateAxeOpen(false);
         setEditAxeId(editAxeOpen ? null : axeId);
         setEditAxeOpen(!editAxeOpen);
+    }
+
+    const openCreateAxe = () => {
+        setEditAxeId(null);
+        setEditAxeOpen(false);
+        setCreateAxeOpen(true);
     }
 
     return (
         <section>
             <h1>Your Saved Axes</h1>
+            <button onClick={openCreateAxe}>Add an axe</button>
             {userAxes.length ? (
                 <table>
                     <thead>
@@ -66,7 +76,8 @@ const UserAxes = () => {
                 </table>) : (
                 <p>You don't have any axes saved.</p>
             )}
-            {editAxeOpen && <EditAxe id={editAxeId} />}
+            {createAxeOpen ? <CreateAxe /> :
+                editAxeOpen && <EditAxe id={editAxeId} />}
         </section>
     )
 }
