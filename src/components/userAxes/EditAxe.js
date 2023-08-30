@@ -67,7 +67,6 @@ const EditAxe = (props) => {
 
             setErrorMsg("Updated successfully!");
         } catch (err) {
-            alert(err);
             if (!err?.response) {
                 setErrorMsg("No server response.");
             }
