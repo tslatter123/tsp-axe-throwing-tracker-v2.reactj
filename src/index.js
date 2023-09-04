@@ -17,12 +17,13 @@ import UserAxes from './pages/userAxes/AxesPage';
 
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MasterLayout from './pages/MasterLayout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <Router>
+      {/* <Router>
         <Routes>
           <Route path='/' element={<App />} />
           <Route path='routetest' element={<RouteTestPage />} />
@@ -31,7 +32,8 @@ root.render(
           <Route path='register' element={<RegisterPage />} />
           <Route path='axes' element={<UserAxes />} />
         </Routes>
-      </Router>
+      </Router> */}
+      <MasterLayout />
     </AuthProvider>
   </React.StrictMode>
 );

@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './assets/css/App.css';
 
-import TopNavBar from './components/TopNavbar';
-import { Link } from "react-router-dom";
+// import TopNavBar from './components/TopNavbar';
+// import { Link } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <TopNavBar />
+      {/* <TopNavBar /> */}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -21,13 +21,13 @@ function App() {
         >
           Learn React
         </a> */}
-        <Link
+        {/* <Link
           className="App-link"
           to="/routetest"
           rel="noopener noreferrer"
         >
           Route Test
-        </Link>
+        </Link> */}
       </header>
     </div>
   );
