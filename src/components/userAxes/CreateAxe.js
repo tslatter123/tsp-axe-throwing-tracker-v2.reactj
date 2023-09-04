@@ -41,7 +41,7 @@ const CreateAxe = () => {
         <div className="popout-content">
             <h2>Add an Axe</h2>
             <form id="createAxeForm" onSubmit={handleSubmit}>
-                <div class="form-group">
+                <div className="form-group">
                     <input
                         id="name"
                         type="text"

@@ -18,13 +18,13 @@ const DeleteAxe = (props) => {
                 const response = await axiosPrivate.get(userAxeUrl + "?id=" + props.id, {
                     signal: controller.signal
                 });
-                console.log(response.data);
+                
                 if (isMounted) {
                     setName(response.data.axeInfo.name);
                     setDescription(response.data.axeInfo.description);
                 }
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         }
 

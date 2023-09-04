@@ -25,7 +25,6 @@ const UserAxes = () => {
                     signal: controller.signal
                 });
 
-                console.log(response.data);
                 isMounted && setUserAxes(response.data.axeInfoList);
             } catch (err) {
                 if (!err?.response) {

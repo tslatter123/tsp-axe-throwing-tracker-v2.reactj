@@ -26,7 +26,6 @@ const EditAxe = (props) => {
                 const response = await axiosPrivate.get(userAxeUrl + "?id=" + props.id, {
                     signal: controller.signal
                 });
-                console.log(response.data);
                 if (isMounted) {
                     setId(response.data.axeInfo.id);
                     setIndex(response.data.axeInfo.index);
@@ -35,7 +34,7 @@ const EditAxe = (props) => {
                     setUserId(response.data.axeInfo.userID);
                 }
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         }
 

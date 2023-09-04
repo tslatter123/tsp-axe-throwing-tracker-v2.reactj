@@ -54,7 +54,7 @@ const SignInPage = () => {
                 setErrorMsg('No server response.');
             }
             else {
-                console.log(err?.response);
+                setErrorMsg(err?.response);
             }
             errorRef.current.focus();
         }

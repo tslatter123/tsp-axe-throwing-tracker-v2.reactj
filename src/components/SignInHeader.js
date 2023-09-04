@@ -20,7 +20,6 @@ const SignInHeader = (props) => {
                     signal: controller.signal
                 });
 
-                console.log(response.data);
                 isMounted && setUsername(response.data.userInfo.userName);
                 isMounted && setSignedIn(true);
             } catch (err) {
