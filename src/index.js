@@ -2,37 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/css/FontFace.css';
 import './index.css';
-
-// context
-import { AuthProvider } from './context/AuthProvider';
-
-// pages
-import App from './App';
-import RouteTestPage from './pages/RouteTestPage';
-import SignInPage from './pages/account/SignInPage';
-import SignOutPage from './pages/account/SignOutPage';
-import RegisterPage from './pages/account/RegisterPage';
-
-import UserAxes from './pages/userAxes/AxesPage';
-
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from './context/AuthProvider';
 import MasterLayout from './pages/MasterLayout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      {/* <Router>
-        <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='routetest' element={<RouteTestPage />} />
-          <Route path='signin' element={<SignInPage />} />
-          <Route path='signout' element={<SignOutPage />} />
-          <Route path='register' element={<RegisterPage />} />
-          <Route path='axes' element={<UserAxes />} />
-        </Routes>
-      </Router> */}
       <MasterLayout />
     </AuthProvider>
   </React.StrictMode>

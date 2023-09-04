@@ -1,14 +1,12 @@
 import logo from './logo.svg';
 import './assets/css/App.css';
 
-// import TopNavBar from './components/TopNavbar';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
-      {/* <TopNavBar /> */}
-      <header className="App-header">
+      <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -21,14 +19,14 @@ const App = () => {
         >
           Learn React
         </a> */}
-        {/* <Link
+        <Link
           className="App-link"
-          to="/routetest"
+          to="/route-test"
           rel="noopener noreferrer"
         >
           Route Test
-        </Link> */}
-      </header>
+        </Link>
+      </div>
     </div>
   );
 }

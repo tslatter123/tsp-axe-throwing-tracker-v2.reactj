@@ -43,11 +43,11 @@ const SignInHeader = (props) => {
             {signedIn ? (
                 <ul className='nav-items navbar-right'>
                     <li><div className="nav-item">{username} signed in</div></li>
-                    <li><Link className="nav-link" to="/signout">Sign Out</Link></li>
+                    <li><Link className="nav-link" to="/sign-out">Sign Out</Link></li>
                 </ul>
             ) : (
                 <ul className='nav-items navbar-right'>
-                    <li><Link className="nav-link" to="/signin">Sign In</Link></li>
+                    <li><Link className="nav-link" to="/sign-in">Sign In</Link></li>
                     <li><Link className="nav-link" to="/register">Register</Link></li>
                 </ul>
             )}
