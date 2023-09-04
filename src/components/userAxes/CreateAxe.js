@@ -38,7 +38,7 @@ const CreateAxe = () => {
     }
 
     return (
-        <div className="popout popout-right">
+        <div className="popout-content">
             <h2>Add an Axe</h2>
             <form id="createAxeForm" onSubmit={handleSubmit}>
                 <div class="form-group">

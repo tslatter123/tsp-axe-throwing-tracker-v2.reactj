@@ -64,40 +64,44 @@ const UserAxes = () => {
     }
 
     return (
-        <section>
-            <h1>Your Saved Axes</h1>
-            <button onClick={openCreateAxe}>Add an axe</button>
-            {userAxes.length ? (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Index</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {userAxes.map(item => {
-                            return (
-                                <tr id={item.id} key={item.id} onClick={() => openCloseEditAxe(item.id)}>
-                                    <td>{item.id}</td>
-                                    <td>{item.index}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.description}</td>
-                                    <td><button onClick={(e) => openCloseDeleteAxe(e, item.id)}>Delete</button></td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>) : (
-                <p>You don't have any axes saved.</p>
-            )}
-            {createAxeOpen ? <CreateAxe /> :
-                editAxeOpen ? <EditAxe id={editAxeId} /> :
-                    deleteAxeOpen && <DeleteAxe id={editAxeId} />}
-        </section>
+        <div className="page-content">
+            <section>
+                <h1>Your Saved Axes</h1>
+                <button onClick={openCreateAxe}>Add an axe</button>
+                {userAxes.length ? (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Index</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {userAxes.map(item => {
+                                return (
+                                    <tr id={item.id} key={item.id} onClick={() => openCloseEditAxe(item.id)}>
+                                        <td>{item.id}</td>
+                                        <td>{item.index}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.description}</td>
+                                        <td><button onClick={(e) => openCloseDeleteAxe(e, item.id)}>Delete</button></td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>) : (
+                    <p>You don't have any axes saved.</p>
+                )}
+            </section>
+            <div className={createAxeOpen || editAxeOpen ? "popout popout-open" : "popout"}>
+                {createAxeOpen ? <CreateAxe /> :
+                    editAxeOpen ? <EditAxe id={editAxeId} /> :
+                        deleteAxeOpen && <DeleteAxe id={editAxeId} />}
+            </div>
+        </div>
     )
 }
 

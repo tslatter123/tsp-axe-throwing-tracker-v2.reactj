@@ -77,7 +77,7 @@ const EditAxe = (props) => {
     }
 
     return (
-        <div className="popout popout-right">
+        <div className="popout-content">
             <h2>Edit Axe</h2>
             <form id="editAxeForm" onSubmit={handleSubmit}>
                 <div className="form-group">
