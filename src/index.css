@@ -7,6 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+table th {
+  font-family: 'roboto-regular';
+}
+
+p,
+table td {
+  font-family: 'roboto-light';
+}
+
 #root {
   width: 100%;
   height: 100vh;
@@ -23,16 +34,37 @@ body {
 #root .page-container {
   flex: 1 auto;
   width: 100%;
+  background-image: url('./assets/img/pexels-airam-datoon-14072136.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
   display: flex;
   flex-direction: row;
   overflow: hidden;
 }
 
 #root .page-container .page-content {
-  margin: 0;
   flex: 1 auto;
+  display: flex;
+  flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+#root .page-container .page-content section {
+  margin: 16px 30px;
+  flex: 0 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 16px 24px;
+}
+
+#root .page-container .page-content section h1:first-child {
+  margin-top: 0;
+}
+
+#root .page-container .page-content section:first-child {
+  min-height: calc(100vh - 124px);
 }
 
 code {

@@ -50,9 +50,14 @@ const DeleteAxe = (props) => {
 
     return (
         <>
-            <h2>Are you sure you want to delete {name}?</h2>
-            <p>{description}</p>
-            <button onClick={handleDelete}>Delete</button>
+            <div className="popout-header">
+                <h2>Delete Axe</h2>
+            </div>
+            <div className="popout-content">
+                <p>Are you sure you want to delete {name}?</p>
+                <p>{description}</p>
+                <button onClick={handleDelete}>Delete</button>
+            </div>
         </>
     );
 }

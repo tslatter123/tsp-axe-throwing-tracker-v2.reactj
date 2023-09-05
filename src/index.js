@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/css/FontFace.css';
 import './index.css';
+import './assets/css/PopoutSidebar.css';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/AuthProvider';
 import MasterLayout from './pages/MasterLayout';

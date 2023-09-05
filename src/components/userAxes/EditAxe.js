@@ -76,54 +76,58 @@ const EditAxe = (props) => {
     }
 
     return (
-        <div className="popout-content">
-            <h2>Edit Axe</h2>
-            <form id="editAxeForm" onSubmit={handleSubmit}>
-                <div className="form-group">
+        <>
+            <div className="popout-header">
+                <h2>Edit Axe</h2>
+            </div>
+            <div className="popout-content">
+                <form id="editAxeForm" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="Axe name"
+                            ref={nameRef}
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <textarea
+                            id="description"
+                            placeholder="Axe description"
+                            ref={descriptionRef}
+                            onChange={(e) => setDescription(e.target.value)}
+                            value={description}
+                        />
+                    </div>
                     <input
-                        id="name"
-                        type="text"
-                        placeholder="Axe name"
-                        ref={nameRef}
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
+                        id="id"
+                        type="hidden"
+                        value={id}
                         required
                     />
-                </div>
-                <div className="form-group">
-                    <textarea
-                        id="description"
-                        placeholder="Axe description"
-                        ref={descriptionRef}
-                        onChange={(e) => setDescription(e.target.value)}
-                        value={description}
+                    <input
+                        id="index"
+                        type="hidden"
+                        value={index}
+                        required
                     />
-                </div>
-                <input
-                    id="id"
-                    type="hidden"
-                    value={id}
-                    required
-                />
-                <input
-                    id="index"
-                    type="hidden"
-                    value={index}
-                    required
-                />
-                <input
-                    id="userId"
-                    type="hidden"
-                    value={userId}
-                    required
-                />
-                <p ref={errorMsgRef} aria-live="assertive">{errorMsg}</p>
-                <div className="form-group">
-                    <button id="saveBtn">Save</button>
-                    {/* <button id="cancelBtn">Cancel</button> */}
-                </div>
-            </form>
-        </div>
+                    <input
+                        id="userId"
+                        type="hidden"
+                        value={userId}
+                        required
+                    />
+                    <p ref={errorMsgRef} aria-live="assertive">{errorMsg}</p>
+                    <div className="form-group">
+                        <button id="saveBtn">Save</button>
+                        {/* <button id="cancelBtn">Cancel</button> */}
+                    </div>
+                </form>
+            </div>
+        </>
     );
 }
 
