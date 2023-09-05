@@ -68,71 +68,71 @@ const RegisterPage = () => {
     }
 
     return (
-        <>
-        {success ? (
+        <div className='page-content'>
+            {success ? (
                 <section>
                     <p>You have successfully registered.</p>
-                    <Link to='/signin'>Sign in here</Link>
+                    <Link to='/sign-in'>Sign in here</Link>
                 </section>
             ) : (
-            <section>
-                <p ref={errorRef} aria-live='assertive'>{errorMsg}</p>
-                <h1>Register</h1>
-                <form id='registerForm' onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <input
-                            id='username'
-                            type='text'
-                            placeholder='Username'
-                            ref={usernameRef}
-                            onChange={(e) => setUsername(e.target.value)}
-                            value={username}
-                            required />
-                    </div>
-                    <div className='form-group'>
-                        <input
-                            id='email'
-                            type='email'
-                            placeholder='Email address'
-                            ref={emailRef}
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}
-                            required />
-                    </div>
-                    <div className='form-group'>
-                        <input
-                            id='confirmEmail'
-                            type='email'
-                            placeholder='Confirm email address'
-                            onChange={(e) => setConfirmEmail(e.target.value)}
-                            value={confirmEmail}
-                            required />
-                    </div>
-                    <div className='form-group'>
-                        <input
-                            id='password'
-                            type='password'
-                            placeholder='Password'
-                            onChange={(e) => setPassword(e.target.value)}
-                            value={password}
-                            required />
-                    </div>
-                    <div className='form-group'>
-                        <input
-                            id='confirmPassword'
-                            type='password'
-                            placeholder='Confirm password'
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            value={confirmPassword}
-                            required />
-                    </div>
-                    <div className='form-group'>
-                        <button>Register</button>
-                    </div>
-                </form>
-            </section>
+                <section>
+                    <h1>Register</h1>
+                    <p ref={errorRef} aria-live='assertive'>{errorMsg}</p>
+                    <form id='registerForm' onSubmit={handleSubmit}>
+                        <div className='form-group'>
+                            <input
+                                id='username'
+                                type='text'
+                                placeholder='Username'
+                                ref={usernameRef}
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                                required />
+                        </div>
+                        <div className='form-group'>
+                            <input
+                                id='email'
+                                type='email'
+                                placeholder='Email address'
+                                ref={emailRef}
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
+                                required />
+                        </div>
+                        <div className='form-group'>
+                            <input
+                                id='confirmEmail'
+                                type='email'
+                                placeholder='Confirm email address'
+                                onChange={(e) => setConfirmEmail(e.target.value)}
+                                value={confirmEmail}
+                                required />
+                        </div>
+                        <div className='form-group'>
+                            <input
+                                id='password'
+                                type='password'
+                                placeholder='Password'
+                                onChange={(e) => setPassword(e.target.value)}
+                                value={password}
+                                required />
+                        </div>
+                        <div className='form-group'>
+                            <input
+                                id='confirmPassword'
+                                type='password'
+                                placeholder='Confirm password'
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                value={confirmPassword}
+                                required />
+                        </div>
+                        <div className='form-group'>
+                            <button>Register</button>
+                        </div>
+                    </form>
+                </section>
             )}
-        </>
+        </div>
     );
 }
 

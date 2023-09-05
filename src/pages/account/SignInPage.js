@@ -54,14 +54,14 @@ const SignInPage = () => {
                 setErrorMsg('No server response.');
             }
             else {
-                setErrorMsg(err?.response);
+                console.error(err?.response);
             }
             errorRef.current.focus();
         }
     }
 
     return (
-        <>
+        <div className='page-content'>
             {success ? (
                 <section>
                     <p>Logged in successfully.</p>
@@ -69,8 +69,8 @@ const SignInPage = () => {
                 </section>
             ) : (
                 <section>
-                    <p ref={errorRef} aria-live='assertive'>{errorMsg}</p>
                     <h1>Sign In</h1>
+                    <p ref={errorRef} aria-live='assertive'>{errorMsg}</p>
                     <form id='loginForm' onSubmit={handleSubmit}>
                         <div className="form-group">
                             <input
@@ -99,7 +99,7 @@ const SignInPage = () => {
                     </form>
                 </section>
             )}
-        </>
+        </div>
     );
 }
 

@@ -24,10 +24,12 @@ const SignOutPage = () => {
     signOutUser();
 
     return (
-        <section>
-            <p>You have successfully signed out.</p>
-            <Link to='/'>Back to home</Link>
-        </section>
+        <div className='page-content'>
+            <section>
+                <p>You have successfully signed out.</p>
+                <Link to='/'>Back to home</Link>
+            </section>
+        </div>
     )
 }
 
