@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import '../../assets/css/PopoutSidebar.css';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import EditAxe from "../../components/userAxes/EditAxe";
 import CreateAxe from "../../components/userAxes/CreateAxe";
