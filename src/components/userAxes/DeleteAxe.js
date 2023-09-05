@@ -18,7 +18,7 @@ const DeleteAxe = (props) => {
                 const response = await axiosPrivate.get(userAxeUrl + "?id=" + props.id, {
                     signal: controller.signal
                 });
-                
+
                 if (isMounted) {
                     setName(response.data.axeInfo.name);
                     setDescription(response.data.axeInfo.description);
@@ -49,11 +49,11 @@ const DeleteAxe = (props) => {
     }
 
     return (
-        <div className="popout popout-right">
+        <>
             <h2>Are you sure you want to delete {name}?</h2>
             <p>{description}</p>
             <button onClick={handleDelete}>Delete</button>
-        </div>
+        </>
     );
 }
 

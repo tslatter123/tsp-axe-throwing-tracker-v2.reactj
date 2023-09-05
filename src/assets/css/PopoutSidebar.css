@@ -1,0 +1,13 @@
+.popout {
+    margin: 0;
+    flex: 0 0 auto;
+    width: 300px;
+    max-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: max-width 0.3s;
+}
+
+.popout.popout-open {
+    max-width: 300px;
+}

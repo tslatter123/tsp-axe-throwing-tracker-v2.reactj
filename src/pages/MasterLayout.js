@@ -13,14 +13,16 @@ class MasterLayout extends Component {
         return (
             <Router>
                 <TopNavBar />
-                <Routes>
-                    <Route path="/" element={<App />} />
-                    <Route path="/route-test" element={<RouteTestPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/sign-in" element={<SignInPage />} />
-                    <Route path="/sign-out" element={<SignOutPage />} />
-                    <Route path="/axes" element={<UserAxes />} />
-                </Routes>
+                <div className="page-container">
+                    <Routes>
+                        <Route path="/" element={<App />} />
+                        <Route path="/route-test" element={<RouteTestPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/sign-in" element={<SignInPage />} />
+                        <Route path="/sign-out" element={<SignOutPage />} />
+                        <Route path="/axes" element={<UserAxes />} />
+                    </Routes>
+                </div>
             </Router>
         )
     }
