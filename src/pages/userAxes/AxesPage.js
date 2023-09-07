@@ -39,6 +39,10 @@ const UserAxes = () => {
         getUserAxes();
     }, [axiosPrivate]);
 
+    const getData = (axeInfoList) => {
+        setUserAxes(axeInfoList);
+    }
+
     const openCreateAxe = () => {
         setEditAxeId(null);
         setEditAxeOpen(false);
@@ -98,7 +102,7 @@ const UserAxes = () => {
                 </section>
             </div>
             <div className={createAxeOpen || editAxeOpen || deleteAxeOpen ? "popout popout-open" : "popout"}>
-                {createAxeOpen ? <CreateAxe /> :
+                {createAxeOpen ? <CreateAxe onSubmit={getData} /> :
                     editAxeOpen ? <EditAxe id={editAxeId} /> :
                         deleteAxeOpen && <DeleteAxe id={editAxeId} />}
             </div>

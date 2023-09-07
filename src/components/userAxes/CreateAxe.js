@@ -3,7 +3,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const userAxeUrl = "UserAxe";
 
-const CreateAxe = () => {
+const CreateAxe = (props) => {
 
     const nameRef = useRef();
     const descriptionRef = useRef();
@@ -19,14 +19,15 @@ const CreateAxe = () => {
         e.preventDefault();
 
         try {
-            await axiosPrivate.post(
+            const response = await axiosPrivate.post(
                 userAxeUrl,
                 {
                     "name": name,
                     "description": description
                 });
 
-            window.location.reload();
+            props.onSubmit(response.data.axeInfoList);
+
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.")
