@@ -109,7 +109,7 @@ const UserAxes = () => {
             <div className={createAxeOpen || editAxeOpen || deleteAxeOpen ? "popout popout-open" : "popout"}>
                 {createAxeOpen ? <CreateAxe onSubmit={getData} /> :
                     editAxeOpen ? <EditAxe id={editAxeId} onSubmit={getData} /> :
-                        deleteAxeOpen && <DeleteAxe id={editAxeId} />}
+                        deleteAxeOpen && <DeleteAxe id={editAxeId} onSubmit={getData} />}
             </div>
         </>
     )

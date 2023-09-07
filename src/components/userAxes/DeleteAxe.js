@@ -35,9 +35,9 @@ const DeleteAxe = (props) => {
         e.preventDefault();
 
         try {
-            await axiosPrivate.delete(userAxeUrl + "?id=" + props.id);
+            const response = await axiosPrivate.delete(userAxeUrl + "?id=" + props.id);
 
-            window.location.reload();
+            props.onSubmit(response.data.axeInfoList);
         } catch (err) {
             if (!err?.response) {
                 console.error("No server response.");
