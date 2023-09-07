@@ -44,6 +44,9 @@ const CreateAxe = (props) => {
                 <h2>Add an Axe</h2>
             </div>
             <div className="popout-content">
+                {errorMsg ? (
+                    <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
+                ) : (<></>)}
                 <form id="createAxeForm" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <input
@@ -65,7 +68,6 @@ const CreateAxe = (props) => {
                             value={description}
                         />
                     </div>
-                    <p ref={errorMsgRef} aria-live="assertive">{errorMsg}</p>
                     <div className="form-group">
                         <button id="saveBtn">Add axe</button>
                     </div>

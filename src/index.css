@@ -18,6 +18,15 @@ table td {
   font-family: 'roboto-light';
 }
 
+p.error-msg {
+  font-family: 'roboto-regular';
+  color: red;
+}
+
+p:first-child {
+  margin-top: 0;
+}
+
 #root {
   width: 100%;
   height: 100vh;

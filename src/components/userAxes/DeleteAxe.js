@@ -6,6 +6,7 @@ const userAxeUrl = "UserAxe";
 const DeleteAxe = (props) => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    const [errorMsg, setErrorMsg] = useState(null);
 
     const axiosPrivate = useAxiosPrivate();
 
@@ -24,7 +25,12 @@ const DeleteAxe = (props) => {
                     setDescription(response.data.axeInfo.description);
                 }
             } catch (err) {
-                console.error(err);
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
             }
         }
 
@@ -40,10 +46,10 @@ const DeleteAxe = (props) => {
             props.onSubmit(response.data.axeInfoList);
         } catch (err) {
             if (!err?.response) {
-                console.error("No server response.");
+                setErrorMsg("No server response.");
             }
             else {
-                console.error(err.response);
+                setErrorMsg(err.response.data.error);
             }
         }
     }
@@ -54,10 +60,13 @@ const DeleteAxe = (props) => {
                 <h2>Delete Axe</h2>
             </div>
             <div className="popout-content">
-                <p>Are you sure you want to delete {name}?</p>
+                {errorMsg ? (
+                    <p aria-live="assertive" className="error-msg">{errorMsg}</p>
+                ) : (<></>)}
+                <p> Are you sure you want to delete {name}?</p>
                 <p>{description}</p>
                 <button onClick={handleDelete}>Delete</button>
-            </div>
+            </div >
         </>
     );
 }

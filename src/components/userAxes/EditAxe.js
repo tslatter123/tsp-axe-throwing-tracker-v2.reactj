@@ -34,7 +34,12 @@ const EditAxe = (props) => {
                     setUserId(response.data.axeInfo.userID);
                 }
             } catch (err) {
-                console.error(err);
+                if (!err?.response) {
+                    setErrorMsg("No server response.")
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
             }
         }
 
@@ -81,6 +86,9 @@ const EditAxe = (props) => {
                 <h2>Edit Axe</h2>
             </div>
             <div className="popout-content">
+                {errorMsg ? (
+                    <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
+                ) : (<></>)}
                 <form id="editAxeForm" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <input
@@ -120,7 +128,6 @@ const EditAxe = (props) => {
                         value={userId}
                         required
                     />
-                    <p ref={errorMsgRef} aria-live="assertive">{errorMsg}</p>
                     <div className="form-group">
                         <button id="saveBtn">Save</button>
                         {/* <button id="cancelBtn">Cancel</button> */}
