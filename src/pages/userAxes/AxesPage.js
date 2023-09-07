@@ -41,6 +41,11 @@ const UserAxes = () => {
 
     const getData = (axeInfoList) => {
         setUserAxes(axeInfoList);
+
+        setEditAxeId(null);
+        setCreateAxeOpen(false);
+        setEditAxeOpen(false);
+        setDeleteAxeOpen(false);
     }
 
     const openCreateAxe = () => {
@@ -103,7 +108,7 @@ const UserAxes = () => {
             </div>
             <div className={createAxeOpen || editAxeOpen || deleteAxeOpen ? "popout popout-open" : "popout"}>
                 {createAxeOpen ? <CreateAxe onSubmit={getData} /> :
-                    editAxeOpen ? <EditAxe id={editAxeId} /> :
+                    editAxeOpen ? <EditAxe id={editAxeId} onSubmit={getData} /> :
                         deleteAxeOpen && <DeleteAxe id={editAxeId} />}
             </div>
         </>

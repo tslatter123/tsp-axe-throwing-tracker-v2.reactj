@@ -54,7 +54,7 @@ const EditAxe = (props) => {
         e.preventDefault();
 
         try {
-            await axiosPrivate.put(
+            const response = await axiosPrivate.put(
                 userAxeUrl,
                 {
                     "id": id,
@@ -64,7 +64,7 @@ const EditAxe = (props) => {
                     "userID": userId
                 });
 
-            window.location.reload();
+            props.onSubmit(response.data.axeInfoList);
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.");
