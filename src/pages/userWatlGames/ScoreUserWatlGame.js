@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWatlGameButtons";
 
 const { useState, useEffect, useRef } = require("react");
 const { default: useAxiosPrivate } = require("../../hooks/useAxiosPrivate");
@@ -11,13 +12,14 @@ const ScoreUserWatlGame = () => {
     const errorMsgRef = useRef();
 
     const [name, setName] = useState("");
+    const [templateId, setTemplateId] = useState(0);
     const [templateName, setTemplateName] = useState("");
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
-    const [errorMsg, setErrorMsg] = useState("");
     const [score, setScore] = useState(0);
     const [gameThrows, setGameThrows] = useState([]);
     const [maxThrowCount, setMaxThrowCount] = useState(0);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const [scoreBtnsOpen, setScoreBtnsOpen] = useState(false);
 
@@ -36,6 +38,7 @@ const ScoreUserWatlGame = () => {
 
                 if (isMounted) {
                     setName(response.data.watlGameInfo.name);
+                    setTemplateId(response.data.watlGameInfo.templateID);
                     setTemplateName(response.data.watlGameInfo.templateName);
                     setDate(response.data.watlGameInfo.dateStr);
                     setDescription(response.data.watlGameInfo.description);
@@ -74,12 +77,9 @@ const ScoreUserWatlGame = () => {
                 ) : (<></>)}
                 <div className="score-watl-game-container">
                     <div className={scoreBtnsOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
-                        <div className="popout-content">
-
-                        </div>
-                        <div className="popout-content">
-
-                        </div>
+                        {scoreBtnsOpen ? (
+                            <ScoreUserWatlGameButtons templateId={templateId} />
+                        ) : (<></>)}
                     </div>
                     <div className="watl-game-score">
                         <div className="watl-game-header">
