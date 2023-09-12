@@ -16,6 +16,8 @@ ul.watl-games-container {
     height: auto;
     border-radius: 5px;
     border: 0.5px solid #b4b4b4;
+    display: flex;
+    flex-direction: column;
     margin: 8px;
 }
 
