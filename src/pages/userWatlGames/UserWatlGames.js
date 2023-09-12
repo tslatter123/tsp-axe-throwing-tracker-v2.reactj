@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
 import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
+import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGame";
+import { Link } from "react-router-dom";
 
 
 const userWatlGamesUrl = '/UserWatlGames';
@@ -12,6 +14,7 @@ const UserWatlGames = () => {
 
     const [addWatlGameOpen, setAddWatlGameOpen] = useState(false);
     const [editWatlGameOpen, setEditWatlGameOpen] = useState(false);
+    const [deleteWatlGameOpen, setDeleteWatlGameOpen] = useState(false);
     const [editWatlGameId, setEditWatlGameId] = useState(0);
 
     useEffect(() => {
@@ -40,15 +43,22 @@ const UserWatlGames = () => {
     const openAddWatlGame = () => {
         setAddWatlGameOpen(!addWatlGameOpen);
         setEditWatlGameOpen(false);
-
+        setDeleteWatlGameOpen(false);
         setEditWatlGameId(null);
     }
 
     const openEditWatlGame = (id) => {
         setEditWatlGameId(editWatlGameOpen ? null : id);
         setEditWatlGameOpen(!editWatlGameOpen);
-
+        setDeleteWatlGameOpen(false);
         setAddWatlGameOpen(false);
+    }
+
+    const openDeleteWatlGame = (id) => {
+        setEditWatlGameId(deleteWatlGameOpen ? null : id);
+        setDeleteWatlGameOpen(!deleteWatlGameOpen);
+        setAddWatlGameOpen(false);
+        setEditWatlGameOpen(false);
     }
 
     const getData = (watlGameInfoList) => {
@@ -56,6 +66,7 @@ const UserWatlGames = () => {
 
         setAddWatlGameOpen(false);
         setEditWatlGameOpen(false);
+        setDeleteWatlGameOpen(false);
         setEditWatlGameId(null);
     }
 
@@ -93,10 +104,10 @@ const UserWatlGames = () => {
                                                     }
                                                 </div>
                                                 <div className="watl-game-actions">
-                                                    <button type="button" disabled>Score</button>
+                                                    <Link to={"score-watl-game/" + watlGame.id}>Score</Link>
                                                     <button type="button" disabled>Evaluate</button>
                                                     <button type="button" onClick={() => { openEditWatlGame(watlGame.id) }}>Edit</button>
-                                                    <button type="button" disabled>Delete</button>
+                                                    <button type="button" onClick={() => { openDeleteWatlGame(watlGame.id) }}>Delete</button>
                                                 </div>
                                             </li>
                                         );
@@ -108,9 +119,10 @@ const UserWatlGames = () => {
                         )}
                 </section>
             </div>
-            <div className={addWatlGameOpen || editWatlGameOpen ? "popout popout-open" : "popout"}>
+            <div className={addWatlGameOpen || editWatlGameOpen || deleteWatlGameOpen ? "popout popout-open" : "popout"}>
                 {addWatlGameOpen ? (<AddUserWatlGame onSubmit={getData} />) :
-                    editWatlGameOpen ? (<EditUserWatlGame id={editWatlGameId} onSubmit={getData} />) : (<></>)}
+                    editWatlGameOpen ? (<EditUserWatlGame id={editWatlGameId} onSubmit={getData} />) :
+                        deleteWatlGameOpen ? (<DeleteUserWatlGame id={editWatlGameId} onSubmit={getData} />) : (<></>)}
             </div>
         </>
     );
