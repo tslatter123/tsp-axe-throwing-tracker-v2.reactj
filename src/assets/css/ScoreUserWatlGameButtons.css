@@ -1,0 +1,24 @@
+.watl-game-throw-option-btn {
+    margin: 5px;
+    flex: 0 0 auto;
+    width: calc(calc(100% / 3) - 10px);
+    min-height: 40px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    text-wrap: wrap;
+}
+
+.watl-game-throw-option-btn.bullseye {
+    background: red;
+    color: #fff;
+}
+
+.watl-game-throw-option-btn.inner-killshot-hit {
+    background: blue;
+    color: #fff;
+}
+
+#killshot-attempt-options .watl-game-throw-option-btn {
+    width: calc(50% - 10px);
+}

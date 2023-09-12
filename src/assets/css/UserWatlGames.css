@@ -68,7 +68,7 @@ ul.watl-games-container {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 5px;
+    padding: 5px 10px;
 }
 
 .watl-game-throw-index {

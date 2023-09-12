@@ -84,6 +84,7 @@ p:first-child {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
   margin-block-end: 19.92px;
 }
 
@@ -106,6 +107,11 @@ p:first-child {
 .flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.flex-row.wrap-content,
+.flex-col.wrap-content {
+  flex-wrap: wrap;
 }
 
 code {

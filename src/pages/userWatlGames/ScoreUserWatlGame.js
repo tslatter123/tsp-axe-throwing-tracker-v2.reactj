@@ -63,8 +63,8 @@ const ScoreUserWatlGame = () => {
     }, [axiosPrivate, params.id, gameThrows.length, maxThrowCount]);
 
     const openCloseScoreButtons = (id) => {
+        setScoreBtnsOpen(gameThrows.length < maxThrowCount || watlGameThrowId !== id || !scoreBtnsOpen);
         setWatlGameThrowId(watlGameThrowId === id ? null : id);
-        setScoreBtnsOpen(gameThrows.length < maxThrowCount || !scoreBtnsOpen);
     }
 
     const getData = (watlGameInfo) => {
