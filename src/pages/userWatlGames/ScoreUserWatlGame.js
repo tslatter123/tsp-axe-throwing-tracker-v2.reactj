@@ -15,6 +15,11 @@ const ScoreUserWatlGame = () => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
+    const [score, setScore] = useState(0);
+    const [gameThrows, setGameThrows] = useState([]);
+    const [maxThrowCount, setMaxThrowCount] = useState(0);
+
+    const [scoreBtnsOpen, setScoreBtnsOpen] = useState(false);
 
     const axiosPrivate = useAxiosPrivate();
 
@@ -34,6 +39,11 @@ const ScoreUserWatlGame = () => {
                     setTemplateName(response.data.watlGameInfo.templateName);
                     setDate(response.data.watlGameInfo.dateStr);
                     setDescription(response.data.watlGameInfo.description);
+                    setScore(response.data.watlGameInfo.score);
+                    setGameThrows(response.data.watlGameInfo.gameThrows);
+                    setMaxThrowCount(response.data.watlGameInfo.maxThrowCount);
+
+                    setScoreBtnsOpen(gameThrows.length < maxThrowCount);
                 }
             } catch (err) {
                 if (!err?.response) {
@@ -46,7 +56,7 @@ const ScoreUserWatlGame = () => {
         }
 
         getWatlGameInfo();
-    }, [axiosPrivate, params.id])
+    }, [axiosPrivate, params.id, gameThrows.length, maxThrowCount]);
 
     return (
         <div className="page-content">
@@ -60,6 +70,21 @@ const ScoreUserWatlGame = () => {
                 {errorMsg ? (
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (<></>)}
+
+                <div className="watl-game-header">
+                    <h2>{score}</h2>
+                </div>
+                <div className="watl-game-throws-container">
+                    {gameThrows.length ?
+                        gameThrows.map(gameThrow => {
+                            return (
+                                <div key={gameThrow.id} className={"watl-game-throw-item"}>
+                                    <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                </div>
+                            );
+                        }) : (<></>)
+                    }
+                </div>
             </section>
         </div>
     )
