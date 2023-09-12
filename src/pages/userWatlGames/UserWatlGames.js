@@ -6,7 +6,6 @@ const userWatlGamesUrl = '/UserWatlGames';
 
 const UserWatlGames = () => {
     const [userWatlGames, setUserWatlGames] = useState([]);
-    //const [errorMsg, setErrorMsg] = useState("");
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
@@ -37,12 +36,14 @@ const UserWatlGames = () => {
             <section>
                 <h1>Your World Axe Throwing League Games</h1>
                 <button>Add a game</button>
+                <button>Go to analytics</button>
                 {userWatlGames.length ?
                     userWatlGames.map(forDate => {
                         return (
                             <div className="date-item">
                                 <div className="date-header">
                                     <h2>{forDate.date}</h2>
+                                    <button>Go to analytics</button>
                                 </div>
                                 <UserWatlGamesExpandedView watlGames={forDate.watlGames} />
                             </div>

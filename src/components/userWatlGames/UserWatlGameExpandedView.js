@@ -7,11 +7,13 @@ const UserWatlGameExpandedView = (props) => {
                 <h3>{watlGame.name}</h3>
                 <h4>Score: {watlGame.score}</h4>
             </div>
-            <div>
+            <div className="watl-game-throws-container">
                 {watlGame.gameThrows.length ?
                     (watlGame.gameThrows.map(gameThrow => {
                         return (
-                            <div className={"watl-game-throw" + gameThrow.className}>{gameThrow.shortName}</div>
+                            <div className={"watl-game-throw-item"}>
+                                <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                            </div>
                         );
                     })) : (<p>No game throws added</p>)
                 }

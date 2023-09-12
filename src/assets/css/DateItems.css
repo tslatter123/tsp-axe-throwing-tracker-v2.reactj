@@ -1,0 +1,22 @@
+.page-content .date-item {
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+
+.date-item .date-header {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.date-item .date-header h2 {
+    flex: 1 auto;
+    margin: 0;
+}
