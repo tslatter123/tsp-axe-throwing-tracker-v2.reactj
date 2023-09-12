@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import UserWatlGameExpandedView from "../../components/userWatlGames/UserWatlGameExpandedView";
 import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
 import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
 
@@ -77,8 +76,28 @@ const UserWatlGames = () => {
                                 <ul className="watl-games-container">
                                     {forDate.watlGames.map(watlGame => {
                                         return (
-                                            <li key={watlGame.id} className="watl-game-item" onClick={() => { openEditWatlGame(watlGame.id) }}>
-                                                <UserWatlGameExpandedView watlGame={watlGame} />
+                                            <li key={watlGame.id} className="watl-game-item">
+                                                <div className="watl-game-header">
+                                                    <h3>{watlGame.name}</h3>
+                                                    <h4>Score: {watlGame.score}</h4>
+                                                </div>
+                                                <div className="watl-game-throws-container">
+                                                    {watlGame.gameThrows.length ?
+                                                        watlGame.gameThrows.map(gameThrow => {
+                                                            return (
+                                                                <div key={gameThrow.id} className={"watl-game-throw-item"}>
+                                                                    <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                                                </div>
+                                                            );
+                                                        }) : (<p>No game throws added</p>)
+                                                    }
+                                                </div>
+                                                <div className="watl-game-actions">
+                                                    <button type="button" disabled>Score</button>
+                                                    <button type="button" disabled>Evaluate</button>
+                                                    <button type="button" onClick={() => { openEditWatlGame(watlGame.id) }}>Edit</button>
+                                                    <button type="button" disabled>Delete</button>
+                                                </div>
                                             </li>
                                         );
                                     })}

@@ -41,6 +41,19 @@ ul.watl-games-container {
     margin: 0;
 }
 
+.watl-game-item .watl-game-actions {
+    flex: 0 0 auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.watl-game-item .watl-game-actions button {
+    margin: 4px;
+    flex: 1 auto;
+}
+
 .watl-game-throws-container {
     flex: 1 auto;
     padding: 0 8px;
