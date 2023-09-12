@@ -20,6 +20,7 @@ const TopNavBar = () => {
                 {signedIn ? (
                     <>
                         <li><Link className="nav-link" to="/axes">Axes</Link></li>
+                        <li><Link className="nav-link" to="/user-watl-games">WATL</Link></li>
                     </>
                 ) : (
                     <></>

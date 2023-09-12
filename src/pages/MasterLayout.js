@@ -7,6 +7,7 @@ import SignInPage from "./account/SignInPage";
 import SignOutPage from "./account/SignOutPage";
 import RegisterPage from "./account/RegisterPage";
 import UserAxes from "./userAxes/AxesPage";
+import UserWatlGames from "./userWatlGames/UserWatlGames";
 
 class MasterLayout extends Component {
     render() {
@@ -21,6 +22,7 @@ class MasterLayout extends Component {
                         <Route path="/sign-in" element={<SignInPage />} />
                         <Route path="/sign-out" element={<SignOutPage />} />
                         <Route path="/axes" element={<UserAxes />} />
+                        <Route path="/user-watl-games" element={<UserWatlGames />} />
                     </Routes>
                 </div>
             </Router>
