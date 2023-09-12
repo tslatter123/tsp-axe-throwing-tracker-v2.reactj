@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     background: #fff;
+    margin: 8px 0;
 }
 
 .date-item .date-header {
@@ -19,4 +20,8 @@
 .date-item .date-header h2 {
     flex: 1 auto;
     margin: 0;
+}
+
+.date-item .date-header h2:not(:last-child) {
+    margin-right: 16px;
 }

@@ -10,11 +10,19 @@ ul.watl-games-container {
 .watl-games-container .watl-game-item {
     list-style-type: none;
     flex: 1 auto;
-    min-width: 200px;
+    min-width: 184px;
     height: auto;
     border-radius: 5px;
     border: 0.5px solid #b4b4b4;
     margin: 8px;
+}
+
+.watl-game-item p {
+    margin-bottom: 8px;
+}
+
+.watl-game-item p:last-child {
+    margin-bottom: 0;
 }
 
 .watl-game-item .watl-game-header {
