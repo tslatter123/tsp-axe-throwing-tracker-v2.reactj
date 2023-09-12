@@ -5,7 +5,6 @@ const watlGameThrowOptionsUrl = 'WatlGameThrowOptions';
 const watlGameThrowUrl = 'UserWatlGameThrow';
 
 const ScoreUserWatlGameButtons = (props) => {
-    console.log(props.watlGameThrowId);
     const errorMsgRef = useRef();
 
     const [bullseyeAttemptThrowOptions, setBullseyeAttemptThrowOptions] = useState([]);
