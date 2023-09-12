@@ -21,9 +21,10 @@ const ScoreUserWatlGame = () => {
     const [maxThrowCount, setMaxThrowCount] = useState(0);
     const [errorMsg, setErrorMsg] = useState('');
 
-    const [scoreBtnsOpen, setScoreBtnsOpen] = useState(false);
-
     const axiosPrivate = useAxiosPrivate();
+
+    const [watlGameThrowId, setWatlGameThrowId] = useState();
+    const [scoreBtnsOpen, setScoreBtnsOpen] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -61,6 +62,24 @@ const ScoreUserWatlGame = () => {
         getWatlGameInfo();
     }, [axiosPrivate, params.id, gameThrows.length, maxThrowCount]);
 
+    const openCloseScoreButtons = (id) => {
+        setWatlGameThrowId(watlGameThrowId === id ? null : id);
+        setScoreBtnsOpen(gameThrows.length < maxThrowCount || !scoreBtnsOpen);
+    }
+
+    const getData = (watlGameInfo) => {
+        setName(watlGameInfo.name);
+        setTemplateId(watlGameInfo.templateID);
+        setTemplateName(watlGameInfo.templateName);
+        setDate(watlGameInfo.dateStr);
+        setDescription(watlGameInfo.description);
+        setScore(watlGameInfo.score);
+        setGameThrows(watlGameInfo.gameThrows);
+        setMaxThrowCount(watlGameInfo.maxThrowCount);
+
+        openCloseScoreButtons(watlGameThrowId);
+    }
+
     return (
         <div className="page-content">
             <section className="flex-col">
@@ -78,7 +97,7 @@ const ScoreUserWatlGame = () => {
                 <div className="score-watl-game-container">
                     <div className={scoreBtnsOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
                         {scoreBtnsOpen ? (
-                            <ScoreUserWatlGameButtons templateId={templateId} />
+                            <ScoreUserWatlGameButtons templateId={templateId} watlGameId={params.id} watlGameThrowId={watlGameThrowId} onSubmit={getData} />
                         ) : (<></>)}
                     </div>
                     <div className="watl-game-score">
@@ -89,7 +108,11 @@ const ScoreUserWatlGame = () => {
                             {gameThrows.length ?
                                 gameThrows.map(gameThrow => {
                                     return (
-                                        <div key={gameThrow.id} className={"watl-game-throw-item"}>
+                                        <div
+                                            key={gameThrow.id}
+                                            className={watlGameThrowId === gameThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
+                                            onClick={() => openCloseScoreButtons(gameThrow.id)}
+                                        >
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
                                             <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
                                         </div>

@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const watlGameThrowOptionsUrl = 'WatlGameThrowOptions';
+const watlGameThrowUrl = 'UserWatlGameThrow';
 
 const ScoreUserWatlGameButtons = (props) => {
+    console.log(props.watlGameThrowId);
     const errorMsgRef = useRef();
 
     const [bullseyeAttemptThrowOptions, setBullseyeAttemptThrowOptions] = useState([]);
@@ -40,6 +42,54 @@ const ScoreUserWatlGameButtons = (props) => {
         getWatlGameThrowOptions();
     }, [axiosPrivate, props.templateId]);
 
+    const handleButtonClick = async (throwOptionId) => {
+        const addWatlGameThrow = async () => {
+            try {
+                const response = await axiosPrivate.post(watlGameThrowUrl,
+                    {
+                        "watlGameID": props.watlGameId,
+                        "watlGameThrowID": throwOptionId
+                    });
+
+                props.onSubmit(response.data.watlGameInfo);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
+            }
+        }
+
+        const updateWatlGameThrow = async () => {
+            try {
+                const response = await axiosPrivate.put(watlGameThrowUrl,
+                    {
+                        "id": props.watlGameThrowId,
+                        "watlGameID": props.watlGameId,
+                        "watlGameThrowID": throwOptionId
+                    });
+
+                props.onSubmit(response.data.watlGameInfo);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
+            }
+        }
+
+        if (props.watlGameThrowId === 0 || props.watlGameThrowId) {
+            updateWatlGameThrow();
+        }
+        else {
+            addWatlGameThrow();
+        }
+    }
+
     return (
         <>
             {errorMsg ? (
@@ -50,7 +100,13 @@ const ScoreUserWatlGameButtons = (props) => {
                         <div className="popout-content flex-row wrap-content">
                             {bullseyeAttemptThrowOptions.map((gameThrowOption) => {
                                 return (
-                                    <button key={gameThrowOption.id} className={"watl-game-throw-option-btn" + gameThrowOption.className}>{gameThrowOption.name}</button>
+                                    <button
+                                        key={gameThrowOption.id}
+                                        className={"watl-game-throw-option-btn " + gameThrowOption.className}
+                                        onClick={() => handleButtonClick(gameThrowOption.id)}
+                                    >
+                                        {gameThrowOption.name}
+                                    </button>
                                 );
                             })}
                         </div>) : (<></>)}
@@ -58,7 +114,13 @@ const ScoreUserWatlGameButtons = (props) => {
                         <div className="popout-content flex-row wrap-content">
                             {killshotAttemptThrowOptions.map((gameThrowOption) => {
                                 return (
-                                    <button key={gameThrowOption.id} className={"watl-game-throw-option-btn" + gameThrowOption.className}>{gameThrowOption.name}</button>
+                                    <button
+                                        key={gameThrowOption.id}
+                                        className={"watl-game-throw-option-btn " + gameThrowOption.className}
+                                        onClick={() => handleButtonClick(gameThrowOption.id)}
+                                    >
+                                        {gameThrowOption.name}
+                                    </button>
                                 )
                             })}
                         </div>) : (<></>)}
