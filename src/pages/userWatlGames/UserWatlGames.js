@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import UserWatlGamesExpandedView from "../../components/userWatlGames/UserWatlGamesExpandedView";
+import UserWatlGameExpandedView from "../../components/userWatlGames/UserWatlGameExpandedView";
 import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
+import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
 
 
 const userWatlGamesUrl = '/UserWatlGames';
@@ -11,10 +12,8 @@ const UserWatlGames = () => {
     const axiosPrivate = useAxiosPrivate();
 
     const [addWatlGameOpen, setAddWatlGameOpen] = useState(false);
-
-    const openAddWatlGame = () => {
-        setAddWatlGameOpen(!addWatlGameOpen);
-    }
+    const [editWatlGameOpen, setEditWatlGameOpen] = useState(false);
+    const [editWatlGameId, setEditWatlGameId] = useState(0);
 
     useEffect(() => {
         let isMounted = true;
@@ -24,7 +23,7 @@ const UserWatlGames = () => {
                 const response = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=&dateTo=", {
                     signal: controller.signal
                 });
-                
+
                 isMounted && setUserWatlGames(response.data.watlGameInfoList);
             } catch (err) {
                 if (!err?.response) {
@@ -39,10 +38,26 @@ const UserWatlGames = () => {
         getUserWatlGames();
     }, [axiosPrivate]);
 
+    const openAddWatlGame = () => {
+        setAddWatlGameOpen(!addWatlGameOpen);
+        setEditWatlGameOpen(false);
+
+        setEditWatlGameId(null);
+    }
+
+    const openEditWatlGame = (id) => {
+        setEditWatlGameId(editWatlGameOpen ? null : id);
+        setEditWatlGameOpen(!editWatlGameOpen);
+
+        setAddWatlGameOpen(false);
+    }
+
     const getData = (watlGameInfoList) => {
         setUserWatlGames(watlGameInfoList);
 
         setAddWatlGameOpen(false);
+        setEditWatlGameOpen(false);
+        setEditWatlGameId(null);
     }
 
     return (
@@ -51,25 +66,32 @@ const UserWatlGames = () => {
                 <section>
                     <h1>Your World Axe Throwing League Games</h1>
                     <button onClick={openAddWatlGame}>Add a game</button>
-                    <button>Go to analytics</button>
+                    <button disabled>Go to analytics</button>
                     {userWatlGames.length ?
-                        userWatlGames.map(forDate => {
-                            return (
-                                <div className="date-item">
-                                    <div className="date-header">
-                                        <h2>{forDate.date}</h2>
-                                        <button>Go to analytics</button>
-                                    </div>
-                                    <UserWatlGamesExpandedView watlGames={forDate.watlGames} />
+                        userWatlGames.map(forDate =>
+                            <div key={forDate.date} className="date-item">
+                                <div className="date-header">
+                                    <h2>{forDate.date}</h2>
+                                    <button disabled>Go to analytics</button>
                                 </div>
-                            );
-                        }) : (
+                                <ul className="watl-games-container">
+                                    {forDate.watlGames.map(watlGame => {
+                                        return (
+                                            <li key={watlGame.id} className="watl-game-item" onClick={() => { openEditWatlGame(watlGame.id) }}>
+                                                <UserWatlGameExpandedView watlGame={watlGame} />
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            </div>
+                        ) : (
                             <p>You have no World Axe Throwing League games saved.</p>
                         )}
                 </section>
             </div>
-            <div className={addWatlGameOpen ? "popout popout-open" : "popout"}>
-                {addWatlGameOpen ? (<AddUserWatlGame onSubmit={getData} />) : (<></>)}
+            <div className={addWatlGameOpen || editWatlGameOpen ? "popout popout-open" : "popout"}>
+                {addWatlGameOpen ? (<AddUserWatlGame onSubmit={getData} />) :
+                    editWatlGameOpen ? (<EditUserWatlGame id={editWatlGameId} onSubmit={getData} />) : (<></>)}
             </div>
         </>
     );

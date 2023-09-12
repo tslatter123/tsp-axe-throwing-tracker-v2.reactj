@@ -9,7 +9,8 @@ ul.watl-games-container {
 
 .watl-games-container .watl-game-item {
     list-style-type: none;
-    flex: 1 auto;
+    flex: 0 0 auto;
+    width: calc(25% - 17px);
     min-width: 184px;
     height: auto;
     border-radius: 5px;

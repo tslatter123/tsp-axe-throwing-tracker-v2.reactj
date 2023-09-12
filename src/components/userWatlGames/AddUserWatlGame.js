@@ -22,10 +22,10 @@ const AddUserWatlGame = (props) => {
     const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
-        const getWatlTemplates = async () => {
-            let isMounted = true;
-            const controller = new AbortController();
+        let isMounted = true;
+        const controller = new AbortController();
 
+        const getWatlTemplates = async () => {
             try {
                 const response = await axiosPrivate.get(watlGameTemplatesUrl, {
                     signal: controller.signal
@@ -130,7 +130,7 @@ const AddUserWatlGame = (props) => {
                         >
                             <option value="">Select WATL game template...</option>
                             {watlGameTemplates.map(template => {
-                                return (<option value={template.id}>{template.name}</option>);
+                                return (<option key={template.id} value={template.id}>{template.name}</option>);
                             })}
                         </select>
                     </div>
