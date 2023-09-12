@@ -1,0 +1,34 @@
+.score-watl-game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    background: #fff;
+    overflow: hidden;
+}
+
+.score-watl-game-container .popout {
+    position: relative;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.score-watl-game-container .watl-game-score {
+    flex: 1 auto;
+    padding: 16px;
+}
+
+.watl-game-score .watl-game-header {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.watl-game-score .watl-game-header h2 {
+    margin: 0;
+}

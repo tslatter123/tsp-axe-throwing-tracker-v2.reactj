@@ -60,30 +60,44 @@ const ScoreUserWatlGame = () => {
 
     return (
         <div className="page-content">
-            <section>
-                <h1>Scoring {name}</h1>
-                <p>Template: {templateName}</p>
-                <p>On {date}</p>
+            <section className="flex-col">
+                <div className="header-row">
+                    <h1>Scoring {name}</h1>
+                    <p>Template: <b>{templateName}</b></p>
+                    <p>Date: <b>{date}</b></p>
+                </div>
                 {description ? (
                     <p>{description}</p>
                 ) : (<></>)}
                 {errorMsg ? (
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (<></>)}
+                <div className="score-watl-game-container">
+                    <div className={scoreBtnsOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
+                        <div className="popout-content">
 
-                <div className="watl-game-header">
-                    <h2>{score}</h2>
-                </div>
-                <div className="watl-game-throws-container">
-                    {gameThrows.length ?
-                        gameThrows.map(gameThrow => {
-                            return (
-                                <div key={gameThrow.id} className={"watl-game-throw-item"}>
-                                    <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
-                                </div>
-                            );
-                        }) : (<></>)
-                    }
+                        </div>
+                        <div className="popout-content">
+
+                        </div>
+                    </div>
+                    <div className="watl-game-score">
+                        <div className="watl-game-header">
+                            <h2>Score: {score}</h2>
+                        </div>
+                        <div className="watl-game-throws-container">
+                            {gameThrows.length ?
+                                gameThrows.map(gameThrow => {
+                                    return (
+                                        <div key={gameThrow.id} className={"watl-game-throw-item"}>
+                                            <div className="watl-game-throw-index">{gameThrow.index}</div>
+                                            <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                        </div>
+                                    );
+                                }) : (<></>)
+                            }
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

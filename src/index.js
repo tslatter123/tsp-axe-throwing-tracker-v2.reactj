@@ -5,6 +5,7 @@ import './index.css';
 import './assets/css/PopoutSidebar.css';
 import './assets/css/DateItems.css';
 import './assets/css/UserWatlGames.css';
+import './assets/css/ScoreUserWatlGame.css';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './context/AuthProvider';
 import MasterLayout from './pages/MasterLayout';

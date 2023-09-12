@@ -20,13 +20,11 @@
 
 .popout .popout-header {
     flex: 0 0 auto;
-    width: 100%;
     padding: 16px;
     border-bottom: 0.5px solid #b4b4b4;
 }
 
 .popout .popout-content {
-    width: 100%;
     flex: 1;
     padding: 16px;
     overflow-x: hidden;
@@ -35,4 +33,12 @@
 
 .popout.popout-open {
     max-width: 300px;
+}
+
+.popout.popout-extended {
+    width: 50%;
+}
+
+.popout.popout-extended.popout-open {
+    max-width: 50%;
 }

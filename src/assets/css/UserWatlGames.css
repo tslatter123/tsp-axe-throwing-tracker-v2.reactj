@@ -36,6 +36,7 @@ ul.watl-games-container {
     margin-bottom: 8px;
 }
 
+.watl-game-item .watl-game-header h2,
 .watl-game-item .watl-game-header h3,
 .watl-game-item .watl-game-header h4 {
     margin: 0;
@@ -68,6 +69,12 @@ ul.watl-games-container {
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 5px;
+}
+
+.watl-game-throw-index {
+    flex: 0 0 auto;
+    width: 25px;
+    margin-right: 32px;
 }
 
 .watl-game-throw-score {
