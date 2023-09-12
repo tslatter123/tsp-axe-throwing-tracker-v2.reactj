@@ -120,7 +120,7 @@ const EditUserWatlGame = (props) => {
                     <div className="form-group">
                         <textarea
                             id="description"
-                            placeholder="Axe description"
+                            placeholder="WATL game description"
                             ref={descriptionRef}
                             onChange={(e) => setDescription(e.target.value)}
                             value={description}

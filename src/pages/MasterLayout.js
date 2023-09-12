@@ -9,6 +9,7 @@ import RegisterPage from "./account/RegisterPage";
 import UserAxes from "./userAxes/AxesPage";
 import UserWatlGames from "./userWatlGames/UserWatlGames";
 import ScoreUserWatlGame from "./userWatlGames/ScoreUserWatlGame";
+import EvaluateUserWatlGame from "./userWatlGames/EvaluateUserWatlGame";
 
 class MasterLayout extends Component {
     render() {
@@ -25,6 +26,7 @@ class MasterLayout extends Component {
                         <Route path="/axes" element={<UserAxes />} />
                         <Route path="/user-watl-games" element={<UserWatlGames />} />
                         <Route path="/user-watl-games/score-watl-game/:id" element={<ScoreUserWatlGame />} />
+                        <Route path="/user-watl-games/evaluate-watl-game/:id" element={<EvaluateUserWatlGame />} />
                     </Routes>
                 </div>
             </Router>

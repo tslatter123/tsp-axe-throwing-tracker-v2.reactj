@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { useNavigate } from "react-router-dom";
 
 const watlGameTemplatesUrl = 'WatlGameTemplates';
 const watlGameUrl = "UserWatlGame";
 
-const AddUserWatlGame = (props) => {
+const AddUserWatlGame = () => {
     const nameRef = useRef();
     const dateRef = useRef();
     const descriptionRef = useRef();
@@ -20,6 +21,8 @@ const AddUserWatlGame = (props) => {
 
     const [errorMsg, setErrorMsg] = useState("");
     const axiosPrivate = useAxiosPrivate();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -68,7 +71,7 @@ const AddUserWatlGame = (props) => {
                 }
             );
 
-            props.onSubmit(response.data.watlGameInfoList)
+            navigate('score-watl-game/' + response.data.watlGameId);
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.");

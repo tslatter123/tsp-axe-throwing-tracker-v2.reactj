@@ -107,7 +107,7 @@ const UserWatlGames = () => {
                                                 </div>
                                                 <div className="watl-game-actions">
                                                     <button className="watl-game-action-btn score-game" type="button" onClick={() => navigate('score-watl-game/' + watlGame.id)}>Score</button>
-                                                    <button className="watl-game-action-btn evaluate-game" type="button" disabled>Evaluate</button>
+                                                    <button className="watl-game-action-btn evaluate-game" type="button" onClick={() => navigate('evaluate-watl-game/' + watlGame.id)}>Evaluate</button>
                                                     <button className="watl-game-action-btn" type="button" onClick={() => { openEditWatlGame(watlGame.id) }}>Edit</button>
                                                     <button className="watl-game-action-btn delete-game" type="button" onClick={() => { openDeleteWatlGame(watlGame.id) }}>Delete</button>
                                                 </div>
@@ -122,7 +122,7 @@ const UserWatlGames = () => {
                 </section>
             </div>
             <div className={addWatlGameOpen || editWatlGameOpen || deleteWatlGameOpen ? "popout popout-open" : "popout"}>
-                {addWatlGameOpen ? (<AddUserWatlGame onSubmit={getData} />) :
+                {addWatlGameOpen ? (<AddUserWatlGame />) :
                     editWatlGameOpen ? (<EditUserWatlGame id={editWatlGameId} onSubmit={getData} />) :
                         deleteWatlGameOpen ? (<DeleteUserWatlGame id={editWatlGameId} onSubmit={getData} />) : (<></>)}
             </div>
