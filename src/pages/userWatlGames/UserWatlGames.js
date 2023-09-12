@@ -3,7 +3,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
 import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
 import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGame";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const userWatlGamesUrl = '/UserWatlGames';
@@ -16,6 +16,8 @@ const UserWatlGames = () => {
     const [editWatlGameOpen, setEditWatlGameOpen] = useState(false);
     const [deleteWatlGameOpen, setDeleteWatlGameOpen] = useState(false);
     const [editWatlGameId, setEditWatlGameId] = useState(0);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -104,10 +106,10 @@ const UserWatlGames = () => {
                                                     }
                                                 </div>
                                                 <div className="watl-game-actions">
-                                                    <Link to={"score-watl-game/" + watlGame.id}>Score</Link>
-                                                    <button type="button" disabled>Evaluate</button>
-                                                    <button type="button" onClick={() => { openEditWatlGame(watlGame.id) }}>Edit</button>
-                                                    <button type="button" onClick={() => { openDeleteWatlGame(watlGame.id) }}>Delete</button>
+                                                    <button className="watl-game-action-btn score-game" type="button" onClick={() => navigate('score-watl-game/' + watlGame.id)}>Score</button>
+                                                    <button className="watl-game-action-btn evaluate-game" type="button" disabled>Evaluate</button>
+                                                    <button className="watl-game-action-btn" type="button" onClick={() => { openEditWatlGame(watlGame.id) }}>Edit</button>
+                                                    <button className="watl-game-action-btn delete-game" type="button" onClick={() => { openDeleteWatlGame(watlGame.id) }}>Delete</button>
                                                 </div>
                                             </li>
                                         );

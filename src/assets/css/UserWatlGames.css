@@ -8,6 +8,7 @@ ul.watl-games-container {
 }
 
 .watl-games-container .watl-game-item {
+    padding: 8px 0;
     list-style-type: none;
     flex: 0 0 auto;
     width: calc(25% - 17px);
@@ -42,24 +43,12 @@ ul.watl-games-container {
     margin: 0;
 }
 
-.watl-game-item .watl-game-actions {
-    flex: 0 0 auto;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.watl-game-item .watl-game-actions button {
-    margin: 4px;
-    flex: 1 auto;
-}
-
 .watl-game-throws-container {
     flex: 1 auto;
     padding: 0 8px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 8px;
 }
 
 .watl-game-throws-container .watl-game-throw-item {
@@ -103,5 +92,42 @@ ul.watl-games-container {
 
 .watl-game-throw-score.inner-killshot-hit {
     background: blue;
+    color: #fff;
+}
+
+.watl-game-item .watl-game-actions {
+    flex: 0 0 auto;
+    height: auto;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.watl-game-item .watl-game-actions .watl-game-action-btn {
+    margin: 4px;
+    flex: 1;
+    min-height: 30px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: wrap;
+}
+
+.watl-game-item .watl-game-actions .watl-game-action-btn:not([disabled]).score-game {
+    background: darkblue;
+    color: #fff;
+}
+
+.watl-game-item .watl-game-actions .watl-game-action-btn:not([disabled]).evaluate-game {
+    background: darkgreen;
+    color: #fff;
+}
+
+.watl-game-item .watl-game-actions .watl-game-action-btn:not([disabled]).delete-game {
+    background: darkred;
     color: #fff;
 }
