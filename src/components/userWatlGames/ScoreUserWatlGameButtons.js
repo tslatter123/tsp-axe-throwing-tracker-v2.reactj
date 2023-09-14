@@ -92,7 +92,9 @@ const ScoreUserWatlGameButtons = (props) => {
     return (
         <>
             {errorMsg ? (
-                <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
+                <div className="popout-content">
+                    <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
+                </div>
             ) : (
                 <>
                     {bullseyeAttemptThrowOptions.length ? (
