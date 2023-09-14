@@ -82,6 +82,10 @@ ul.watl-games-container {
     justify-content: center;
 }
 
+.watl-game-throw-score:not(:last-child) {
+    margin-right: 8px;
+}
+
 .watl-game-throw-score.bullseye {
     background: red;
     color: #fff;

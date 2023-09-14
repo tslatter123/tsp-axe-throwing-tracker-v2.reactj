@@ -1,0 +1,63 @@
+.game-inconsistency {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.game-inconsistency:not(:last-child) {
+    margin-right: 8px;
+}
+
+.game-inconsistency-btn {
+    margin: 5px;
+    flex: 0 0 auto;
+    width: calc(calc(100% / 3) - 10px);
+    min-height: 40px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    text-wrap: wrap;
+}
+
+.game-inconsistency.low-power,
+.game-inconsistency-btn.low-power {
+    color: #fff;
+    background: green;
+}
+
+.game-inconsistency.high-power,
+.game-inconsistency-btn.high-power {
+    color: #fff;
+    background: red
+}
+
+.game-inconsistency.stability,
+.game-inconsistency-btn.stability {
+    color: #fff;
+    background: blue;
+}
+
+.game-inconsistency.bad-positioning,
+.game-inconsistency-btn.bad-positioning {
+    color: #fff;
+    background: #f01d7f;
+}
+
+.game-inconsistency.early-release,
+.game-inconsistency-btn.early-release {
+    color: #fff;
+    background: purple;
+}
+
+.game-inconsistency.late-release,
+.game-inconsistency-btn.late-release {
+    color: #fff;
+    background: brown;
+}
+
+.game-inconsistency.knot,
+.game-inconsistency-btn.knot {
+    color: #fff;
+    background: #000;
+}

@@ -100,6 +100,9 @@ const UserWatlGames = () => {
                                                             return (
                                                                 <div key={gameThrow.id} className={"watl-game-throw-item"}>
                                                                     <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                                                    {gameThrow.inconsistencies.map(inconsistency => {
+                                                                        return (<div className={"game-inconsistency " + inconsistency.className}></div>);
+                                                                    })}
                                                                 </div>
                                                             );
                                                         }) : (<p>No game throws added</p>)
