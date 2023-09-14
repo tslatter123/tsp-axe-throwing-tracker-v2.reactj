@@ -70,6 +70,7 @@ ul.watl-games-container {
     flex: 0 0 auto;
     width: 25px;
     margin-right: 32px;
+    font-size: 12px;
 }
 
 .watl-game-throw-score {

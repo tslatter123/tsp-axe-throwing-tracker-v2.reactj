@@ -45,7 +45,9 @@ const UserWatlGameInconsistencyButtons = (props) => {
                         "gameThrowID": props.gameThrowId,
                         "inconsistencyID": id
                     });
+
                 setInconsistencyOptions(response.data.watlInconsistencyInfoList);
+                props.onSubmit(response.data.watlGameInfo);
             } catch (err) {
                 if (!err?.response) {
                     setErrorMsg("No server response.");
@@ -61,6 +63,7 @@ const UserWatlGameInconsistencyButtons = (props) => {
                 const response = await axiosPrivate.delete(inconsistencyUrl + "?gameId=" + props.watlGameId + "&gameThrowId=" + props.gameThrowId + "&inconsistencyId=" + id);
 
                 setInconsistencyOptions(response.data.watlInconsistencyInfoList);
+                props.onSubmit(response.data.watlGameInfo);
             } catch (err) {
                 if (!err?.response) {
                     setErrorMsg("No server response.");

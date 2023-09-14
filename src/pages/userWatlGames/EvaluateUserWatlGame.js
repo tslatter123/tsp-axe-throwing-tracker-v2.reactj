@@ -69,6 +69,15 @@ const EvaluateUserWatlGame = () => {
         setPotentialScoreOpen(false);
     }
 
+    const getData = (watlGameInfo) => {
+        setName(watlGameInfo.name);
+        setTemplateName(watlGameInfo.templateName);
+        setDate(watlGameInfo.dateStr);
+        setDescription(watlGameInfo.description);
+        setScore(watlGameInfo.score);
+        setGameThrows(watlGameInfo.gameThrows);
+    }
+
     return (
         <div className="page-content">
             <section className="flex-col">
@@ -85,7 +94,7 @@ const EvaluateUserWatlGame = () => {
                 ) : (<></>)}
                 <div className="score-watl-game-container">
                     <div className={inconsistenciesOpen || potentialScoreOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
-                        {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} />) : (<></>)}
+                        {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) : (<></>)}
                     </div>
                     <div className="watl-game-score">
                         <div className="watl-game-header">
@@ -95,14 +104,12 @@ const EvaluateUserWatlGame = () => {
                             {gameThrows.length ?
                                 gameThrows.map(gameThrow => {
                                     return (
-                                        <div
-                                            key={gameThrow.id}
-                                            className="watl-game-throw-item"
-                                        //className={watlGameThrowId === gameThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
-                                        //onClick={() => openCloseScoreButtons(gameThrow.id)}
-                                        >
+                                        <div key={gameThrow.id} className="watl-game-throw-item">
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
                                             <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                            {gameThrow.inconsistencies.map(inconsistency => {
+                                                return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
+                                            })}
                                             <button onClick={() => openCloseInconsistencies(gameThrow.id)}>Set inconsistencies</button>
                                             <button disabled>Set potential score</button>
                                         </div>
