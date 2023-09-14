@@ -82,7 +82,7 @@ const EvaluateUserWatlGame = () => {
         <div className="page-content">
             <section className="flex-col">
                 <div className="header-row">
-                    <h1>Scoring {name}</h1>
+                    <h1>Evaluating {name}</h1>
                     <p>Template: <b>{templateName}</b></p>
                     <p>Date: <b>{date}</b></p>
                 </div>

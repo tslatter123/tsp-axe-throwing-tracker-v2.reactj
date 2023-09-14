@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWatlGameButtons";
 
 const { useState, useEffect, useRef } = require("react");
@@ -25,6 +25,8 @@ const ScoreUserWatlGame = () => {
 
     const [watlGameThrowId, setWatlGameThrowId] = useState();
     const [scoreBtnsOpen, setScoreBtnsOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -121,6 +123,12 @@ const ScoreUserWatlGame = () => {
                             }
                         </div>
                     </div>
+                    {gameThrows.length >= maxThrowCount ? (
+                        <div style={{ "flex": "1 auto" }}>
+                            <h2>What's Next?</h2>
+                            <button onClick={() => navigate('/user-watl-games/evaluate-watl-game/' + params.id)}>Evaluate your game!</button>
+                        </div>
+                    ) : (<></>)}
                 </div>
             </section>
         </div>
