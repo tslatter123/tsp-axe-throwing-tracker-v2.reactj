@@ -36,12 +36,70 @@ const UserWatlGameInconsistencyButtons = (props) => {
         getInconsistencies();
     }, [axiosPrivate, props.watlGameId, props.gameThrowId]);
 
+    const handleClick = async (id, isPresent) => {
+        const addInconsistency = async () => {
+            try {
+                const response = await axiosPrivate.post(inconsistencyUrl,
+                    {
+                        "gameID": props.watlGameId,
+                        "gameThrowID": props.gameThrowId,
+                        "inconsistencyID": id
+                    });
+                setInconsistencyOptions(response.data.watlInconsistencyInfoList);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
+            }
+        }
+
+        const deleteInconsistency = async () => {
+            try {
+                const response = await axiosPrivate.delete(inconsistencyUrl + "?gameId=" + props.watlGameId + "&gameThrowId=" + props.gameThrowId + "&inconsistencyId=" + id);
+
+                setInconsistencyOptions(response.data.watlInconsistencyInfoList);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
+            }
+        }
+
+        if (isPresent) {
+            deleteInconsistency();
+        }
+        else {
+            addInconsistency();
+        }
+    }
+
     return (
-        <div className="popout-content flex-row wrap-content">
-            {inconsistencyOptions.map((inconsistencyOption) => {
-                return (<button key={inconsistencyOption.id} className={inconsistencyOption.isPresent ? "game-inconsistency-btn " + inconsistencyOption.className : "game-inconsistency-btn"}>{inconsistencyOption.name}</button>);
-            })}
-        </div>
+        <>
+            {errorMsg ? (
+                <div className="popout-content">
+                    <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
+                </div>
+            ) : (
+                <div className="popout-content flex-row wrap-content">
+                    {inconsistencyOptions.map((inconsistencyOption) => {
+                        return (
+                            <button
+                                key={inconsistencyOption.id}
+                                onClick={() => handleClick(inconsistencyOption.id, inconsistencyOption.isPresent)}
+                                className={inconsistencyOption.isPresent ? "game-inconsistency-btn " + inconsistencyOption.className : "game-inconsistency-btn"}
+                            >
+                                {inconsistencyOption.name}
+                            </button>);
+                    })}
+                </div>
+            )}
+        </>
     )
 }
 
