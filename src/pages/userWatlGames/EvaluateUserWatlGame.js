@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import UserWatlGameInconsistencyButtons from "../../components/userWatlGames/UserWatlGameInconsistencyButtons";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -18,6 +19,10 @@ const EvaluateUserWatlGame = () => {
     const [errorMsg, setErrorMsg] = useState('');
 
     const axiosPrivate = useAxiosPrivate();
+
+    const [editGameThrowId, setEditGameThrowId] = useState(null);
+    const [inconsistenciesOpen, setInconsistenciesOpen] = useState(false);
+    const [potentialScoreOpen, setPotentialScoreOpen] = useState(false);
 
     useEffect(() => {
         let isMounted = true;
@@ -50,6 +55,20 @@ const EvaluateUserWatlGame = () => {
 
         getWatlGameInfo();
     }, [axiosPrivate, params.id]);
+
+    const openCloseInconsistencies = (id) => {
+        if (!inconsistenciesOpen || potentialScoreOpen) {
+            setEditGameThrowId(id);
+            setInconsistenciesOpen(true);
+        }
+        else if (inconsistenciesOpen) {
+            setInconsistenciesOpen(id !== editGameThrowId)
+            setEditGameThrowId(id === editGameThrowId ? null : id);
+        }
+
+        setPotentialScoreOpen(false);
+    }
+
     return (
         <div className="page-content">
             <section className="flex-col">
@@ -65,6 +84,9 @@ const EvaluateUserWatlGame = () => {
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (<></>)}
                 <div className="score-watl-game-container">
+                    <div className={inconsistenciesOpen || potentialScoreOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
+                        {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} />) : (<></>)}
+                    </div>
                     <div className="watl-game-score">
                         <div className="watl-game-header">
                             <h2>Score: {score}</h2>
@@ -81,7 +103,7 @@ const EvaluateUserWatlGame = () => {
                                         >
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
                                             <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
-                                            <button disabled>Set inconsistencies</button>
+                                            <button onClick={() => openCloseInconsistencies(gameThrow.id)}>Set inconsistencies</button>
                                             <button disabled>Set potential score</button>
                                         </div>
                                     );
