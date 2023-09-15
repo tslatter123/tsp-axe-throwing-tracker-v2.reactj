@@ -5,6 +5,10 @@
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
+.game-inconsistency.placeholder {
+    box-shadow: none;
+}
+
 .game-inconsistency:not(:last-child) {
     margin-right: 8px;
 }

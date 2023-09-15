@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AccuracyInfo from "../../components/Analytics/AccuracyInfo";
+import InconsistencyInfo from "../../components/Analytics/InconsistencyInfo";
 
 const userWatlGameAnalyticsUrl = 'UserWatlGameAnalytics';
 
@@ -11,7 +12,7 @@ const UserWatlGameAnalytics = () => {
     const [scoreBreakdown, setScoreBreakdown] = useState([]);
     const [mostCommonScore, setMostCommonScore] = useState(0);
     const [inconsistencies, setInconsistencies] = useState([]);
-    const [consistenctThrowCount, setConsistentThrowCount] = useState(0);
+    const [consistentThrowCount, setConsistentThrowCount] = useState(0);
     const [totalThrowCount, setTotalThrowCount] = useState(0);
     const [consistentThrowPercentage, setConsistentThrowPercentage] = useState(0);
     const [accuracies, setAccuracies] = useState([]);
@@ -39,6 +40,9 @@ const UserWatlGameAnalytics = () => {
                     setTotalThrowCount(response.data.analyticsInfo.inconsistencies?.consistentThrows?.total);
                     setConsistentThrowPercentage(response.data.analyticsInfo.inconsistencies?.consistentThrows?.percentageStr);
                     setAccuracies(response.data.analyticsInfo.accuracies);
+
+                    // console.log(consistentThrowCount);
+                    // console.log(response.data.analyticsInfo.inconsistencies?.consistentThrows?.count);
                 }
             } catch (err) {
                 if (!err?.response) {
@@ -67,7 +71,14 @@ const UserWatlGameAnalytics = () => {
                         {scoreBreakdown ? (
                             <></>
                         ) : (<></>)}
-
+                        {inconsistencies?.length || totalThrowCount ? (
+                            <InconsistencyInfo
+                                inconsistencies={inconsistencies}
+                                consistentThrowCount={consistentThrowCount}
+                                totalThrows={totalThrowCount}
+                                consistentThrowsPercentage={consistentThrowPercentage}
+                            />
+                        ) : (<></>)}
                         {accuracies ? (
                             <div className="analytics-container">
                                 {accuracies.map(accuracyItem => <AccuracyInfo accuracyInfo={accuracyItem} />)}

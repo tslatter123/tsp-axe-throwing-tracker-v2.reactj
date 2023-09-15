@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 const AccuracyInfo = (props) => {
     const accuracyInfo = props.accuracyInfo;
 
@@ -10,29 +8,29 @@ const AccuracyInfo = (props) => {
             {accuracyInfo?.onWarmUp ? (
                 <div className="accuracy-item">
                     <h3>On warmup throws:</h3>
-                    <p>{accuracyInfo.onWarmUp.count} / {accuracyInfo.onWarmUp.total}</p>
-                    <p><b>{accuracyInfo.onWarmUp.percentageStr}</b></p>
+                    <span>{accuracyInfo.onWarmUp.count} / {accuracyInfo.onWarmUp.total}</span>
+                    <span><b>{accuracyInfo.onWarmUp.percentageStr}</b></span>
                 </div>
             ) : (<></>)}
             {accuracyInfo?.onGames ? (
                 <div className="accuracy-item">
                     <h3>On game throws:</h3>
-                    <p>{accuracyInfo.onGames.count} / {accuracyInfo.onGames.total}</p>
-                    <p><b>{accuracyInfo.onGames.percentageStr}</b></p>
+                    <span>{accuracyInfo.onGames.count} / {accuracyInfo.onGames.total}</span>
+                    <span><b>{accuracyInfo.onGames.percentageStr}</b></span>
                 </div>
             ) : (<></>)}
             {accuracyInfo?.onSpecificPractice ? (
                 <div className="accuracy-item">
                     <h3>On specific practice:</h3>
-                    <p>{accuracyInfo.onSpecificPractice.count} / {accuracyInfo.onSpecificPractice.total}</p>
-                    <p><b>{accuracyInfo.onSpecificPractice.percentageStr}</b></p>
+                    <span>{accuracyInfo.onSpecificPractice.count} / {accuracyInfo.onSpecificPractice.total}</span>
+                    <span><b>{accuracyInfo.onSpecificPractice.percentageStr}</b></span>
                 </div>
             ) : (<></>)}
             {accuracyInfo?.overall ? (
                 <div className="accuracy-item">
                     <h3>Overall accuracy:</h3>
-                    <p>{accuracyInfo.overall.count} / {accuracyInfo.overall.total}</p>
-                    <p><b>{accuracyInfo.overall.percentageStr}</b></p>
+                    <span>{accuracyInfo.overall.count} / {accuracyInfo.overall.total}</span>
+                    <span><b>{accuracyInfo.overall.percentageStr}</b></span>
                 </div>
             ) : (<></>)}
         </div>
