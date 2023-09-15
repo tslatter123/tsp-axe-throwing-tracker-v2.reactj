@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AccuracyInfo = (props) => {
-    const [accuracyInfo, setAccuracyInfo] = useState(null);
-
-    setAccuracyInfo(props.accuracyInfo);
+    const accuracyInfo = props.accuracyInfo;
 
     return (
-        <div className={"analytics-item " + accuracyInfo.className}>
+        <div className={accuracyInfo.className ? "analytics-item " + accuracyInfo.className : "analytics-item"}>
+            {/* <div> */}
             <h2>{accuracyInfo.displayName}</h2>
             {accuracyInfo?.onWarmUp ? (
                 <div className="accuracy-item">

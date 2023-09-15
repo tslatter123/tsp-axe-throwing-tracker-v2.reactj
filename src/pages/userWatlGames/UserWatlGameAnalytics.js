@@ -7,7 +7,7 @@ const userWatlGameAnalyticsUrl = 'UserWatlGameAnalytics';
 const UserWatlGameAnalytics = () => {
     const errorMsgRef = useRef();
 
-    const [average, setAverage] = useState(0);
+    const [averageScore, setAverageScore] = useState(0);
     const [scoreBreakdown, setScoreBreakdown] = useState([]);
     const [mostCommonScore, setMostCommonScore] = useState(0);
     const [inconsistencies, setInconsistencies] = useState([]);
@@ -31,7 +31,14 @@ const UserWatlGameAnalytics = () => {
                 });
 
                 if (isMounted) {
-
+                    setAverageScore(response.data.analyticsInfo.averages?.averageStr);
+                    setScoreBreakdown(response.data.analyticsInfo.scoreBreakdown?.scoreBreakdownItems);
+                    setMostCommonScore(response.data.analyticsInfo.scoreBreakdown?.mostCommonScore);
+                    setInconsistencies(response.data.analyticsInfo.inconsistencies?.inconsistencies);
+                    setConsistentThrowCount(response.data.analyticsInfo.inconsistencies?.consistentThrows?.count);
+                    setTotalThrowCount(response.data.analyticsInfo.inconsistencies?.consistentThrows?.total);
+                    setConsistentThrowPercentage(response.data.analyticsInfo.inconsistencies?.consistentThrows?.percentageStr);
+                    setAccuracies(response.data.analyticsInfo.accuracies);
                 }
             } catch (err) {
                 if (!err?.response) {
@@ -53,12 +60,23 @@ const UserWatlGameAnalytics = () => {
                 {errorMsg ? (
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (
-                    <div className="analytics-container">
-                        {/* {analyticsInfo.accuracies.Map(accuracyItem => <AccuracyInfo accuracyInfo={accuracyItem} />)} */}
-                    </div>
+                    <>
+                        {averageScore ? (
+                            <h2>Average score: {averageScore}</h2>
+                        ) : (<></>)}
+                        {scoreBreakdown ? (
+                            <></>
+                        ) : (<></>)}
+
+                        {accuracies ? (
+                            <div className="analytics-container">
+                                {accuracies.map(accuracyItem => <AccuracyInfo accuracyInfo={accuracyItem} />)}
+                            </div>) : (<></>)
+                        }
+                    </>
                 )}
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
 
