@@ -78,7 +78,7 @@ const UserWatlGames = () => {
                 <section>
                     <h1>Your World Axe Throwing League Games</h1>
                     <button onClick={openAddWatlGame}>Add a game</button>
-                    <button disabled>Go to analytics</button>
+                    <button onClick={() => navigate("analytics")}>Go to analytics</button>
                     {userWatlGames.length ?
                         userWatlGames.map(forDate =>
                             <div key={forDate.date} className="date-item">
