@@ -1,9 +1,7 @@
 import { useState } from "react";
 
 const AccuracyInfo = (props) => {
-    const [accuracyInfo, setAccuracyInfo] = useState(null);
-
-    setAccuracyInfo(props.accuracyInfo);
+    const [accuracyInfo, setAccuracyInfo] = useState(props.accuracyInfo);
 
     return (
         <div className={"analytics-item " + accuracyInfo.className}>
