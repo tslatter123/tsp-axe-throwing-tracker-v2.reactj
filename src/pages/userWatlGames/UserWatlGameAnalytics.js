@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AccuracyInfo from "../../components/Analytics/AccuracyInfo";
 import InconsistencyInfo from "../../components/Analytics/InconsistencyInfo";
+import ScoreBreakdownInfo from "../../components/Analytics/ScoreBreakdownInfo";
 
 const userWatlGameAnalyticsUrl = 'UserWatlGameAnalytics';
 
@@ -68,8 +69,11 @@ const UserWatlGameAnalytics = () => {
                         {averageScore ? (
                             <h2>Average score: {averageScore}</h2>
                         ) : (<></>)}
-                        {scoreBreakdown ? (
-                            <></>
+                        {scoreBreakdown?.lengthn || mostCommonScore ? (
+                            <ScoreBreakdownInfo
+                                scoreBreakdown={scoreBreakdown}
+                                mostCommonScore={mostCommonScore}
+                            />
                         ) : (<></>)}
                         {inconsistencies?.length || totalThrowCount ? (
                             <InconsistencyInfo
