@@ -42,6 +42,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .analytics-item .score-breakdown-item span:not(:last-child),
@@ -57,23 +58,29 @@
     font-weight: bold;
 }
 
-.analytics-item .score-breakdown-item .score-calculation {
+.analytics-item .score-breakdown-item .score-calculation,
+.analytics-item .inconsistency-item .inconsistency-calculation {
     flex: 0 0 auto;
     width: 100px;
 }
 
-.analytics-item .score-breakdown-item .score-percentage {
+.analytics-item .score-breakdown-item .score-percentage,
+.analytics-item .inconsistency-item .inconsistency-percentage {
     flex: 0 0 auto;
     width: 100px;
     font-weight: bold;
 }
 
-.analytics-item .inconsistency-item .game-inconsistency {
-    margin-right: calc(calc(100% / 3) - 10px);
+.analytics-item h3 {
+    margin: 0;
 }
 
-.analytics-item .score-breakdown-item h3 {
-    margin: 0;
+.analytics-item .inconsistency-item .game-inconsistency {
+    margin-right: 23px;
+}
+
+.analytics-item .bottom {
+    margin-top: auto;
 }
 
 .analytics-item.half-width {
