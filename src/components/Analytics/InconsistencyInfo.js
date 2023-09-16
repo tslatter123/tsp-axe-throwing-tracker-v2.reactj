@@ -6,7 +6,7 @@ const InconsistencyInfo = (props) => {
     const consistentPercentage = props.consistentThrowsPercentage;
 
     return (
-        <div className="analytics-item">
+        <div className="analytics-item half-width">
             <h2>Inconsistencies</h2>
             {inconsistencies ? (
                 inconsistencies.map(inconsistencyInfo => {

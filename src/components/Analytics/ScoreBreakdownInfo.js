@@ -3,21 +3,24 @@ const ScoreBreakdownInfo = (props) => {
     const mostCommonScore = props.mostCommonScore;
 
     return (
-        <div className="analytics-item">
+        <div className="analytics-item half-width">
             <h2>Scoring breakdown</h2>
             {scores?.length ? (
                 scores.map(score => {
                     return (
                         <div className="score-breakdown-item">
-                            <span>{score.score}</span>
-                            <span>{score.info.count} / {score.info.total}</span>
-                            <span>{score.info.percentageStr}</span>
+                            <span className="score-identifier">{score.score}:</span>
+                            <span className="score-calculation">{score.info.count} / {score.info.total}</span>
+                            <span className="score-percentage">{score.info.percentageStr}</span>
                         </div>
                     );
                 })
             ) : (<></>)}
             {mostCommonScore ? (
-                <h3>Most common throw score: {mostCommonScore}</h3>
+                <div className="score-breakdown-item flex-col" style={{ "padding": "5px 0" }}>
+                    <b>Most common throw score:</b>
+                    <h3>{mostCommonScore}</h3>
+                </div>
             ) : (<></>)}
         </div>
     )

@@ -1,0 +1,81 @@
+.analytics-container {
+    margin: 8px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    padding: 8px 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.analytics-container h2 {
+    margin: 8px;
+    flex: 1 auto;
+    min-width: calc(100% - 16px);
+}
+
+.analytics-container .analytics-item {
+    margin: 8px;
+    flex: 1 auto;
+    min-width: calc(100% - 32px);
+    border-radius: 5px;
+    border: 0.5px solid #b4b4b4;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-item h2 {
+    margin: 8px 0;
+    flex: 0 0 auto;
+    min-width: calc(100% - 16px);
+}
+
+.analytics-item h2:first-child {
+    margin-top: 0;
+}
+
+.analytics-item .score-breakdown-item,
+.analytics-item .inconsistency-item {
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.analytics-item .score-breakdown-item span:not(:last-child),
+.analytics-item .score-breakdown-item b:not(:last-child),
+.analytics-item .inconsistency-item span:not(:last-child),
+.analytics-item .inconsistency-item b:not(:last-child) {
+    margin-right: 8px;
+}
+
+.analytics-item .score-breakdown-item .score-identifier {
+    flex: 0 0 auto;
+    width: 25px;
+    font-weight: bold;
+}
+
+.analytics-item .score-breakdown-item .score-calculation {
+    flex: 0 0 auto;
+    width: 100px;
+}
+
+.analytics-item .score-breakdown-item .score-percentage {
+    flex: 0 0 auto;
+    width: 100px;
+    font-weight: bold;
+}
+
+.analytics-item .inconsistency-item .game-inconsistency {
+    margin-right: calc(calc(100% / 3) - 10px);
+}
+
+.analytics-item .score-breakdown-item h3 {
+    margin: 0;
+}
+
+.analytics-item.half-width {
+    min-width: calc(50% - 33px);
+}

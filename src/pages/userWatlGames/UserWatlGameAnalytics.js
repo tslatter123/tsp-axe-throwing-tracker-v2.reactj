@@ -65,11 +65,11 @@ const UserWatlGameAnalytics = () => {
                 {errorMsg ? (
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (
-                    <>
+                    <div className="analytics-container">
                         {averageScore ? (
                             <h2>Average score: {averageScore}</h2>
                         ) : (<></>)}
-                        {scoreBreakdown?.lengthn || mostCommonScore ? (
+                        {scoreBreakdown?.length || mostCommonScore ? (
                             <ScoreBreakdownInfo
                                 scoreBreakdown={scoreBreakdown}
                                 mostCommonScore={mostCommonScore}
@@ -83,12 +83,10 @@ const UserWatlGameAnalytics = () => {
                                 consistentThrowsPercentage={consistentThrowPercentage}
                             />
                         ) : (<></>)}
-                        {accuracies ? (
-                            <div className="analytics-container">
-                                {accuracies.map(accuracyItem => <AccuracyInfo accuracyInfo={accuracyItem} />)}
-                            </div>) : (<></>)
-                        }
-                    </>
+                        {accuracies ? accuracies.map(
+                            accuracyItem => <AccuracyInfo accuracyInfo={accuracyItem} />
+                        ) : (<></>)}
+                    </div>
                 )}
             </section >
         </div >
