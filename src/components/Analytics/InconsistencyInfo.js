@@ -13,8 +13,8 @@ const InconsistencyInfo = (props) => {
                     return (
                         <div className="inconsistency-item">
                             <div className={inconsistencyInfo.className ? "game-inconsistency " + inconsistencyInfo.className : "game-inconsistency"}></div>
-                            <span className="inconsistency-calculation">{inconsistencyInfo.info.count} / {inconsistencyInfo.info.total}</span>
-                            <span className="inconsistency-percentage">{inconsistencyInfo.info.percentageStr}</span>
+                            <span className="calculation">{inconsistencyInfo.info.count} / {inconsistencyInfo.info.total}</span>
+                            <span className="percentage">{inconsistencyInfo.info.percentageStr}</span>
                         </div>
                     );
                 })
@@ -24,8 +24,8 @@ const InconsistencyInfo = (props) => {
                     <b className="bottom">Consistent throws:</b>
                     <div className="inconsistency-item">
                         <div className="game-inconsistency placeholder"></div>
-                        <span className="inconsistency-calculation">{consistentCount} / {total}</span>
-                        <span className="inconsistency-percentage">{consistentPercentage}</span>
+                        <span className="calculation">{consistentCount} / {total}</span>
+                        <span className="percentage">{consistentPercentage}</span>
                     </div>
                 </>
             ) : (<></>)}

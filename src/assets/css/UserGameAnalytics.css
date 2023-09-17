@@ -36,8 +36,13 @@
     margin-top: 0;
 }
 
+.analytics-item h3 {
+    margin: 0;
+}
+
 .analytics-item .score-breakdown-item,
-.analytics-item .inconsistency-item {
+.analytics-item .inconsistency-item,
+.analytics-item .accuracy-item {
     padding: 5px 10px;
     display: flex;
     flex-direction: row;
@@ -48,31 +53,36 @@
 .analytics-item .score-breakdown-item span:not(:last-child),
 .analytics-item .score-breakdown-item b:not(:last-child),
 .analytics-item .inconsistency-item span:not(:last-child),
-.analytics-item .inconsistency-item b:not(:last-child) {
+.analytics-item .inconsistency-item b:not(:last-child),
+.analytics-item .accuracy-item span:not(:last-child),
+.analytics-item .accuracy-item b:not(:last-child) {
     margin-right: 8px;
 }
 
-.analytics-item .score-breakdown-item .score-identifier {
+.analytics-item .score-breakdown-item .identifier,
+.analytics-item .accuracy-item .identifier {
     flex: 0 0 auto;
     width: 25px;
     font-weight: bold;
 }
 
-.analytics-item .score-breakdown-item .score-calculation,
-.analytics-item .inconsistency-item .inconsistency-calculation {
+.analytics-item .accuracy-item .identifier {
+    width: 150px;
+}
+
+.analytics-item .score-breakdown-item .calculation,
+.analytics-item .inconsistency-item .calculation,
+.analytics-item .accuracy-item .calculation {
     flex: 0 0 auto;
     width: 100px;
 }
 
-.analytics-item .score-breakdown-item .score-percentage,
-.analytics-item .inconsistency-item .inconsistency-percentage {
+.analytics-item .score-breakdown-item .percentage,
+.analytics-item .inconsistency-item .percentage,
+.analytics-item .accuracy-item .percentage {
     flex: 0 0 auto;
-    width: 100px;
+    width: 55px;
     font-weight: bold;
-}
-
-.analytics-item h3 {
-    margin: 0;
 }
 
 .analytics-item .inconsistency-item .game-inconsistency {

@@ -9,9 +9,9 @@ const ScoreBreakdownInfo = (props) => {
                 scores.map(score => {
                     return (
                         <div className="score-breakdown-item">
-                            <span className="score-identifier">{score.score}:</span>
-                            <span className="score-calculation">{score.info.count} / {score.info.total}</span>
-                            <span className="score-percentage">{score.info.percentageStr}</span>
+                            <span className="identifier">{score.score}:</span>
+                            <span className="calculation">{score.info.count} / {score.info.total}</span>
+                            <span className="percentage">{score.info.percentageStr}</span>
                         </div>
                     );
                 })

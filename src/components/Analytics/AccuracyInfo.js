@@ -7,30 +7,30 @@ const AccuracyInfo = (props) => {
             <h2>{accuracyInfo.displayName}</h2>
             {accuracyInfo?.onWarmUp ? (
                 <div className="accuracy-item">
-                    <h3>On warmup throws:</h3>
-                    <span>{accuracyInfo.onWarmUp.count} / {accuracyInfo.onWarmUp.total}</span>
-                    <span><b>{accuracyInfo.onWarmUp.percentageStr}</b></span>
+                    <span className="identifier">On warmup throws:</span>
+                    <span className="calculation">{accuracyInfo.onWarmUp.count} / {accuracyInfo.onWarmUp.total}</span>
+                    <span className="percentage">{accuracyInfo.onWarmUp.percentageStr}</span>
                 </div>
             ) : (<></>)}
             {accuracyInfo?.onGames ? (
                 <div className="accuracy-item">
-                    <h3>On game throws:</h3>
-                    <span>{accuracyInfo.onGames.count} / {accuracyInfo.onGames.total}</span>
-                    <span><b>{accuracyInfo.onGames.percentageStr}</b></span>
+                    <span className="identifier">On game throws:</span>
+                    <span className="calculation">{accuracyInfo.onGames.count} / {accuracyInfo.onGames.total}</span>
+                    <span className="percentage">{accuracyInfo.onGames.percentageStr}</span>
                 </div>
             ) : (<></>)}
             {accuracyInfo?.onSpecificPractice ? (
                 <div className="accuracy-item">
-                    <h3>On specific practice:</h3>
-                    <span>{accuracyInfo.onSpecificPractice.count} / {accuracyInfo.onSpecificPractice.total}</span>
-                    <span><b>{accuracyInfo.onSpecificPractice.percentageStr}</b></span>
+                    <span className="identifier">On specific practice:</span>
+                    <span className="calculation">{accuracyInfo.onSpecificPractice.count} / {accuracyInfo.onSpecificPractice.total}</span>
+                    <span className="percentage">{accuracyInfo.onSpecificPractice.percentageStr}</span>
                 </div>
             ) : (<></>)}
             {accuracyInfo?.overall ? (
                 <div className="accuracy-item">
-                    <h3>Overall accuracy:</h3>
-                    <span>{accuracyInfo.overall.count} / {accuracyInfo.overall.total}</span>
-                    <span><b>{accuracyInfo.overall.percentageStr}</b></span>
+                    <span className="identifier">Overall accuracy:</span>
+                    <span className="calculation">{accuracyInfo.overall.count} / {accuracyInfo.overall.total}</span>
+                    <span className="percentage">{accuracyInfo.overall.percentageStr}</span>
                 </div>
             ) : (<></>)}
         </div>
