@@ -79,7 +79,7 @@ const UserWatlGames = () => {
             <div className="page-content">
                 <section>
                     <h1>Your World Axe Throwing League Games</h1>
-                    <GlobalUserGameFilters onSubmit={getData} />
+                    <GlobalUserGameFilters targetUrl={userWatlGamesUrl} onSubmit={getData} />
                     <button onClick={openAddWatlGame}>Add a game</button>
                     <button onClick={() => navigate("analytics")}>Go to analytics</button>
                     {userWatlGames.length ?

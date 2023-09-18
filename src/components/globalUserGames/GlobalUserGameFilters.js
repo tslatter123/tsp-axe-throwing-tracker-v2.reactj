@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const userAxesUrl = 'UserAxes';
-const userWatlGamesUrl = '/UserWatlGames';
 
 const GlobalUserGameFilters = (props) => {
     const errorMsgRef = useRef();
@@ -43,7 +42,7 @@ const GlobalUserGameFilters = (props) => {
         setDateFrom(date);
 
         try {
-            var result = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
+            var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
 
             props.onSubmit(result.data.watlGameInfoList);
         } catch (err) {
@@ -60,7 +59,7 @@ const GlobalUserGameFilters = (props) => {
         setDateTo(date);
 
         try {
-            var result = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
+            var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
 
             props.onSubmit(result.data.watlGameInfoList);
         } catch (err) {
@@ -77,7 +76,7 @@ const GlobalUserGameFilters = (props) => {
         setAxeId(id);
 
         try {
-            var result = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
+            var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
 
             props.onSubmit(result.data.watlGameInfoList);
         } catch (err) {
