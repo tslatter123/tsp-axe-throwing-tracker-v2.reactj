@@ -4,6 +4,7 @@ import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
 import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
 import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGame";
 import { useNavigate } from "react-router-dom";
+import GlobalUserGameFilters from "../../components/globalUserGames/GlobalUserGameFilters";
 
 
 const userWatlGamesUrl = '/UserWatlGames';
@@ -77,6 +78,7 @@ const UserWatlGames = () => {
             <div className="page-content">
                 <section>
                     <h1>Your World Axe Throwing League Games</h1>
+                    <GlobalUserGameFilters dateFrom={null} dateTo={null} axeId={null} />
                     <button onClick={openAddWatlGame}>Add a game</button>
                     <button onClick={() => navigate("analytics")}>Go to analytics</button>
                     {userWatlGames.length ?
