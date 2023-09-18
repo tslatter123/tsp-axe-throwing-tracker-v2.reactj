@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import UserWatlGameInconsistencyButtons from "../../components/userWatlGames/UserWatlGameInconsistencyButtons";
+import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -117,10 +118,13 @@ const EvaluateUserWatlGame = () => {
                                 }) : (<></>)
                             }
                         </div>
+                        <div style={{ "flex": "1 auto" }}>
+                            <UserWatlGameAxeButtons gameId={params.id} />
+                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
 
