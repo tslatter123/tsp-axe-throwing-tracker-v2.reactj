@@ -36,6 +36,49 @@ const UserWatlGameAxeButtons = (props) => {
         getGameAxes();
     }, [axiosPrivate, props.gameId]);
 
+    const handleButtonClick = (id, isPresent) => {
+        const addAxeToGame = async () => {
+            try {
+                const response = await axiosPrivate.post(userWatlGameAxeUrl,
+                    {
+                        "gameID": props.gameId,
+                        "axeID": id
+                    });
+
+                setAxes(response.data.axeInfoList);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
+            }
+        }
+
+        const deletAxeFromGame = async () => {
+            try {
+                const response = await axiosPrivate.delete(userWatlGameAxeUrl + "?gameId=" + props.gameId + "&axeId=" + id);
+
+                setAxes(response.data.axeInfoList);
+            } catch (err) {
+                if (!err?.response) {
+                    setErrorMsg("No server response.");
+                }
+                else {
+                    setErrorMsg(err.response.data.error);
+                }
+            }
+        }
+
+        if (isPresent) {
+            deletAxeFromGame();
+        }
+        else {
+            addAxeToGame();
+        }
+    }
+
     return (
         <>
             <h2>Axes used in this game</h2>
@@ -51,7 +94,7 @@ const UserWatlGameAxeButtons = (props) => {
                                 <button
                                     type="button"
                                     style={axe.isPresent ? { "background": "lightblue" } : {}}
-
+                                    onClick={() => handleButtonClick(axe.id, axe.isPresent)}
                                 >
                                     {axe.name}
                                 </button>
