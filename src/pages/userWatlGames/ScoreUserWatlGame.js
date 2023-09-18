@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWatlGameButtons";
+import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
 
 const { useState, useEffect, useRef } = require("react");
 const { default: useAxiosPrivate } = require("../../hooks/useAxiosPrivate");
@@ -123,12 +124,15 @@ const ScoreUserWatlGame = () => {
                             }
                         </div>
                     </div>
-                    {gameThrows.length >= maxThrowCount ? (
-                        <div style={{ "flex": "1 auto" }}>
-                            <h2>What's Next?</h2>
-                            <button onClick={() => navigate('/user-watl-games/evaluate-watl-game/' + params.id)}>Evaluate your game!</button>
-                        </div>
-                    ) : (<></>)}
+                    <div style={{ "flex": "1 auto" }}>
+                        <UserWatlGameAxeButtons gameId={params.id} />
+                        {gameThrows.length >= maxThrowCount ? (
+                            <>
+                                <h2>What's Next?</h2>
+                                <button onClick={() => navigate('/user-watl-games/evaluate-watl-game/' + params.id)}>Evaluate your game!</button>
+                            </>
+                        ) : (<></>)}
+                    </div>
                 </div>
             </section>
         </div>
