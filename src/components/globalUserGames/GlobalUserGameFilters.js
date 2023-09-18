@@ -1,19 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import { useNavigate } from "react-router-dom";
 
 const userAxesUrl = 'UserAxes';
+const userWatlGamesUrl = '/UserWatlGames';
+
 const GlobalUserGameFilters = (props) => {
     const errorMsgRef = useRef();
 
-    const [dateFrom, setDateFrom] = useState(props.dateFrom && typeof props.dateFrom !== 'undefined' ? props.dateFrom : '');
-    const [dateTo, setDateTo] = useState(props.dateTo && typeof props.dateTo !== 'undefined' ? props.dateTo : '');
-    const [axeId, setAxeId] = useState(props.axeId && typeof props.axeId !== 'undefined' ? props.axeId : '');
+    const [dateFrom, setDateFrom] = useState('');
+    const [dateTo, setDateTo] = useState('');
+    const [axeId, setAxeId] = useState('');
     const [userAxes, setUserAxes] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
 
     const axiosPrivate = useAxiosPrivate();
-    const navigate = useNavigate();
 
     useEffect(() => {
         let isMounted = true;
@@ -39,10 +39,55 @@ const GlobalUserGameFilters = (props) => {
         getUserAxes();
     }, [axiosPrivate]);
 
-    const handleApplyFilters = () => {
-        let path = window.location.pathname.split('?')[0];
+    const handleFilterDateFrom = async (date) => {
+        setDateFrom(date);
 
-        navigate(path + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + axeId);
+        try {
+            var result = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
+
+            props.onSubmit(result.data.watlGameInfoList);
+        } catch (err) {
+            if (!err?.response) {
+                setErrorMsg("No server response.");
+            }
+            else {
+                setErrorMsg(err.responsee.data.error);
+            }
+        }
+    }
+
+    const handleFilterDateTo = async (date) => {
+        setDateTo(date);
+
+        try {
+            var result = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
+
+            props.onSubmit(result.data.watlGameInfoList);
+        } catch (err) {
+            if (!err?.response) {
+                setErrorMsg("No server response.");
+            }
+            else {
+                setErrorMsg(err.responsee.data.error);
+            }
+        }
+    }
+
+    const handleFilterAxeId = async (id) => {
+        setAxeId(id);
+
+        try {
+            var result = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
+
+            props.onSubmit(result.data.watlGameInfoList);
+        } catch (err) {
+            if (!err?.response) {
+                setErrorMsg("No server response.");
+            }
+            else {
+                setErrorMsg(err.responsee.data.error);
+            }
+        }
     }
 
     return (
@@ -50,7 +95,7 @@ const GlobalUserGameFilters = (props) => {
             {errorMsg ? (
                 <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
             ) : (
-                <form className="games-index-filters">
+                <div className="games-index-filters">
                     <label>Filters:</label>
                     <div className="games-index-filter-item">
                         <label>Date from:</label>
@@ -58,7 +103,7 @@ const GlobalUserGameFilters = (props) => {
                             id="date-from"
                             type="date"
                             value={dateFrom}
-                            onChange={(e) => setDateFrom(e.target.value)}
+                            onChange={(e) => handleFilterDateFrom(e.target.value)}
                         />
                     </div>
                     <div className="games-index-filter-item">
@@ -67,7 +112,7 @@ const GlobalUserGameFilters = (props) => {
                             id="date-to"
                             type="date"
                             value={dateTo}
-                            onChange={(e) => setDateTo(e.target.value)}
+                            onChange={(e) => handleFilterDateTo(e.target.value)}
                         />
                     </div>
                     {userAxes ? (
@@ -76,9 +121,9 @@ const GlobalUserGameFilters = (props) => {
                             <select
                                 id="axe"
                                 value={axeId}
-                                onChange={(e) => setAxeId(e.target.value)}
+                                onChange={(e) => handleFilterAxeId(e.target.value)}
                             >
-                                <option value="">Select an axe...</option>
+                                <option value="">All axes...</option>
                                 {userAxes.map(axe => {
                                     return (
                                         <option key={axe.id} value={axe.id} selected={axe.id === axeId}>{axe.name}</option>
@@ -87,13 +132,7 @@ const GlobalUserGameFilters = (props) => {
                             </select>
                         </div>
                     ) : (<></>)}
-                    <div className="games-index-filter-submit">
-                        <button
-                            type="button"
-                            onClick={handleApplyFilters}
-                        >Apply filters</button>
-                    </div>
-                </form>
+                </div>
             )}
         </>
     )

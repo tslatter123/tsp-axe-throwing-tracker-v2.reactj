@@ -25,9 +25,10 @@ const UserWatlGames = () => {
         const controller = new AbortController();
         const getUserWatlGames = async () => {
             try {
-                const response = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=&dateTo=", {
-                    signal: controller.signal
-                });
+                const response = await axiosPrivate.get(userWatlGamesUrl,
+                    {
+                        signal: controller.signal
+                    });
 
                 isMounted && setUserWatlGames(response.data.watlGameInfoList);
             } catch (err) {
@@ -78,7 +79,7 @@ const UserWatlGames = () => {
             <div className="page-content">
                 <section>
                     <h1>Your World Axe Throwing League Games</h1>
-                    <GlobalUserGameFilters dateFrom={null} dateTo={null} axeId={null} />
+                    <GlobalUserGameFilters onSubmit={getData} />
                     <button onClick={openAddWatlGame}>Add a game</button>
                     <button onClick={() => navigate("analytics")}>Go to analytics</button>
                     {userWatlGames.length ?
