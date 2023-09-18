@@ -44,7 +44,11 @@ const GlobalUserGameFilters = (props) => {
         try {
             var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
 
-            props.onSubmit(result.data.watlGameInfoList);
+            switch (props.filterType) {
+                case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
+                case "analytics": props.onSubmit(result.data.analyticsInfo); break;
+                default: setErrorMsg("Filter target not set.");
+            }
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.");
@@ -61,7 +65,11 @@ const GlobalUserGameFilters = (props) => {
         try {
             var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
 
-            props.onSubmit(result.data.watlGameInfoList);
+            switch (props.filterType) {
+                case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
+                case "analytics": props.onSubmit(result.data.analyticsInfo); break;
+                default: setErrorMsg("Filter target not set.");
+            }
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.");
@@ -78,7 +86,12 @@ const GlobalUserGameFilters = (props) => {
         try {
             var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
 
-            props.onSubmit(result.data.watlGameInfoList);
+            switch (props.filterType) {
+                case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
+                case "analytics": props.onSubmit(result.data.analyticsInfo); break;
+                default: setErrorMsg("Filter target not set.");
+            }
+
         } catch (err) {
             if (!err?.response) {
                 setErrorMsg("No server response.");
