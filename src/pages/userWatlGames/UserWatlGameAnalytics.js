@@ -3,12 +3,14 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AccuracyInfo from "../../components/Analytics/AccuracyInfo";
 import InconsistencyInfo from "../../components/Analytics/InconsistencyInfo";
 import ScoreBreakdownInfo from "../../components/Analytics/ScoreBreakdownInfo";
-import GlobalUserGameFilters from "../../components/filters/UserWatlGameFilter";
+import UserWatlGameFilter from "../../components/filters/UserWatlGameFilter";
+import useWatlGameFilter from "../../hooks/useWatlGameFilter";
 
 const userWatlGameAnalyticsUrl = 'UserWatlGameAnalytics';
 
 const UserWatlGameAnalytics = () => {
     const errorMsgRef = useRef();
+    const { filter } = useWatlGameFilter();
 
     const [gameCount, setGameCount] = useState(0);
     const [averageScore, setAverageScore] = useState(0);
@@ -30,9 +32,11 @@ const UserWatlGameAnalytics = () => {
 
         const getAnalyticsInfo = async () => {
             try {
-                const response = await axiosPrivate.get(userWatlGameAnalyticsUrl, {
-                    signal: controller.signal
-                });
+                const response = await axiosPrivate.get(userWatlGameAnalyticsUrl + "?dateFrom=" + (filter?.dateFrom ?? '') +
+                    "&dateTo=" + (filter?.dateTo ?? '') + "&axeId=" + (filter?.axeId ?? ''),
+                    {
+                        signal: controller.signal
+                    });
 
                 if (isMounted) {
                     setGameCount(response.data.analyticsInfo.gameCount);
@@ -58,27 +62,13 @@ const UserWatlGameAnalytics = () => {
         }
 
         getAnalyticsInfo();
-    }, [axiosPrivate]);
-
-    const getData = (analyticsInfo) => {
-        setGameCount(analyticsInfo.gameCount);
-        if (gameCount) {
-            setAverageScore(analyticsInfo.averages?.averageStr);
-            setScoreBreakdown(analyticsInfo.scoreBreakdown?.scoreBreakdownItems);
-            setMostCommonScore(analyticsInfo.scoreBreakdown?.mostCommonScore);
-            setInconsistencies(analyticsInfo.inconsistencies?.inconsistencies);
-            setConsistentThrowCount(analyticsInfo.inconsistencies?.consistentThrows?.count);
-            setTotalThrowCount(analyticsInfo.inconsistencies?.consistentThrows?.total);
-            setConsistentThrowPercentage(analyticsInfo.inconsistencies?.consistentThrows?.percentageStr);
-            setAccuracies(analyticsInfo.accuracies);
-        }
-    }
+    }, [axiosPrivate, filter?.dateFrom, filter?.dateTo, filter?.axeId]);
 
     return (
         <div className="page-content">
             <section>
                 <h1>World Axe Throwing League game analytics</h1>
-                <GlobalUserGameFilters targetUrl={userWatlGameAnalyticsUrl} filterType="analytics" onSubmit={getData}></GlobalUserGameFilters>
+                <UserWatlGameFilter />
                 {errorMsg ? (
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (
