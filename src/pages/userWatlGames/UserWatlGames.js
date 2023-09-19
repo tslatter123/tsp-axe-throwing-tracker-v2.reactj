@@ -4,12 +4,15 @@ import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
 import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
 import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGame";
 import { useNavigate } from "react-router-dom";
-import GlobalUserGameFilters from "../../components/filters/globalUserGames/GlobalUserGameFilters";
+import UserWatlGameFilter from "../../components/filters/UserWatlGameFilter";
+import useWatlGameFilter from "../../hooks/useWatlGameFilter";
 
 
 const userWatlGamesUrl = '/UserWatlGames';
 
 const UserWatlGames = () => {
+    const { filter } = useWatlGameFilter();
+
     const [userWatlGames, setUserWatlGames] = useState([]);
     const axiosPrivate = useAxiosPrivate();
 
@@ -25,7 +28,8 @@ const UserWatlGames = () => {
         const controller = new AbortController();
         const getUserWatlGames = async () => {
             try {
-                const response = await axiosPrivate.get(userWatlGamesUrl,
+                const response = await axiosPrivate.get(userWatlGamesUrl + "?dateFrom=" + (filter?.dateFrom ?? '') +
+                    "&dateTo=" + (filter?.dateTo ?? '') + "&axeId=" + (filter?.axeId ?? ''),
                     {
                         signal: controller.signal
                     });
@@ -42,7 +46,7 @@ const UserWatlGames = () => {
         }
 
         getUserWatlGames();
-    }, [axiosPrivate]);
+    }, [axiosPrivate, filter?.dateFrom, filter?.dateTo, filter?.axeId]);
 
     const openAddWatlGame = () => {
         setAddWatlGameOpen(!addWatlGameOpen);
@@ -79,7 +83,7 @@ const UserWatlGames = () => {
             <div className="page-content">
                 <section>
                     <h1>Your World Axe Throwing League Games</h1>
-                    <GlobalUserGameFilters targetUrl={userWatlGamesUrl} filterType="watl-games-home" onSubmit={getData} />
+                    <UserWatlGameFilter />
                     <button onClick={openAddWatlGame}>Add a game</button>
                     <button onClick={() => navigate("analytics")}>Go to analytics</button>
                     {userWatlGames.length ?

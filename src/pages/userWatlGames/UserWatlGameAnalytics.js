@@ -3,7 +3,7 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import AccuracyInfo from "../../components/Analytics/AccuracyInfo";
 import InconsistencyInfo from "../../components/Analytics/InconsistencyInfo";
 import ScoreBreakdownInfo from "../../components/Analytics/ScoreBreakdownInfo";
-import GlobalUserGameFilters from "../../components/filters/globalUserGames/GlobalUserGameFilters";
+import GlobalUserGameFilters from "../../components/filters/UserWatlGameFilter";
 
 const userWatlGameAnalyticsUrl = 'UserWatlGameAnalytics';
 

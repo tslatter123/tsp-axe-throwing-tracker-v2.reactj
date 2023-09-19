@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useWatlGameFilter from "../../hooks/useWatlGameFilter";
 
 const userAxesUrl = 'UserAxes';
 
-const GlobalUserGameFilters = (props) => {
+const UserWatlGameFilter = () => {
     const errorMsgRef = useRef();
 
-    const [dateFrom, setDateFrom] = useState('');
-    const [dateTo, setDateTo] = useState('');
-    const [axeId, setAxeId] = useState('');
+    const { filter, setFilter } = useWatlGameFilter();
+
+    const [dateFrom, setDateFrom] = useState(filter?.dateFrom ?? '');
+    const [dateTo, setDateTo] = useState(filter?.dateTo ?? '');
+    const [axeId, setAxeId] = useState(filter?.axeId ?? '');
+
     const [userAxes, setUserAxes] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -41,65 +45,70 @@ const GlobalUserGameFilters = (props) => {
     const handleFilterDateFrom = async (date) => {
         setDateFrom(date);
 
-        try {
-            var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
+        setFilter({ dateFrom, dateTo, axeId });
 
-            switch (props.filterType) {
-                case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
-                case "analytics": props.onSubmit(result.data.analyticsInfo); break;
-                default: setErrorMsg("Filter target not set.");
-            }
-        } catch (err) {
-            if (!err?.response) {
-                setErrorMsg("No server response.");
-            }
-            else {
-                setErrorMsg(err.responsee.data.error);
-            }
-        }
+        // try {
+        //     var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
+
+        //     switch (props.filterType) {
+        //         case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
+        //         case "analytics": props.onSubmit(result.data.analyticsInfo); break;
+        //         default: setErrorMsg("Filter target not set.");
+        //     }
+        // } catch (err) {
+        //     if (!err?.response) {
+        //         setErrorMsg("No server response.");
+        //     }
+        //     else {
+        //         setErrorMsg(err.responsee.data.error);
+        //     }
+        // }
     }
 
     const handleFilterDateTo = async (date) => {
         setDateTo(date);
 
-        try {
-            var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
+        setFilter({ dateFrom, dateTo, axeId });
+        // try {
+        //     var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
 
-            switch (props.filterType) {
-                case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
-                case "analytics": props.onSubmit(result.data.analyticsInfo); break;
-                default: setErrorMsg("Filter target not set.");
-            }
-        } catch (err) {
-            if (!err?.response) {
-                setErrorMsg("No server response.");
-            }
-            else {
-                setErrorMsg(err.responsee.data.error);
-            }
-        }
+        //     switch (props.filterType) {
+        //         case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
+        //         case "analytics": props.onSubmit(result.data.analyticsInfo); break;
+        //         default: setErrorMsg("Filter target not set.");
+        //     }
+        // } catch (err) {
+        //     if (!err?.response) {
+        //         setErrorMsg("No server response.");
+        //     }
+        //     else {
+        //         setErrorMsg(err.responsee.data.error);
+        //     }
+        // }
     }
 
     const handleFilterAxeId = async (id) => {
         setAxeId(id);
 
-        try {
-            var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
+        setFilter({ dateFrom, dateTo, axeId });
 
-            switch (props.filterType) {
-                case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
-                case "analytics": props.onSubmit(result.data.analyticsInfo); break;
-                default: setErrorMsg("Filter target not set.");
-            }
+        // try {
+        //     var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
 
-        } catch (err) {
-            if (!err?.response) {
-                setErrorMsg("No server response.");
-            }
-            else {
-                setErrorMsg(err.responsee.data.error);
-            }
-        }
+        //     switch (props.filterType) {
+        //         case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
+        //         case "analytics": props.onSubmit(result.data.analyticsInfo); break;
+        //         default: setErrorMsg("Filter target not set.");
+        //     }
+
+        // } catch (err) {
+        //     if (!err?.response) {
+        //         setErrorMsg("No server response.");
+        //     }
+        //     else {
+        //         setErrorMsg(err.responsee.data.error);
+        //     }
+        // }
     }
 
     return (
@@ -150,4 +159,4 @@ const GlobalUserGameFilters = (props) => {
     )
 }
 
-export default GlobalUserGameFilters;
+export default UserWatlGameFilter;
