@@ -44,71 +44,17 @@ const UserWatlGameFilter = () => {
 
     const handleFilterDateFrom = async (date) => {
         setDateFrom(date);
-
-        setFilter({ dateFrom, dateTo, axeId });
-
-        // try {
-        //     var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + date + "&dateTo=" + dateTo + "&axeId=" + axeId);
-
-        //     switch (props.filterType) {
-        //         case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
-        //         case "analytics": props.onSubmit(result.data.analyticsInfo); break;
-        //         default: setErrorMsg("Filter target not set.");
-        //     }
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrorMsg("No server response.");
-        //     }
-        //     else {
-        //         setErrorMsg(err.responsee.data.error);
-        //     }
-        // }
+        setFilter({ "dateFrom": date, dateTo, axeId });
     }
 
     const handleFilterDateTo = async (date) => {
         setDateTo(date);
-
-        setFilter({ dateFrom, dateTo, axeId });
-        // try {
-        //     var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + date + "&axeId=" + axeId);
-
-        //     switch (props.filterType) {
-        //         case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
-        //         case "analytics": props.onSubmit(result.data.analyticsInfo); break;
-        //         default: setErrorMsg("Filter target not set.");
-        //     }
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrorMsg("No server response.");
-        //     }
-        //     else {
-        //         setErrorMsg(err.responsee.data.error);
-        //     }
-        // }
+        setFilter({ dateFrom, "dateTo": date, axeId });
     }
 
     const handleFilterAxeId = async (id) => {
         setAxeId(id);
-
-        setFilter({ dateFrom, dateTo, axeId });
-
-        // try {
-        //     var result = await axiosPrivate.get(props.targetUrl + "?dateFrom=" + dateFrom + "&dateTo=" + dateTo + "&axeId=" + id);
-
-        //     switch (props.filterType) {
-        //         case "watl-games-home": props.onSubmit(result.data.watlGameInfoList); break;
-        //         case "analytics": props.onSubmit(result.data.analyticsInfo); break;
-        //         default: setErrorMsg("Filter target not set.");
-        //     }
-
-        // } catch (err) {
-        //     if (!err?.response) {
-        //         setErrorMsg("No server response.");
-        //     }
-        //     else {
-        //         setErrorMsg(err.responsee.data.error);
-        //     }
-        // }
+        setFilter({ dateFrom, dateTo, "axeId": id });
     }
 
     return (
@@ -147,7 +93,7 @@ const UserWatlGameFilter = () => {
                                 <option value="">All axes...</option>
                                 {userAxes.map(axe => {
                                     return (
-                                        <option key={axe.id} value={axe.id} selected={axe.id === axeId}>{axe.name}</option>
+                                        <option key={axe.id} value={axe.id}>{axe.name}</option>
                                     );
                                 })}
                             </select>
