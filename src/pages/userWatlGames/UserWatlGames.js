@@ -4,7 +4,7 @@ import AddUserWatlGame from "../../components/userWatlGames/AddUserWatlGame";
 import EditUserWatlGame from "../../components/userWatlGames/EditUserWatlGame";
 import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGame";
 import { useNavigate } from "react-router-dom";
-import GlobalUserGameFilters from "../../components/globalUserGames/GlobalUserGameFilters";
+import GlobalUserGameFilters from "../../components/filters/globalUserGames/GlobalUserGameFilters";
 
 
 const userWatlGamesUrl = '/UserWatlGames';

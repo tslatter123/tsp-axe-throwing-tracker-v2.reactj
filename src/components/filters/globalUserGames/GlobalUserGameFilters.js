@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 
 const userAxesUrl = 'UserAxes';
 
