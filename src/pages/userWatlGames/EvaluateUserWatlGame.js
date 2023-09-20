@@ -145,6 +145,9 @@ const EvaluateUserWatlGame = () => {
                                         <div key={gameThrow.id} className="watl-game-throw-item">
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
                                             <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                            {gameThrow.potentialScore ? (
+                                                <div className="watl-game-throw-potential-score">{gameThrow.potentialScore}</div>
+                                            ) : (<></>)}
                                             {gameThrow.inconsistencies.map(inconsistency => {
                                                 return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
                                             })}

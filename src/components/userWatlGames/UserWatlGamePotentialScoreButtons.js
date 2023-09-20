@@ -47,7 +47,7 @@ const UserWatlGamePotentialScoreButtons = (props) => {
                 {
                     "id": props.gameThrowId,
                     "gameID": props.gameId,
-                    "gameThrowID": throwOptionId
+                    "potentialScoreID": throwOptionId
                 });
 
             props.onSubmit(response.data.watlGameInfo);
