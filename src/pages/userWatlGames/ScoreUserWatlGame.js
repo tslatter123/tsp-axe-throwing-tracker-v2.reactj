@@ -143,7 +143,9 @@ const ScoreUserWatlGame = () => {
                                     );
                                 }) : (<></>)
                             }
-                            <button type="button" onClick={() => openCloseWarmupButtons(null)}>Add warmup throw</button>
+                            <div className={warmupBtnsOpen && warmupThrowId == null ? "watl-game-throw-item selected" : "watl-game-throw-item"}>
+                                <button type="button" onClick={() => openCloseWarmupButtons(null)}>Add warmup throw</button>
+                            </div>
                         </div>
                         <div className="watl-game-header">
                             <h2>Score: {score}</h2>

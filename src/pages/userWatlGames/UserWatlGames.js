@@ -105,7 +105,7 @@ const UserWatlGames = () => {
                                                     <div className="watl-game-throw-item">
                                                         {watlGame.warmupThrows?.length ? (
                                                             <>
-                                                                <span>Warm-up:</span>
+                                                                <b>Warm-up:</b>
                                                                 <div className="flex-row wrap-content">
                                                                     {watlGame.warmupThrows.map(warmupThrow => {
                                                                         return (<div className={"watl-game-throw-score " + warmupThrow.className}>{warmupThrow.shortName}</div>);
