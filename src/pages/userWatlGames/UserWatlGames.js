@@ -102,14 +102,30 @@ const UserWatlGames = () => {
                                                     <h4>Score: {watlGame.score}</h4>
                                                 </div>
                                                 <div className="watl-game-throws-container">
+                                                    <div className="watl-game-throw-item">
+                                                        {watlGame.warmupThrows?.length ? (
+                                                            <>
+                                                                <span>Warm-up:</span>
+                                                                <div className="flex-row wrap-content">
+                                                                    {watlGame.warmupThrows.map(warmupThrow => {
+                                                                        return (<div className={"watl-game-throw-score " + warmupThrow.className}>{warmupThrow.shortName}</div>);
+                                                                    })}
+                                                                </div>
+                                                            </>
+                                                        ) : (<span>No warmup throws added</span>)}
+                                                    </div>
+                                                </div>
+                                                <div className="watl-game-throws-container">
                                                     {watlGame.gameThrows.length ?
                                                         watlGame.gameThrows.map(gameThrow => {
                                                             return (
                                                                 <div key={gameThrow.id} className={"watl-game-throw-item"}>
                                                                     <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
-                                                                    {gameThrow.inconsistencies.map(inconsistency => {
-                                                                        return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
-                                                                    })}
+                                                                    <div className="flex-row wrap-content">
+                                                                        {gameThrow.inconsistencies.map(inconsistency => {
+                                                                            return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
+                                                                        })}
+                                                                    </div>
                                                                 </div>
                                                             );
                                                         }) : (<p>No game throws added</p>)

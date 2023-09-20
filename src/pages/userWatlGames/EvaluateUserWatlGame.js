@@ -16,6 +16,7 @@ const EvaluateUserWatlGame = () => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [score, setScore] = useState(0);
+    const [warmupThrows, setWarmupThrows] = useState([]);
     const [gameThrows, setGameThrows] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -42,6 +43,7 @@ const EvaluateUserWatlGame = () => {
                     setDate(response.data.watlGameInfo.dateStr);
                     setDescription(response.data.watlGameInfo.description);
                     setScore(response.data.watlGameInfo.score);
+                    setWarmupThrows(response.data.watlGameInfo.warmupThrows);
                     setGameThrows(response.data.watlGameInfo.gameThrows);
                 }
             } catch (err) {
@@ -76,6 +78,7 @@ const EvaluateUserWatlGame = () => {
         setDate(watlGameInfo.dateStr);
         setDescription(watlGameInfo.description);
         setScore(watlGameInfo.score);
+        setWarmupThrows(watlGameInfo.warmupThrows);
         setGameThrows(watlGameInfo.gameThrows);
     }
 
@@ -98,6 +101,18 @@ const EvaluateUserWatlGame = () => {
                         {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) : (<></>)}
                     </div>
                     <div className="watl-game-score">
+                        <div className="watl-game-header">
+                            <h2>Warm-up</h2>
+                        </div>
+                        {warmupThrows?.length ? (
+                            <div className="watl-game-throws-container">
+                                <div className="watl-game-throw-item">
+                                    {warmupThrows.map(warmupThrow => {
+                                        return (<div className={"watl-game-throw-score " + warmupThrow.className}>{warmupThrow.shortName}</div>);
+                                    })}
+                                </div>
+                            </div>
+                        ) : (<p>No warmup throws added</p>)}
                         <div className="watl-game-header">
                             <h2>Score: {score}</h2>
                         </div>
