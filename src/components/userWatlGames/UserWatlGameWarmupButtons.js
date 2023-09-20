@@ -89,6 +89,21 @@ const UserWatlGameWarmupButtons = (props) => {
         }
     }
 
+    const deleteWatlWarmupThrow = async () => {
+        try {
+            const response = await axiosPrivate.delete(watlWarmupThrowUrl + "?id=" + props.warmupThrowId + "&gameId=" + props.watlGameId);
+
+            props.onSubmit(response.data.watlGameInfo);
+        } catch (err) {
+            if (!err?.response) {
+                setErrorMsg("No server response.");
+            }
+            else {
+                setErrorMsg(err.response.data.error);
+            }
+        }
+    }
+
     return (
         <>
             {errorMsg ? (
@@ -125,6 +140,9 @@ const UserWatlGameWarmupButtons = (props) => {
                                 )
                             })}
                         </div>) : (<></>)}
+                    <div className="popout-content" style={{ "flex": "0 0 auto" }}>
+                        <button type="button" onClick={deleteWatlWarmupThrow}>Delete throw</button>
+                    </div>
                 </>
             )}
         </>
