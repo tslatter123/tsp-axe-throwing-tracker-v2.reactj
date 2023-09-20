@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWatlGameButtons";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
+import UserWatlGameWarmupButtons from "../../components/userWatlGames/UserWatlGameWarmupButtons";
 
 const { useState, useEffect, useRef } = require("react");
 const { default: useAxiosPrivate } = require("../../hooks/useAxiosPrivate");
@@ -98,6 +99,7 @@ const ScoreUserWatlGame = () => {
         setMaxThrowCount(watlGameInfo.maxThrowCount);
 
         openCloseScoreButtons(watlGameThrowId);
+        openCloseWarmupButtons(warmupThrowId);
     }
 
     return (
@@ -119,7 +121,7 @@ const ScoreUserWatlGame = () => {
                         {scoreBtnsOpen ? (
                             <ScoreUserWatlGameButtons templateId={templateId} watlGameId={params.id} watlGameThrowId={watlGameThrowId} onSubmit={getData} />
                         ) : warmupBtnsOpen ? (
-                            <></>
+                            <UserWatlGameWarmupButtons templateId={templateId} watlGameId={params.id} warmupThrowId={warmupThrowId} onSubmit={getData} />
                         ) : (<></>)}
                     </div>
                     <div className="watl-game-score">
@@ -132,7 +134,7 @@ const ScoreUserWatlGame = () => {
                                     return (
                                         <div
                                             key={warmupThrow.id}
-                                            className={watlGameThrowId === warmupThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
+                                            className={warmupThrowId === warmupThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
                                             onClick={() => openCloseWarmupButtons(warmupThrow.id)}
                                         >
                                             <div className="watl-game-throw-index">{warmupThrow.index}</div>
