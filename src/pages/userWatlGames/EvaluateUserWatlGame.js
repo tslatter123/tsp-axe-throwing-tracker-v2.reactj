@@ -18,6 +18,7 @@ const EvaluateUserWatlGame = () => {
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
     const [score, setScore] = useState(0);
+    const [potentialScore, setPotentialScore] = useState(0);
     const [warmupThrows, setWarmupThrows] = useState([]);
     const [gameThrows, setGameThrows] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
@@ -46,6 +47,7 @@ const EvaluateUserWatlGame = () => {
                     setDate(response.data.watlGameInfo.dateStr);
                     setDescription(response.data.watlGameInfo.description);
                     setScore(response.data.watlGameInfo.score);
+                    setPotentialScore(response.data.watlGameInfo.potentialScore);
                     setWarmupThrows(response.data.watlGameInfo.warmupThrows);
                     setGameThrows(response.data.watlGameInfo.gameThrows);
                 }
@@ -95,6 +97,7 @@ const EvaluateUserWatlGame = () => {
         setDate(watlGameInfo.dateStr);
         setDescription(watlGameInfo.description);
         setScore(watlGameInfo.score);
+        setPotentialScore(watlGameInfo.potentialScore);
         setWarmupThrows(watlGameInfo.warmupThrows);
         setGameThrows(watlGameInfo.gameThrows);
 
@@ -124,7 +127,7 @@ const EvaluateUserWatlGame = () => {
                     </div>
                     <div className="watl-game-score">
                         <div className="watl-game-header">
-                            <h2>Warm-up</h2>
+                            <h2>Warmup</h2>
                         </div>
                         {warmupThrows?.length ? (
                             <div className="watl-game-throws-container">
@@ -138,6 +141,9 @@ const EvaluateUserWatlGame = () => {
                         <div className="watl-game-header">
                             <h2>Score: {score}</h2>
                         </div>
+                        {score !== potentialScore ? (
+                            <b className="potential-score">Potential score: {potentialScore}</b>
+                        ) : (<></>)}
                         <div className="watl-game-throws-container">
                             {gameThrows.length ?
                                 gameThrows.map(gameThrow => {
@@ -146,7 +152,7 @@ const EvaluateUserWatlGame = () => {
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
                                             <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
                                             {gameThrow.potentialScore ? (
-                                                <div className="watl-game-throw-potential-score">{gameThrow.potentialScore}</div>
+                                                <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
                                             ) : (<></>)}
                                             {gameThrow.inconsistencies.map(inconsistency => {
                                                 return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);

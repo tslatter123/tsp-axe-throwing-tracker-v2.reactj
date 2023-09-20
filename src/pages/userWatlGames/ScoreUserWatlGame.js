@@ -126,7 +126,7 @@ const ScoreUserWatlGame = () => {
                     </div>
                     <div className="watl-game-score">
                         <div className="watl-game-header">
-                            <h2>Warm-up</h2>
+                            <h2>Warmup</h2>
                         </div>
                         <div className="watl-game-throws-container">
                             {warmupThrows.length ?
