@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import UserWatlGameInconsistencyButtons from "../../components/userWatlGames/UserWatlGameInconsistencyButtons";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
+import UserWatlGamePotentialScoreButtons from "../../components/userWatlGames/UserWatlGamePotentialScoreButtons";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -12,6 +13,7 @@ const EvaluateUserWatlGame = () => {
     const errorMsgRef = useRef();
 
     const [name, setName] = useState("");
+    const [templateId, setTemplateId] = useState(0);
     const [templateName, setTemplateName] = useState("");
     const [date, setDate] = useState("");
     const [description, setDescription] = useState("");
@@ -39,6 +41,7 @@ const EvaluateUserWatlGame = () => {
 
                 if (isMounted) {
                     setName(response.data.watlGameInfo.name);
+                    setTemplateId(response.data.watlGameInfo.templateID);
                     setTemplateName(response.data.watlGameInfo.templateName);
                     setDate(response.data.watlGameInfo.dateStr);
                     setDescription(response.data.watlGameInfo.description);
@@ -65,21 +68,39 @@ const EvaluateUserWatlGame = () => {
             setInconsistenciesOpen(true);
         }
         else if (inconsistenciesOpen) {
-            setInconsistenciesOpen(id !== editGameThrowId)
+            setInconsistenciesOpen(id !== editGameThrowId);
             setEditGameThrowId(id === editGameThrowId ? null : id);
         }
 
         setPotentialScoreOpen(false);
     }
 
+    const openClosePotentialScore = (id) => {
+        if (!potentialScoreOpen || inconsistenciesOpen) {
+            setEditGameThrowId(id);
+            setPotentialScoreOpen(true);
+        }
+        else if (potentialScoreOpen) {
+            setPotentialScoreOpen(id !== editGameThrowId);
+            setEditGameThrowId(id === editGameThrowId ? null : id);
+        }
+
+        setInconsistenciesOpen(false);
+    }
+
     const getData = (watlGameInfo) => {
         setName(watlGameInfo.name);
+        setTemplateId(watlGameInfo.templateID);
         setTemplateName(watlGameInfo.templateName);
         setDate(watlGameInfo.dateStr);
         setDescription(watlGameInfo.description);
         setScore(watlGameInfo.score);
         setWarmupThrows(watlGameInfo.warmupThrows);
         setGameThrows(watlGameInfo.gameThrows);
+
+        if (potentialScoreOpen) {
+            openClosePotentialScore(editGameThrowId);
+        }
     }
 
     return (
@@ -98,7 +119,8 @@ const EvaluateUserWatlGame = () => {
                 ) : (<></>)}
                 <div className="score-watl-game-container">
                     <div className={inconsistenciesOpen || potentialScoreOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
-                        {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) : (<></>)}
+                        {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) :
+                            potentialScoreOpen ? (<UserWatlGamePotentialScoreButtons templateId={templateId} gameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) : (<></>)}
                     </div>
                     <div className="watl-game-score">
                         <div className="watl-game-header">
@@ -127,7 +149,7 @@ const EvaluateUserWatlGame = () => {
                                                 return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
                                             })}
                                             <button onClick={() => openCloseInconsistencies(gameThrow.id)}>Set inconsistencies</button>
-                                            <button disabled>Set potential score</button>
+                                            <button onClick={() => openClosePotentialScore(gameThrow.id)}>Set potential score</button>
                                         </div>
                                     );
                                 }) : (<></>)
