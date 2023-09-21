@@ -1,3 +1,7 @@
+.potential-score {
+    color: red
+}
+
 ul.watl-games-container {
     margin: 0;
     flex: 0 0 auto;
@@ -45,6 +49,10 @@ ul.watl-games-container {
     margin: 0;
 }
 
+.watl-game-item .watl-game-header .flex-col:not(:first-child) {
+    align-items: flex-end;
+}
+
 .watl-game-throws-container {
     flex: 1 auto;
     padding: 0 8px;
@@ -81,6 +89,7 @@ ul.watl-games-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
 }
 
 .watl-game-throw-score:not(:last-child) {
