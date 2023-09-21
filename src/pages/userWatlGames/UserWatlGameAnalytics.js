@@ -14,6 +14,7 @@ const UserWatlGameAnalytics = () => {
 
     const [gameCount, setGameCount] = useState(0);
     const [averageScore, setAverageScore] = useState(0);
+    const [potentialAverageScore, setPotentialAverageScore] = useState(0);
     const [scoreBreakdown, setScoreBreakdown] = useState([]);
     const [mostCommonScore, setMostCommonScore] = useState(0);
     const [inconsistencies, setInconsistencies] = useState([]);
@@ -42,6 +43,7 @@ const UserWatlGameAnalytics = () => {
                     setGameCount(response.data.analyticsInfo.gameCount);
                     if (response.data.analyticsInfo.gameCount) {
                         setAverageScore(response.data.analyticsInfo.averages?.averageStr);
+                        setPotentialAverageScore(response.data.analyticsInfo.averages?.potentialAverageStr);
                         setScoreBreakdown(response.data.analyticsInfo.scoreBreakdown?.scoreBreakdownItems);
                         setMostCommonScore(response.data.analyticsInfo.scoreBreakdown?.mostCommonScore);
                         setInconsistencies(response.data.analyticsInfo.inconsistencies?.inconsistencies);
@@ -76,7 +78,10 @@ const UserWatlGameAnalytics = () => {
                         {gameCount ? (
                             <div className="analytics-container">
                                 {averageScore ? (
-                                    <h2>Average score: {averageScore}</h2>
+                                    <div className="analytics-item">
+                                        <h2>Average score: {averageScore}</h2>
+                                        <b className="potential-score">Potential average score: {potentialAverageScore}</b>
+                                    </div>
                                 ) : (<></>)}
                                 {scoreBreakdown?.length || mostCommonScore ? (
                                     <ScoreBreakdownInfo
