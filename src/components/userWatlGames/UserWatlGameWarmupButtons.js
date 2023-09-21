@@ -140,9 +140,9 @@ const UserWatlGameWarmupButtons = (props) => {
                                 )
                             })}
                         </div>) : (<></>)}
-                    <div className="popout-content" style={{ "flex": "0 0 auto" }}>
+                    {props.warmupThrowId ? (<div className="popout-content" style={{ "flex": "0 0 auto" }}>
                         <button type="button" onClick={deleteWatlWarmupThrow}>Delete throw</button>
-                    </div>
+                    </div>) : (<></>)}
                 </>
             )}
         </>

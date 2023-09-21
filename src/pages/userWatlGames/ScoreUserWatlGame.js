@@ -76,7 +76,7 @@ const ScoreUserWatlGame = () => {
         setWatlGameThrowId(watlGameThrowId === id ? null : id);
 
         setWarmupThrowId(null);
-        setWarmupBtnsOpen(false)
+        setWarmupBtnsOpen(false);
     }
 
     const openCloseWarmupButtons = (id) => {
@@ -99,7 +99,12 @@ const ScoreUserWatlGame = () => {
         setMaxThrowCount(watlGameInfo.maxThrowCount);
 
         openCloseScoreButtons(watlGameThrowId);
-        openCloseWarmupButtons(warmupThrowId);
+
+        setWarmupThrowId(null);
+        setWarmupBtnsOpen(false);
+
+        setWatlGameThrowId(null);
+        setScoreBtnsOpen(gameThrows.length < maxThrowCount);
     }
 
     return (
