@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/css/FontFace.css';
+import './assets/css/global/fontFace.css';
 import './index.css';
-import './assets/css/global.css';
-import './assets/css/flexBox.css';
-import './assets/css/pageHeader.css';
+import './assets/css/global/global.css';
+import './assets/css/global/flexBox.css';
+import './assets/css//global/pageHeader.css';
 import './assets/css/PopoutSidebar.css';
 import './assets/css/DateItems.css';
 import './assets/css/UserWatlGames.css';
