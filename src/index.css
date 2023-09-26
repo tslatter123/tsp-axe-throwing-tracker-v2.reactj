@@ -7,30 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-table th {
-  font-family: 'roboto-regular';
-}
-
-span,
-b,
-p,
-table td {
-  font-family: 'roboto-light';
-}
-
-p.error-msg {
-  font-family: 'roboto-regular';
-  color: red;
-}
-
-p:first-child {
-  margin-top: 0;
-}
-
 #root {
   width: 100%;
   height: 100vh;
