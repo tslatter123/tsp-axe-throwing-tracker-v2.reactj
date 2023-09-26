@@ -56,27 +56,6 @@ body {
   min-height: calc(100vh - 124px);
 }
 
-#root .page-container .page-content .header-row {
-  flex: 0 0 auto;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-block-end: 19.92px;
-}
-
-#root .page-container .page-content .header-row h1,
-#root .page-container .page-content .header-row p {
-  flex: 0 0 auto;
-  margin: 0;
-}
-
-#root .page-container .page-content .header-row h1:not(:last-child),
-#root .page-container .page-content .header-row p:not(:last-child) {
-  margin-right: 16px;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -4,6 +4,7 @@ import './assets/css/FontFace.css';
 import './index.css';
 import './assets/css/global.css';
 import './assets/css/flexBox.css';
+import './assets/css/pageHeader.css';
 import './assets/css/PopoutSidebar.css';
 import './assets/css/DateItems.css';
 import './assets/css/UserWatlGames.css';

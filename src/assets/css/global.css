@@ -3,21 +3,21 @@ h2,
 h3,
 h4,
 table th {
-  font-family: 'roboto-regular';
+    font-family: 'roboto-regular';
 }
 
 span,
 b,
 p,
 table td {
-  font-family: 'roboto-light';
+    font-family: 'roboto-light';
 }
 
 p.error-msg {
-  font-family: 'roboto-regular';
-  color: red;
+    font-family: 'roboto-regular';
+    color: red;
 }
 
 p:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
