@@ -80,11 +80,20 @@ const ScoreUserWatlGame = () => {
     }
 
     const openCloseWarmupButtons = (id) => {
-        setWarmupBtnsOpen(warmupThrowId !== id || !warmupBtnsOpen);
-        setWarmupThrowId(warmupThrowId === id ? null : id);
+        if (warmupBtnsOpen) {
+            setWarmupBtnsOpen(warmupThrowId !== id);
+            setWarmupThrowId(warmupThrowId === id ? null : id);
 
-        setWatlGameThrowId(null);
-        setScoreBtnsOpen(gameThrows.length < maxThrowCount);
+            setWatlGameThrowId(null);
+            setScoreBtnsOpen(warmupThrowId === id && gameThrows.length < maxThrowCount);
+        }
+        else {
+            setWarmupThrowId(id);
+            setWarmupBtnsOpen(true);
+
+            setWatlGameThrowId(null);
+            setScoreBtnsOpen(false)
+        }
     }
 
     const getData = (watlGameInfo) => {
