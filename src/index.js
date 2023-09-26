@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './assets/css/FontFace.css';
 import './index.css';
+import './assets/css/flexBox.css';
 import './assets/css/PopoutSidebar.css';
 import './assets/css/DateItems.css';
 import './assets/css/UserWatlGames.css';
