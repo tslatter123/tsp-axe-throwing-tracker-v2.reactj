@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWatlGameButtons";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
 import UserWatlGameWarmupButtons from "../../components/userWatlGames/UserWatlGameWarmupButtons";
+import WatlScore from "../../components/watl/watlScore";
 
 const { useState, useEffect, useRef } = require("react");
 const { default: useAxiosPrivate } = require("../../hooks/useAxiosPrivate");
@@ -152,7 +153,7 @@ const ScoreUserWatlGame = () => {
                                             onClick={() => openCloseWarmupButtons(warmupThrow.id)}
                                         >
                                             <div className="watl-game-throw-index">{warmupThrow.index}</div>
-                                            <div className={"watl-game-throw-score " + warmupThrow.className}>{warmupThrow.shortName}</div>
+                                            <WatlScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
                                         </div>
                                     );
                                 }) : (<></>)
@@ -174,7 +175,7 @@ const ScoreUserWatlGame = () => {
                                             onClick={() => openCloseScoreButtons(gameThrow.id)}
                                         >
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
-                                            <div className={"watl-game-throw-score " + gameThrow.className}>{gameThrow.shortName}</div>
+                                            <WatlScore className={gameThrow.className} displayName={gameThrow.shortName} />
                                         </div>
                                     );
                                 }) : (<></>)

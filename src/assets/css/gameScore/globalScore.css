@@ -1,0 +1,18 @@
+.game-score-index{
+    flex: 0 0 auto;
+    width: 25px;
+    margin-right: 32px;
+    font-size: 12px;
+}
+
+.game-score {
+    flex: 0 0 auto;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-weight: 500;
+}
+
+.game-score:not(:first-child) {
+    margin-left: 8px;
+}
