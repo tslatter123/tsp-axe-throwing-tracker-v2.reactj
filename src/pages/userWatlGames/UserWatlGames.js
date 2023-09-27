@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import UserWatlGameFilter from "../../components/filters/UserWatlGameFilter";
 import useWatlGameFilter from "../../hooks/useWatlGameFilter";
 import WatlScore from "../../components/watl/watlScore";
+import ScoreInconsistencyContainer from "../../components/games/score-inconsistency-container";
 
 
 const userWatlGamesUrl = '/UserWatlGames';
@@ -132,11 +133,7 @@ const UserWatlGames = () => {
                                                                     {gameThrow.potentialScore ? (
                                                                         <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
                                                                     ) : (<></>)}
-                                                                    <div className="flex-row wrap-content">
-                                                                        {gameThrow.inconsistencies.map(inconsistency => {
-                                                                            return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
-                                                                        })}
-                                                                    </div>
+                                                                    <ScoreInconsistencyContainer inconsistencies={gameThrow.inconsistencies} />
                                                                 </div>
                                                             );
                                                         }) : (<p>No game throws added</p>)
