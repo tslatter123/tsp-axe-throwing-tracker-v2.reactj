@@ -4,8 +4,8 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import UserWatlGameInconsistencyButtons from "../../components/userWatlGames/UserWatlGameInconsistencyButtons";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
 import UserWatlGamePotentialScoreButtons from "../../components/userWatlGames/UserWatlGamePotentialScoreButtons";
-import WatlScore from "../../components/watl/watlScore";
 import InconsistencyIconContainer from "../../components/inconsistency-icon-container/inconsistency-icon-container";
+import GameScore from "../../components/game-score/game-score";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -136,7 +136,7 @@ const EvaluateUserWatlGame = () => {
                                 <div className="watl-game-throw-item">
                                     {warmupThrows.map(warmupThrow => {
                                         return (
-                                            <WatlScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
+                                            <GameScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
                                         );
                                     })}
                                 </div>
@@ -154,7 +154,7 @@ const EvaluateUserWatlGame = () => {
                                     return (
                                         <div key={gameThrow.id} className="watl-game-throw-item">
                                             <div className="watl-game-throw-index">{gameThrow.index}</div>
-                                            <WatlScore className={gameThrow.className} displayName={gameThrow.shortName} />
+                                            <GameScore className={gameThrow.className} displayName={gameThrow.shortName} />
                                             {gameThrow.potentialScore ? (
                                                 <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
                                             ) : (<></>)}

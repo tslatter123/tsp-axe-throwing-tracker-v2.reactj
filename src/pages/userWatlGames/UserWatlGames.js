@@ -6,8 +6,8 @@ import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGam
 import { useNavigate } from "react-router-dom";
 import UserWatlGameFilter from "../../components/filters/UserWatlGameFilter";
 import useWatlGameFilter from "../../hooks/useWatlGameFilter";
-import WatlScore from "../../components/watl/watlScore";
 import InconsistencyIconContainer from "../../components/inconsistency-icon-container/inconsistency-icon-container";
+import GameScore from "../../components/game-score/game-score";
 
 const userWatlGamesUrl = '/UserWatlGames';
 
@@ -115,7 +115,7 @@ const UserWatlGames = () => {
                                                                 <div className="flex-row wrap-content">
                                                                     {watlGame.warmupThrows.map(warmupThrow => {
                                                                         return (
-                                                                            <WatlScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
+                                                                            <GameScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
                                                                         );
                                                                     })}
                                                                 </div>
@@ -128,7 +128,7 @@ const UserWatlGames = () => {
                                                         watlGame.gameThrows.map(gameThrow => {
                                                             return (
                                                                 <div key={gameThrow.id} className={"watl-game-throw-item"}>
-                                                                    <WatlScore className={gameThrow.className} displayName={gameThrow.shortName} />
+                                                                    <GameScore className={gameThrow.className} displayName={gameThrow.shortName} />
                                                                     {gameThrow.potentialScore ? (
                                                                         <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
                                                                     ) : (<></>)}
