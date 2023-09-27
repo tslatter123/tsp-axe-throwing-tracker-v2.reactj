@@ -5,6 +5,7 @@ import UserWatlGameInconsistencyButtons from "../../components/userWatlGames/Use
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
 import UserWatlGamePotentialScoreButtons from "../../components/userWatlGames/UserWatlGamePotentialScoreButtons";
 import WatlScore from "../../components/watl/watlScore";
+import InconsistencyContainer from "../../components/inconsistency-container/inconsistency-container";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -157,9 +158,7 @@ const EvaluateUserWatlGame = () => {
                                             {gameThrow.potentialScore ? (
                                                 <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
                                             ) : (<></>)}
-                                            {gameThrow.inconsistencies.map(inconsistency => {
-                                                return (<div key={inconsistency.id} className={"game-inconsistency " + inconsistency.className}></div>);
-                                            })}
+                                            <InconsistencyContainer inconsistencies={gameThrow.inconsistencies} />
                                             <button onClick={() => openCloseInconsistencies(gameThrow.id)}>Set inconsistencies</button>
                                             <button onClick={() => openClosePotentialScore(gameThrow.id)}>Set potential score</button>
                                         </div>
