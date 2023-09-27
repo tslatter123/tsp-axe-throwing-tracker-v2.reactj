@@ -1,0 +1,41 @@
+.inconsistency-icon.low-power,
+.game-inconsistency-btn.low-power {
+    color: #fff;
+    background: green;
+}
+
+.inconsistency-icon.high-power,
+.game-inconsistency-btn.high-power {
+    color: #fff;
+    background: red
+}
+
+.inconsistency-icon.stability,
+.game-inconsistency-btn.stability {
+    color: #fff;
+    background: blue;
+}
+
+.inconsistency-icon.bad-positioning,
+.game-inconsistency-btn.bad-positioning {
+    color: #fff;
+    background: #f01d7f;
+}
+
+.inconsistency-icon.early-release,
+.game-inconsistency-btn.early-release {
+    color: #fff;
+    background: purple;
+}
+
+.inconsistency-icon.late-release,
+.game-inconsistency-btn.late-release {
+    color: #fff;
+    background: brown;
+}
+
+.inconsistency-icon.knot,
+.game-inconsistency-btn.knot {
+    color: #fff;
+    background: #000;
+}

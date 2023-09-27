@@ -1,0 +1,8 @@
+.inconsistency-icon-container {
+    flex: 1 auto;
+    min-width: 150px;
+}
+
+.inconsistency-icon-container:not(:first-child) {
+    margin-left: 8px;
+}
