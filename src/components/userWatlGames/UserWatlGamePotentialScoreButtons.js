@@ -85,7 +85,7 @@ const UserWatlGamePotentialScoreButtons = (props) => {
             ) : (
                 <>
                     {bullseyeAttemptThrowOptions.length ? (
-                        <div id="bullseye-attempt-options" className="popout-content flex-row wrap-content">
+                        <div id="bullseye-attempt-options" className="popout-content flex-row flex-wrap-content">
                             {bullseyeAttemptThrowOptions.map((gameThrowOption) => {
                                 return (
                                     <button
@@ -99,7 +99,7 @@ const UserWatlGamePotentialScoreButtons = (props) => {
                             })}
                         </div>) : (<></>)}
                     {killshotAttemptThrowOptions.length ? (
-                        <div id="killshot-attempt-options" className="popout-content flex-row wrap-content">
+                        <div id="killshot-attempt-options" className="popout-content flex-row flex-wrap-content">
                             {killshotAttemptThrowOptions.map((gameThrowOption) => {
                                 return (
                                     <button

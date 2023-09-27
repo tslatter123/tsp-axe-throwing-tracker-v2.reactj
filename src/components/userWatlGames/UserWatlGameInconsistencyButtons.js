@@ -89,7 +89,7 @@ const UserWatlGameInconsistencyButtons = (props) => {
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 </div>
             ) : (
-                <div className="popout-content flex-row wrap-content">
+                <div className="popout-content flex-row flex-wrap-content">
                     {inconsistencyOptions.map((inconsistencyOption) => {
                         return (
                             <button
