@@ -6,8 +6,8 @@ import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGam
 import { useNavigate } from "react-router-dom";
 import UserWatlGameFilter from "../../components/filters/UserWatlGameFilter";
 import useWatlGameFilter from "../../hooks/useWatlGameFilter";
-import GameScore from "../../components/game-score/game-score";
 import GameThrowItem from "../../components/game-throw-item/game-throw-item";
+import WarmupThrowContainer from "../../components/warmup-throw-container/warmup-throw-container";
 
 const userWatlGamesUrl = '/UserWatlGames';
 
@@ -108,22 +108,9 @@ const UserWatlGames = () => {
                                                     </div>
                                                 </div>
                                                 <div className="watl-game-throws-container">
-                                                    <div className="watl-game-throw-item">
-                                                        {watlGame.warmupThrows?.length ? (
-                                                            <>
-                                                                <b>Warmup:</b>
-                                                                <div className="flex-row wrap-content">
-                                                                    {watlGame.warmupThrows.map(warmupThrow => {
-                                                                        return (
-                                                                            <GameScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
-                                                                        );
-                                                                    })}
-                                                                </div>
-                                                            </>
-                                                        ) : (<span>No warmup throws added</span>)}
-                                                    </div>
-                                                </div>
-                                                <div className="watl-game-throws-container">
+                                                    {watlGame.warmupThrows?.length ? (
+                                                        <WarmupThrowContainer gameType="watl" warmupThrows={watlGame.warmupThrows} />
+                                                    ) : (<p>No warmup throws added</p>)}
                                                     {watlGame.gameThrows.length ?
                                                         watlGame.gameThrows.map(gameThrow => {
                                                             return (

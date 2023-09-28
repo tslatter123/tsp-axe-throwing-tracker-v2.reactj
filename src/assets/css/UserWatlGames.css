@@ -55,7 +55,7 @@ ul.watl-games-container {
 
 .watl-game-throws-container {
     flex: 1 auto;
-    padding: 0 8px;
+    padding: 0 10px;
     display: flex;
     flex-direction: column;
     margin-bottom: 8px;
