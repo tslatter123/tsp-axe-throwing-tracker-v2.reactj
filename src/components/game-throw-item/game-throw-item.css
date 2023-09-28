@@ -9,3 +9,7 @@
     width: 25px;
     font-size: 12px;
 }
+
+.game-throw-item .potential-score {
+    color: red;
+}
