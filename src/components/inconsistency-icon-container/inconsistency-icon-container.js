@@ -1,5 +1,5 @@
 import './inconsistency-icon-container.css';
-import InconsistencyIcon from '../inconsistenciy-icon/inconsistency-icon';
+import InconsistencyIcon from '../inconsistency-icon/inconsistency-icon';
 
 const InconsistencyIconContainer = (props) => {
     return (

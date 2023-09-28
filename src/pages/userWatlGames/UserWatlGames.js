@@ -6,8 +6,8 @@ import DeleteUserWatlGame from "../../components/userWatlGames/DeleteUserWatlGam
 import { useNavigate } from "react-router-dom";
 import UserWatlGameFilter from "../../components/filters/UserWatlGameFilter";
 import useWatlGameFilter from "../../hooks/useWatlGameFilter";
-import InconsistencyIconContainer from "../../components/inconsistency-icon-container/inconsistency-icon-container";
 import GameScore from "../../components/game-score/game-score";
+import GameThrowItem from "../../components/game-throw-item/game-throw-item";
 
 const userWatlGamesUrl = '/UserWatlGames';
 
@@ -127,13 +127,7 @@ const UserWatlGames = () => {
                                                     {watlGame.gameThrows.length ?
                                                         watlGame.gameThrows.map(gameThrow => {
                                                             return (
-                                                                <div key={gameThrow.id} className={"watl-game-throw-item"}>
-                                                                    <GameScore className={gameThrow.className} displayName={gameThrow.shortName} />
-                                                                    {gameThrow.potentialScore ? (
-                                                                        <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
-                                                                    ) : (<></>)}
-                                                                    <InconsistencyIconContainer inconsistencies={gameThrow.inconsistencies} />
-                                                                </div>
+                                                                <GameThrowItem gameType="watl" gameThrow={gameThrow} showInconsistencies={true} />
                                                             );
                                                         }) : (<p>No game throws added</p>)
                                                     }

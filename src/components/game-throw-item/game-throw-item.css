@@ -1,0 +1,11 @@
+.game-throw-item {
+    flex: 0 0 auto;
+    justify-content: flex-start;
+    padding: 5px 0;
+}
+
+.game-throw-item .index {
+    flex: 0 0 auto;
+    width: 25px;
+    font-size: 12px;
+}
