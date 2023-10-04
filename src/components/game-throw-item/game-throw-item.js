@@ -3,8 +3,12 @@ import GameScore from "../game-score/game-score";
 import InconsistencyIconContainer from "../inconsistency-icon-container/inconsistency-icon-container";
 
 const GameThrowItem = (props) => {
+    const className = props.isSelected ?
+        "game-throw-item flex-row align-center flex-wrap-content selected" :
+        "game-throw-item flex-row align-center flex-wrap-content";
+
     return (
-        <div key={props.gameThrow.id} className="game-throw-item flex-row align-center flex-wrap-content">
+        <div key={props.gameThrow.id} onClick={props.onClick} className={className}>
             {props.gameThrow.index || props.gameThrow.index === 0 ? (
                 <div className="index">{props.gameThrow.index}</div>
             ) : (<></>)}

@@ -3,6 +3,7 @@ import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWa
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
 import UserWatlGameWarmupButtons from "../../components/userWatlGames/UserWatlGameWarmupButtons";
 import GameScore from "../../components/game-score/game-score";
+import GameThrowItem from "../../components/game-throw-item/game-throw-item";
 
 const { useState, useEffect, useRef } = require("react");
 const { default: useAxiosPrivate } = require("../../hooks/useAxiosPrivate");
@@ -169,14 +170,15 @@ const ScoreUserWatlGame = () => {
                             {gameThrows.length ?
                                 gameThrows.map(gameThrow => {
                                     return (
-                                        <div
-                                            key={gameThrow.id}
-                                            className={watlGameThrowId === gameThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
-                                            onClick={() => openCloseScoreButtons(gameThrow.id)}
-                                        >
-                                            <div className="index">{gameThrow.index}</div>
-                                            <GameScore gameType="watl" className={gameThrow.className} displayName={gameThrow.shortName} />
-                                        </div>
+                                        <GameThrowItem onClick={() => openCloseScoreButtons(gameThrow.id)} gameType="watl" gameThrow={gameThrow} isSelected={gameThrow.id === watlGameThrowId} />
+                                        // <div
+                                        //     key={gameThrow.id}
+                                        //     className={watlGameThrowId === gameThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
+                                        //     onClick={() => openCloseScoreButtons(gameThrow.id)}
+                                        // >
+                                        //     <div className="index">{gameThrow.index}</div>
+                                        //     <GameScore gameType="watl" className={gameThrow.className} displayName={gameThrow.shortName} />
+                                        // </div>
                                     );
                                 }) : (<></>)
                             }
