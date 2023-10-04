@@ -152,7 +152,7 @@ const ScoreUserWatlGame = () => {
                                             className={warmupThrowId === warmupThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
                                             onClick={() => openCloseWarmupButtons(warmupThrow.id)}
                                         >
-                                            <div className="watl-game-throw-index">{warmupThrow.index}</div>
+                                            <div className="index">{warmupThrow.index}</div>
                                             <GameScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
                                         </div>
                                     );
@@ -174,8 +174,8 @@ const ScoreUserWatlGame = () => {
                                             className={watlGameThrowId === gameThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
                                             onClick={() => openCloseScoreButtons(gameThrow.id)}
                                         >
-                                            <div className="watl-game-throw-index">{gameThrow.index}</div>
-                                            <GameScore className={gameThrow.className} displayName={gameThrow.shortName} />
+                                            <div className="index">{gameThrow.index}</div>
+                                            <GameScore gameType="watl" className={gameThrow.className} displayName={gameThrow.shortName} />
                                         </div>
                                     );
                                 }) : (<></>)
