@@ -4,7 +4,7 @@ import GameScore from "../game-score/game-score";
 
 const WarmupThrowContainer = (props) => {
     return (
-        <div className="game-throw-item flex-row align-center flex-wrap-content">
+        <div className="game-throw-item warmup-throw-item flex-row align-center flex-wrap-content">
             <span className="warmup-title">Warmup:</span>
             {props.warmupThrows.map(warmupThrow => {
                 return (

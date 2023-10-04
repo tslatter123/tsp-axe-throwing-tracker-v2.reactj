@@ -2,3 +2,13 @@
     flex: 0 0 auto;
     font-size: 12px;
 }
+
+.warmup-throw-item .game-score {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+}
+
+.warmup-throw-item .game-score:not(:first-child) {
+    margin-left: 8px;
+}
