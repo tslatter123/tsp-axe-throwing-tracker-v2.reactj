@@ -2,10 +2,6 @@ import './game-score.css';
 import './game-score-watl.css';
 
 const GameScore = (props) => {
-    // const className = props.className ?
-    //     "game-score " + props.className + " flex-row align-center justify-center" :
-    //     "game-score flex-row align-center justify-center";
-
     const className = "game-score" +
         (props.gameType ? " " + props.gameType : "") +
         (props.className ? " " + props.className : "") +

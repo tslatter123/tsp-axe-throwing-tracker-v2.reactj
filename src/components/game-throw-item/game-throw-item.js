@@ -32,8 +32,6 @@ const GameThrowItem = (props) => {
                 <>
                     <button disabled>Set inconsistencies</button>
                     <button disabled>Set potential score</button>
-                    {/* <button onClick={() => openCloseInconsistencies(gameThrow.id)}>Set inconsistencies</button>
-                    <button onClick={() => openClosePotentialScore(gameThrow.id)}>Set potential score</button> */}
                 </>
             ) : (<></>)}
         </div>
