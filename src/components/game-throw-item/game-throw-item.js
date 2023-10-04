@@ -3,22 +3,13 @@ import GameScore from "../game-score/game-score";
 import InconsistencyIconContainer from "../inconsistency-icon-container/inconsistency-icon-container";
 
 const GameThrowItem = (props) => {
-    const incrementGameTypeClass = () => {
-        return props.gameType ? props.gameType : "";
-    }
-    const incrementClassName = () => {
-        return props.gameThrow.className ? " " + props.gameThrow.className : "";
-    }
-
-    const gameThrowClassName = incrementGameTypeClass() + incrementClassName();
-
     return (
         <div key={props.gameThrow.id} className="game-throw-item flex-row align-center flex-wrap-content">
             {props.gameThrow.index || props.gameThrow.index === 0 ? (
                 <div className="index">{props.gameThrow.index}</div>
             ) : (<></>)}
 
-            <GameScore className={gameThrowClassName} displayName={props.gameThrow.shortName} />
+            <GameScore gameType={props.gameType} className={props.gameThrow.className} displayName={props.gameThrow.shortName} />
 
             {props.gameThrow.potentialScore ? (
                 <GameScore className="potential-score" displayName={props.gameThrow.potentialScore} />
