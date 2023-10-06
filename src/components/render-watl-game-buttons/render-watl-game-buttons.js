@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import useSelectedGameThrow from "../../hooks/useSelectedGameThrow";
 import ScoreUserWatlGameButtons from "../userWatlGames/ScoreUserWatlGameButtons";
 import UserWatlGameWarmupButtons from "../userWatlGames/UserWatlGameWarmupButtons";
+import UserWatlGameInconsistencyButtons from "../userWatlGames/UserWatlGameInconsistencyButtons";
+import UserWatlGamePotentialScoreButtons from "../userWatlGames/UserWatlGamePotentialScoreButtons";
 
 const RenderWatlGameButtons = (props) => {
     const params = useParams();
@@ -14,6 +16,14 @@ const RenderWatlGameButtons = (props) => {
 
     const getChildComponent = () => {
         switch (selectedGameThrow?.type) {
+            case "game-throw": return (
+                <ScoreUserWatlGameButtons
+                    templateId={selectedGameThrow?.templateId}
+                    watlGameId={params.id}
+                    watlGameThrowId={selectedGameThrow?.id}
+                    onSubmit={getData}
+                />
+            );
             case "warmup-throw": return (
                 <UserWatlGameWarmupButtons
                     templateId={selectedGameThrow?.templateId}
@@ -22,11 +32,18 @@ const RenderWatlGameButtons = (props) => {
                     onSubmit={getData}
                 />
             );
-            case "game-throw": return (
-                <ScoreUserWatlGameButtons
-                    templateId={selectedGameThrow?.templateId}
+            case "inconsistencies": return (
+                <UserWatlGameInconsistencyButtons
                     watlGameId={params.id}
-                    watlGameThrowId={selectedGameThrow?.id}
+                    gameThrowId={selectedGameThrow?.id}
+                    onSubmit={getData}
+                />
+            );
+            case "potential-score": return (
+                <UserWatlGamePotentialScoreButtons
+                    templateId={selectedGameThrow?.templateId}
+                    gameId={params.id}
+                    gameThrowId={selectedGameThrow?.id}
                     onSubmit={getData}
                 />
             );
