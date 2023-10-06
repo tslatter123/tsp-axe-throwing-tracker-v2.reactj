@@ -113,7 +113,11 @@ const ScoreUserWatlGame = () => {
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (<></>)}
                 <div className="score-watl-game-container">
-                    <RenderWatlGameButtons gamethrowsCount={gameThrows.length} maxThrowCount={maxThrowCount} onSubmit={getData} />
+                    <RenderWatlGameButtons
+                        gameThrowsCount={gameThrows.length}
+                        maxThrowCount={maxThrowCount}
+                        onSubmit={getData}
+                    />
                     <div className="watl-game-score">
                         <div className="watl-game-header">
                             <h2>Warmup</h2>
