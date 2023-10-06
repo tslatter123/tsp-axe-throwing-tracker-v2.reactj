@@ -1,7 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import ScoreUserWatlGameButtons from "../../components/userWatlGames/ScoreUserWatlGameButtons";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
-import UserWatlGameWarmupButtons from "../../components/userWatlGames/UserWatlGameWarmupButtons";
 import GameThrowItem from "../../components/game-throw-item/game-throw-item";
 import useSelectedGameThrow from "../../hooks/useSelectedGameThrow";
 import RenderWatlGameButtons from "../../components/render-watl-game-buttons/render-watl-game-buttons";
