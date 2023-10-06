@@ -12,6 +12,7 @@ import UserWatlGameAnalytics from "./userWatlGames/UserWatlGameAnalytics";
 import ScoreUserWatlGame from "./userWatlGames/ScoreUserWatlGame";
 import EvaluateUserWatlGame from "./userWatlGames/EvaluateUserWatlGame";
 import { WatlGameFilterProvider } from "../context/WatlGameFilterProvider";
+import { SelectedGameThrowProvider } from "../context/SelectedGameThrowProvider";
 
 class MasterLayout extends Component {
     render() {
@@ -19,20 +20,26 @@ class MasterLayout extends Component {
             <Router>
                 <TopNavBar />
                 <div className="page-container">
+                    <Routes>
+                        <Route path="/" element={<App />} />
+                        <Route path="/route-test" element={<RouteTestPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/sign-in" element={<SignInPage />} />
+                        <Route path="/sign-out" element={<SignOutPage />} />
+                        <Route path="/axes" element={<UserAxes />} />
+                    </Routes>
                     <WatlGameFilterProvider>
                         <Routes>
-                            <Route path="/" element={<App />} />
-                            <Route path="/route-test" element={<RouteTestPage />} />
-                            <Route path="/register" element={<RegisterPage />} />
-                            <Route path="/sign-in" element={<SignInPage />} />
-                            <Route path="/sign-out" element={<SignOutPage />} />
-                            <Route path="/axes" element={<UserAxes />} />
                             <Route path="/user-watl-games" element={<UserWatlGames />} />
                             <Route path="/user-watl-games/analytics" element={<UserWatlGameAnalytics />} />
+                        </Routes>
+                    </WatlGameFilterProvider>
+                    <SelectedGameThrowProvider>
+                        <Routes>
                             <Route path="/user-watl-games/score-watl-game/:id" element={<ScoreUserWatlGame />} />
                             <Route path="/user-watl-games/evaluate-watl-game/:id" element={<EvaluateUserWatlGame />} />
                         </Routes>
-                    </WatlGameFilterProvider>
+                    </SelectedGameThrowProvider>
                 </div>
             </Router>
         )
