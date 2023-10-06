@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import UserWatlGameInconsistencyButtons from "../../components/userWatlGames/UserWatlGameInconsistencyButtons";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
-import UserWatlGamePotentialScoreButtons from "../../components/userWatlGames/UserWatlGamePotentialScoreButtons";
 import InconsistencyIconContainer from "../../components/inconsistency-icon-container/inconsistency-icon-container";
 import GameScore from "../../components/game-score/game-score";
 import WarmupThrowContainer from "../../components/warmup-throw-container/warmup-throw-container";
+import useSelectedGameThrow from "../../hooks/useSelectedGameThrow";
+import RenderWatlGameButtons from "../../components/render-watl-game-buttons/render-watl-game-buttons";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -27,10 +27,7 @@ const EvaluateUserWatlGame = () => {
     const [errorMsg, setErrorMsg] = useState('');
 
     const axiosPrivate = useAxiosPrivate();
-
-    const [editGameThrowId, setEditGameThrowId] = useState(null);
-    const [inconsistenciesOpen, setInconsistenciesOpen] = useState(false);
-    const [potentialScoreOpen, setPotentialScoreOpen] = useState(false);
+    const { selectedGameThrow, setSelectedGameThrow } = useSelectedGameThrow();
 
     useEffect(() => {
         let isMounted = true;
@@ -53,6 +50,8 @@ const EvaluateUserWatlGame = () => {
                     setPotentialScore(response.data.watlGameInfo.potentialScore);
                     setWarmupThrows(response.data.watlGameInfo.warmupThrows);
                     setGameThrows(response.data.watlGameInfo.gameThrows);
+
+                    setSelectedGameThrow({});
                 }
             } catch (err) {
                 if (!err?.response) {
@@ -65,32 +64,15 @@ const EvaluateUserWatlGame = () => {
         }
 
         getWatlGameInfo();
-    }, [axiosPrivate, params.id]);
+    }, [axiosPrivate, params.id, setSelectedGameThrow]);
 
-    const openCloseInconsistencies = (id) => {
-        if (!inconsistenciesOpen || potentialScoreOpen) {
-            setEditGameThrowId(id);
-            setInconsistenciesOpen(true);
+    const selectGameThrow = (id, type) => {
+        if (selectedGameThrow?.id === id && selectedGameThrow?.type === type) {
+            setSelectedGameThrow({});
         }
-        else if (inconsistenciesOpen) {
-            setInconsistenciesOpen(id !== editGameThrowId);
-            setEditGameThrowId(id === editGameThrowId ? null : id);
+        else {
+            setSelectedGameThrow({ id, type, templateId })
         }
-
-        setPotentialScoreOpen(false);
-    }
-
-    const openClosePotentialScore = (id) => {
-        if (!potentialScoreOpen || inconsistenciesOpen) {
-            setEditGameThrowId(id);
-            setPotentialScoreOpen(true);
-        }
-        else if (potentialScoreOpen) {
-            setPotentialScoreOpen(id !== editGameThrowId);
-            setEditGameThrowId(id === editGameThrowId ? null : id);
-        }
-
-        setInconsistenciesOpen(false);
     }
 
     const getData = (watlGameInfo) => {
@@ -104,8 +86,8 @@ const EvaluateUserWatlGame = () => {
         setWarmupThrows(watlGameInfo.warmupThrows);
         setGameThrows(watlGameInfo.gameThrows);
 
-        if (potentialScoreOpen) {
-            openClosePotentialScore(editGameThrowId);
+        if (selectedGameThrow?.type === "potential-score") {
+            setSelectedGameThrow({});
         }
     }
 
@@ -124,10 +106,7 @@ const EvaluateUserWatlGame = () => {
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (<></>)}
                 <div className="score-watl-game-container">
-                    <div className={inconsistenciesOpen || potentialScoreOpen ? "popout popout-extended popout-open" : "popout popout-extended"}>
-                        {inconsistenciesOpen ? (<UserWatlGameInconsistencyButtons watlGameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) :
-                            potentialScoreOpen ? (<UserWatlGamePotentialScoreButtons templateId={templateId} gameId={params.id} gameThrowId={editGameThrowId} onSubmit={getData} />) : (<></>)}
-                    </div>
+                    <RenderWatlGameButtons onSubmit={getData} />
                     <div className="watl-game-score">
                         <div className="watl-game-header">
                             <h2>Score: {score}</h2>
@@ -151,8 +130,8 @@ const EvaluateUserWatlGame = () => {
                                                 <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
                                             ) : (<></>)}
                                             <InconsistencyIconContainer inconsistencies={gameThrow.inconsistencies} />
-                                            <button onClick={() => openCloseInconsistencies(gameThrow.id)}>Set inconsistencies</button>
-                                            <button onClick={() => openClosePotentialScore(gameThrow.id)}>Set potential score</button>
+                                            <button onClick={() => selectGameThrow(gameThrow.id, "inconsistencies")}>Set inconsistencies</button>
+                                            <button onClick={() => selectGameThrow(gameThrow.id, "potential-score")}>Set potential score</button>
                                         </div>
                                     );
                                 }) : (<></>)
