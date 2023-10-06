@@ -171,14 +171,6 @@ const ScoreUserWatlGame = () => {
                                 gameThrows.map(gameThrow => {
                                     return (
                                         <GameThrowItem onClick={() => openCloseScoreButtons(gameThrow.id)} gameType="watl" gameThrow={gameThrow} isSelected={gameThrow.id === watlGameThrowId} />
-                                        // <div
-                                        //     key={gameThrow.id}
-                                        //     className={watlGameThrowId === gameThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
-                                        //     onClick={() => openCloseScoreButtons(gameThrow.id)}
-                                        // >
-                                        //     <div className="index">{gameThrow.index}</div>
-                                        //     <GameScore gameType="watl" className={gameThrow.className} displayName={gameThrow.shortName} />
-                                        // </div>
                                     );
                                 }) : (<></>)
                             }
