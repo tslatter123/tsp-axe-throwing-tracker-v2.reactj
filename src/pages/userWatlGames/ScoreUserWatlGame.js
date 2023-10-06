@@ -148,14 +148,12 @@ const ScoreUserWatlGame = () => {
                             {warmupThrows.length ?
                                 warmupThrows.map(warmupThrow => {
                                     return (
-                                        <div
-                                            key={warmupThrow.id}
-                                            className={warmupThrowId === warmupThrow.id ? "watl-game-throw-item selected" : "watl-game-throw-item"}
+                                        <GameThrowItem
+                                            key={"warmup_throw_" + warmupThrow.id}
                                             onClick={() => openCloseWarmupButtons(warmupThrow.id)}
-                                        >
-                                            <div className="index">{warmupThrow.index}</div>
-                                            <GameScore className={warmupThrow.className} displayName={warmupThrow.shortName} />
-                                        </div>
+                                            gameType="watl" gameThrow={warmupThrow}
+                                            isSelected={warmupThrow.id === warmupThrowId}
+                                        />
                                     );
                                 }) : (<></>)
                             }
@@ -170,7 +168,12 @@ const ScoreUserWatlGame = () => {
                             {gameThrows.length ?
                                 gameThrows.map(gameThrow => {
                                     return (
-                                        <GameThrowItem onClick={() => openCloseScoreButtons(gameThrow.id)} gameType="watl" gameThrow={gameThrow} isSelected={gameThrow.id === watlGameThrowId} />
+                                        <GameThrowItem
+                                            key={"game_throw_" + gameThrow.id}
+                                            onClick={() => openCloseScoreButtons(gameThrow.id)}
+                                            gameType="watl" gameThrow={gameThrow}
+                                            isSelected={gameThrow.id === watlGameThrowId}
+                                        />
                                     );
                                 }) : (<></>)
                             }

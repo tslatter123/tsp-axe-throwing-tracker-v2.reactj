@@ -8,7 +8,7 @@ const GameThrowItem = (props) => {
         "game-throw-item flex-row align-center flex-wrap-content";
 
     return (
-        <div key={props.gameThrow.id} onClick={props.onClick} className={className}>
+        <div key={props.key} onClick={props.onClick} className={className}>
             {props.gameThrow.index || props.gameThrow.index === 0 ? (
                 <div className="index">{props.gameThrow.index}</div>
             ) : (<></>)}
