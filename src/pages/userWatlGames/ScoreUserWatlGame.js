@@ -29,12 +29,6 @@ const ScoreUserWatlGame = () => {
     const axiosPrivate = useAxiosPrivate();
     const { selectedGameThrow, setSelectedGameThrow } = useSelectedGameThrow();
 
-    const [watlGameThrowId, setWatlGameThrowId] = useState(selectedGameThrow?.id ?? '');
-    const [scoreBtnsOpen, setScoreBtnsOpen] = useState(false);
-
-    const [warmupThrowId, setWarmupThrowId] = useState(null);
-    const [warmupBtnsOpen, setWarmupBtnsOpen] = useState(false);
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -59,7 +53,7 @@ const ScoreUserWatlGame = () => {
                     setGameThrows(response.data.watlGameInfo.gameThrows);
                     setMaxThrowCount(response.data.watlGameInfo.maxThrowCount);
 
-                    setScoreBtnsOpen(gameThrows.length < maxThrowCount);
+                    setSelectedGameThrow({ id: null, type: 'game-throw', action: 'add' });
                 }
             } catch (err) {
                 if (!err?.response) {
@@ -72,7 +66,7 @@ const ScoreUserWatlGame = () => {
         }
 
         getWatlGameInfo();
-    }, [axiosPrivate, params.id, gameThrows.length, maxThrowCount]);
+    }, [axiosPrivate, params.id, gameThrows.length, maxThrowCount, setSelectedGameThrow]);
 
     const selectEditGameThrow = (id, type) => {
         if (selectedGameThrow?.id === id && selectedGameThrow?.type === type) {
@@ -80,31 +74,6 @@ const ScoreUserWatlGame = () => {
         }
         else {
             setSelectedGameThrow({ id, type, action: 'edit' })
-        }
-    }
-
-    const openCloseScoreButtons = (id) => {
-        setScoreBtnsOpen(gameThrows.length < maxThrowCount || watlGameThrowId !== id || !scoreBtnsOpen);
-        setWatlGameThrowId(watlGameThrowId === id ? null : id);
-
-        setWarmupThrowId(null);
-        setWarmupBtnsOpen(false);
-    }
-
-    const openCloseWarmupButtons = (id) => {
-        if (warmupBtnsOpen) {
-            setWarmupBtnsOpen(warmupThrowId !== id);
-            setWarmupThrowId(warmupThrowId === id ? null : id);
-
-            setWatlGameThrowId(null);
-            setScoreBtnsOpen(warmupThrowId === id && gameThrows.length < maxThrowCount);
-        }
-        else {
-            setWarmupThrowId(id);
-            setWarmupBtnsOpen(true);
-
-            setWatlGameThrowId(null);
-            setScoreBtnsOpen(false)
         }
     }
 
@@ -119,13 +88,7 @@ const ScoreUserWatlGame = () => {
         setGameThrows(watlGameInfo.gameThrows);
         setMaxThrowCount(watlGameInfo.maxThrowCount);
 
-        openCloseScoreButtons(watlGameThrowId);
-
-        setWarmupThrowId(null);
-        setWarmupBtnsOpen(false);
-
-        setWatlGameThrowId(null);
-        setScoreBtnsOpen(gameThrows.length < maxThrowCount);
+        setSelectedGameThrow({ id: null, type: 'game-throw', action: 'add' });
     }
 
     return (
@@ -143,7 +106,7 @@ const ScoreUserWatlGame = () => {
                     <p ref={errorMsgRef} aria-live="assertive" className="error-msg">{errorMsg}</p>
                 ) : (<></>)}
                 <div className="score-watl-game-container">
-                    <div className={selectedGameThrow?.id || selectedGameThrow?.id === 0 || gameThrows.length < maxThrowCount ? "popout popout-extended popout-open" : "popout popout-extended"}>
+                    <div className={selectedGameThrow?.id || selectedGameThrow?.id === 0 || selectedGameThrow?.type === "warmup-throw" || gameThrows.length < maxThrowCount ? "popout popout-extended popout-open" : "popout popout-extended"}>
                         {selectedGameThrow?.type === "game-throw" ? (
                             <ScoreUserWatlGameButtons templateId={templateId} watlGameId={params.id} watlGameThrowId={selectedGameThrow?.id} onSubmit={getData} />
                         ) : selectedGameThrow?.type === "warmup-throw" ? (
@@ -167,8 +130,8 @@ const ScoreUserWatlGame = () => {
                                     );
                                 }) : (<></>)
                             }
-                            <div className={warmupBtnsOpen && warmupThrowId == null ? "watl-game-throw-item selected" : "watl-game-throw-item"}>
-                                <button type="button" onClick={() => openCloseWarmupButtons(null)}>Add warmup throw</button>
+                            <div className={selectedGameThrow?.id === null && selectedGameThrow?.type === "warmup-throw" ? "watl-game-throw-item selected" : "watl-game-throw-item"}>
+                                <button type="button" onClick={() => selectEditGameThrow(null, "warmup-throw")}>Add warmup throw</button>
                             </div>
                         </div>
                         <div className="watl-game-header">
