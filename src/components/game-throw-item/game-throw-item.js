@@ -1,6 +1,7 @@
 import './game-throw-item.css';
 import GameScore from "../game-score/game-score";
 import InconsistencyIconContainer from "../inconsistency-icon-container/inconsistency-icon-container";
+import GameThrowEvaluationButtons from '../game-throw-evaluation-buttons/game-throw-evaluation-buttons';
 
 const GameThrowItem = (props) => {
     const className = props.isSelected ?
@@ -24,10 +25,7 @@ const GameThrowItem = (props) => {
             ) : (<></>)}
 
             {props.showEvaluationOptions ? (
-                <>
-                    <button disabled>Set inconsistencies</button>
-                    <button disabled>Set potential score</button>
-                </>
+                <GameThrowEvaluationButtons id={props.gameThrow.id} templateId={props.templateId} />
             ) : (<></>)}
         </div>
     );

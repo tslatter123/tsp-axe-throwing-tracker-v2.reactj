@@ -67,12 +67,8 @@ const EvaluateUserWatlGame = () => {
     }, [axiosPrivate, params.id, setSelectedGameThrow]);
 
     const selectGameThrow = (id, type) => {
-        if (selectedGameThrow?.id === id && selectedGameThrow?.type === type) {
-            setSelectedGameThrow({});
-        }
-        else {
-            setSelectedGameThrow({ id, type, templateId })
-        }
+        setSelectedGameThrow(selectedGameThrow?.id === id && selectedGameThrow?.type === type ?
+            {} : { id, type, templateId });
     }
 
     const getData = (watlGameInfo) => {
