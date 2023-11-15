@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import UserWatlGameAxeButtons from "../../components/userWatlGames/UserWatlGameAxeButtons";
-import InconsistencyIconContainer from "../../components/inconsistency-icon-container/inconsistency-icon-container";
-import GameScore from "../../components/game-score/game-score";
 import WarmupThrowContainer from "../../components/warmup-throw-container/warmup-throw-container";
 import useSelectedGameThrow from "../../hooks/useSelectedGameThrow";
 import RenderWatlGameButtons from "../../components/render-watl-game-buttons/render-watl-game-buttons";
+import GameThrowItem from "../../components/game-throw-item/game-throw-item";
 
 const watlGameUrl = 'UserWatlGame';
 
@@ -66,11 +65,6 @@ const EvaluateUserWatlGame = () => {
         getWatlGameInfo();
     }, [axiosPrivate, params.id, setSelectedGameThrow]);
 
-    const selectGameThrow = (id, type) => {
-        setSelectedGameThrow(selectedGameThrow?.id === id && selectedGameThrow?.type === type ?
-            {} : { id, type, templateId });
-    }
-
     const getData = (watlGameInfo) => {
         setName(watlGameInfo.name);
         setTemplateId(watlGameInfo.templateID);
@@ -119,16 +113,15 @@ const EvaluateUserWatlGame = () => {
                             {gameThrows.length ?
                                 gameThrows.map(gameThrow => {
                                     return (
-                                        <div key={gameThrow.id} className="watl-game-throw-item">
-                                            <div className="watl-game-throw-index">{gameThrow.index}</div>
-                                            <GameScore className={"watl " + gameThrow.className} displayName={gameThrow.shortName} />
-                                            {gameThrow.potentialScore ? (
-                                                <div className="watl-game-throw-score potential-score">{gameThrow.potentialScore}</div>
-                                            ) : (<></>)}
-                                            <InconsistencyIconContainer inconsistencies={gameThrow.inconsistencies} />
-                                            <button onClick={() => selectGameThrow(gameThrow.id, "inconsistencies")}>Set inconsistencies</button>
-                                            <button onClick={() => selectGameThrow(gameThrow.id, "potential-score")}>Set potential score</button>
-                                        </div>
+                                        <GameThrowItem
+                                            key={"game-throw-" + gameThrow.id}
+                                            gameThrow={gameThrow}
+                                            gameType="watl"
+                                            templateId={templateId}
+                                            isSelected={selectedGameThrow?.id === gameThrow.id}
+                                            showInconsistencies={true}
+                                            showEvaluationOptions={true}
+                                        />
                                     );
                                 }) : (<></>)
                             }
